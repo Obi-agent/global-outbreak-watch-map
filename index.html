@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Global Outbreak Watch Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Load Leaflet's CSS from the official CDN. The integrity and crossorigin
+       attributes help ensure the file is delivered securely. -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="" />
+  <style>
+    /* Make the map fill the entire viewport */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+    #map {
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <!-- Load Leaflet's JavaScript from the official CDN. Make sure this comes
+       after the CSS link above. -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+  <script>
+    // Initialize the map and set its view to a global perspective.
+    var map = L.map('map').setView([0, 0], 2);
+
+    // Add a base tile layer. We use OpenStreetMap tiles here; you can switch
+    // to another provider as long as you include the proper attribution.
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Function to assign colours based on the severity property. You can
+    // customise these colours or add more levels as your data evolves.
+    function getSeverityColour(severity) {
+      switch (severity) {
+        case 'Low': return 'green';
+        case 'Moderate': return 'orange';
+        case 'High': return 'red';
+        case 'Critical': return 'black';
+        default: return 'blue';
+      }
+    }
+
+    // Fetch the GeoJSON data generated from the outbreak dataset. We store the
+    // GeoJSON in the same directory as this HTML page for simplicity.
+    fetch('gow_data.geojson')
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(geojson) {
+        // Create a GeoJSON layer with customised markers and pop-ups.
+        L.geoJSON(geojson, {
+          // Convert each Point feature into a circle marker with a colour
+          // reflecting its severity. You can switch to custom icons here
+          // instead of circle markers if desired.
+          pointToLayer: function(feature, latlng) {
+            return L.circleMarker(latlng, {
+              radius: 8,
+              fillColor: getSeverityColour(feature.properties.Severity),
+              color: '#000',
+              weight: 1,
+              opacity: 1,
+              fillOpacity: 0.8
+            });
+          },
+          // Attach a pop-up to each feature. The pop-up displays relevant
+          // information about the outbreak, including a link to the source.
+          onEachFeature: function(feature, layer) {
+            var p = feature.properties;
+            var popupContent = '';
+            popupContent += '<h3>' + p.Threat + ' (' + p.Country + ')</h3>';
+            popupContent += '<p><strong>Status:</strong> ' + p.Status + '<br>';
+            popupContent += '<strong>Severity:</strong> ' + p.Severity + '<br>';
+            popupContent += '<strong>Last updated:</strong> ' + p.Date_Last_Updated + '</p>';
+            popupContent += '<p>' + p.Situation_Snapshot + '</p>';
+            // Only include the general recommendations if present.
+            if (p.General_Recommendations) {
+              popupContent += '<p><em>' + p.General_Recommendations + '</em></p>';
+            }
+            popupContent += '<p><a href="' + p.Source_URL + '" target="_blank">Source</a></p>';
+            layer.bindPopup(popupContent);
+          }
+        }).addTo(map);
+      })
+      .catch(function(error) {
+        console.error('Error loading GeoJSON data:', error);
+      });
+  </script>
+</body>
+</html>
