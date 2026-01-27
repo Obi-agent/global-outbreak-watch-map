@@ -66,9 +66,12 @@
           // reflecting its severity. You can switch to custom icons here
           // instead of circle markers if desired.
           pointToLayer: function(feature, latlng) {
+            // Support both upper- and lower-case property names for severity.
+            var props = feature.properties;
+            var severity = props.Severity || props.severity;
             return L.circleMarker(latlng, {
               radius: 8,
-              fillColor: getSeverityColour(feature.properties.Severity),
+              fillColor: getSeverityColour(severity),
               color: '#000',
               weight: 1,
               opacity: 1,
@@ -79,17 +82,30 @@
           // information about the outbreak, including a link to the source.
           onEachFeature: function(feature, layer) {
             var p = feature.properties;
+            // Support both upper- and lower-case property names.
+            var threat = p.Threat || p.threat || 'Unknown threat';
+            var country = p.Country || p.country || 'Unknown location';
+            var status = p.Status || p.status || 'Unknown status';
+            var severity = p.Severity || p.severity || 'Unknown';
+            var updated = p.Date_Last_Updated || p.date_last_updated || '';
+            var snapshot = p.Situation_Snapshot || p.situation_snapshot || '';
+            var recommendations = p.General_Recommendations || p.general_recommendations || '';
+            var source = p.Source_URL || p.source_url || '#';
+
             var popupContent = '';
-            popupContent += '<h3>' + p.Threat + ' (' + p.Country + ')</h3>';
-            popupContent += '<p><strong>Status:</strong> ' + p.Status + '<br>';
-            popupContent += '<strong>Severity:</strong> ' + p.Severity + '<br>';
-            popupContent += '<strong>Last updated:</strong> ' + p.Date_Last_Updated + '</p>';
-            popupContent += '<p>' + p.Situation_Snapshot + '</p>';
+            popupContent += '<h3>' + threat + ' (' + country + ')</h3>';
+            popupContent += '<p><strong>Status:</strong> ' + status + '<br>';
+            popupContent += '<strong>Severity:</strong> ' + severity + '<br>';
+            popupContent += '<strong>Last updated:</strong> ' + updated + '</p>';
+            popupContent += '<p>' + snapshot + '</p>';
             // Only include the general recommendations if present.
-            if (p.General_Recommendations) {
-              popupContent += '<p><em>' + p.General_Recommendations + '</em></p>';
+            if (recommendations) {
+              popupContent += '<p><em>' + recommendations + '</em></p>';
             }
-            popupContent += '<p><a href="' + p.Source_URL + '" target="_blank">Source</a></p>';
+            // Include the source link if available.
+            if (source && source !== '#') {
+              popupContent += '<p><a href="' + source + '" target="_blank">Source</a></p>';
+            }
             layer.bindPopup(popupContent);
           }
         }).addTo(map);
