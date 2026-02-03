@@ -1,1 +1,166 @@
-{"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [46.869107, -18.766947]}, "properties": {"Outbreak_ID": "2026-01-29-01", "Threat": "Mpox (Clade Ib)", "Country": "Madagascar", "Location_Label": "Boeny region and other regions", "Date_First_Noted": "2024-08-01", "Date_Last_Updated": "2026-01-29", "Status": "Monitoring", "Severity": "Moderate", "Situation_Snapshot": "By mid-January\u00a02026, Madagascar reported 290 mpox (clade\u00a0Ib) cases across 18 regions with 78 confirmed; most cases (180) were in Boeny region. Travel-associated cases have been detected in Mayotte, Spain and the UK, indicating limited international spread.", "Travel_Takeaways": "Risk to general travellers is low, but men who have sex with men should be aware of mpox symptoms. Practise good hygiene and avoid close contact with individuals exhibiting mpox-like symptoms; vaccination may be considered for those at high risk.", "General_Recommendations": "Travellers should consider vaccination (when available) and speak with their healthcare provider before travel; practise insect bite prevention by using repellent, wearing long-sleeved clothing and sleeping under nets; practise food and water hygiene by eating only fully cooked food and boiled or treated water; avoid contact with sick people, bats, rodents and other wild or domestic animals and their excreta; avoid visiting live animal markets, caves and mines, and do not consume bushmeat or unpasteurised products; practise safe sex and avoid unnecessary medical or cosmetic procedures; carry a travel health kit and comprehensive travel insurance including medical evacuation; seek prompt medical advice if you develop fever, rash or other symptoms during or after travel.", "Source": "UKHSA", "Source_URL": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026/outbreaks-under-monitoring-week-3-week-ending-18-january-2026"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-1.023194, 7.946527]}, "properties": {"Outbreak_ID": "2026-01-29-02", "Threat": "Monkeypox (Clade II)", "Country": "Ghana & Liberia", "Location_Label": "Multiple regions", "Date_First_Noted": "2024-08-01", "Date_Last_Updated": "2026-01-29", "Status": "Open", "Severity": "Moderate", "Situation_Snapshot": "Level\u00a02 travel alert: outbreaks of clade\u00a0II monkeypox in Ghana and Liberia affect men and women equally and primarily spread through intimate contact. CDC advises travellers to consider the two\u2011dose JYNNEOS vaccine and avoid close contact with symptomatic people, contaminated materials and wild animals.", "Travel_Takeaways": "Travellers engaging in sexual or intimate contact in Ghana and Liberia should get vaccinated with two doses of JYNNEOS and practise safer sex. Avoid handling or consuming bush meat and interacting with wild primates or rodents.", "General_Recommendations": "Travellers should consider vaccination (when available) and speak with their healthcare provider before travel; practise insect bite prevention by using repellent, wearing long-sleeved clothing and sleeping under nets; practise food and water hygiene by eating only fully cooked food and boiled or treated water; avoid contact with sick people, bats, rodents and other wild or domestic animals and their excreta; avoid visiting live animal markets, caves and mines, and do not consume bushmeat or unpasteurised products; practise safe sex and avoid unnecessary medical or cosmetic procedures; carry a travel health kit and comprehensive travel insurance including medical evacuation; seek prompt medical advice if you develop fever, rash or other symptoms during or after travel.", "Source": "CDC", "Source_URL": "https://wwwnc.cdc.gov/travel/notices/level2/monkeypox-western-africa"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [87.855, 22.9868]}, "properties": {"Outbreak_ID": "2026-01-29-03", "Threat": "Nipah virus", "Country": "India (West Bengal)", "Location_Label": "Kolkata", "Date_First_Noted": "2026-01-13", "Date_Last_Updated": "2026-01-29", "Status": "Open", "Severity": "High", "Situation_Snapshot": "Two healthcare workers in Kolkata were diagnosed with Nipah virus in January\u00a02026; all 196 contacts tested negative and there is no evidence of community transmission. This is the first Nipah outbreak in West\u00a0Bengal in 19\u00a0years.", "Travel_Takeaways": "Avoid contact with bats and sick people, do not drink raw date palm sap and practise hand hygiene; there is no vaccine, so prevention is essential.", "General_Recommendations": "Travellers should consider vaccination (when available) and speak with their healthcare provider before travel; practise insect bite prevention by using repellent, wearing long-sleeved clothing and sleeping under nets; practise food and water hygiene by eating only fully cooked food and boiled or treated water; avoid contact with sick people, bats, rodents and other wild or domestic animals and their excreta; avoid visiting live animal markets, caves and mines, and do not consume bushmeat or unpasteurised products; practise safe sex and avoid unnecessary medical or cosmetic procedures; carry a travel health kit and comprehensive travel insurance including medical evacuation; seek prompt medical advice if you develop fever, rash or other symptoms during or after travel.", "Source": "UKHSA & ECDC", "Source_URL": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026/outbreaks-under-monitoring-week-3-week-ending-18-january-2026"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-60.7, -31.63]}, "properties": {"Outbreak_ID": "2026-01-29-04", "Threat": "Argentine haemorrhagic fever (Junin virus)", "Country": "Argentina", "Location_Label": "Santa\u00a0Fe province", "Date_First_Noted": "2026-01-16", "Date_Last_Updated": "2026-01-29", "Status": "Open", "Severity": "High", "Situation_Snapshot": "Argentina reported a confirmed case of Argentine haemorrhagic fever in Santa\u00a0Fe province on 16\u00a0January\u00a02026; Junin virus remains endemic in several central provinces and cases usually occur during harvest season.", "Travel_Takeaways": "Travellers visiting rural endemic regions should avoid rodent-infested areas and contact with rodent excreta, use insect bite precautions and ensure vaccinations are up to date.", "General_Recommendations": "Travellers should consider vaccination (when available) and speak with their healthcare provider before travel; practise insect bite prevention by using repellent, wearing long-sleeved clothing and sleeping under nets; practise food and water hygiene by eating only fully cooked food and boiled or treated water; avoid contact with sick people, bats, rodents and other wild or domestic animals and their excreta; avoid visiting live animal markets, caves and mines, and do not consume bushmeat or unpasteurised products; practise safe sex and avoid unnecessary medical or cosmetic procedures; carry a travel health kit and comprehensive travel insurance including medical evacuation; seek prompt medical advice if you develop fever, rash or other symptoms during or after travel.", "Source": "UKHSA", "Source_URL": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026/outbreaks-under-monitoring-week-3-week-ending-18-january-2026"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [104.195397, 35.86166]}, "properties": {"Outbreak_ID": "2026-01-29-05", "Threat": "Avian influenza A(H9N2)", "Country": "China", "Location_Label": "Various provinces", "Date_First_Noted": "2026-01-09", "Date_Last_Updated": "2026-01-29", "Status": "Open", "Severity": "Moderate", "Situation_Snapshot": "Three new human infections with low\u2011pathogenic avian influenza A(H9N2) were reported in China between 9 and 15\u00a0January\u00a02026: two children from Jiangxi and Yunnan exposed to backyard poultry and one child from Beijing exposed at a live bird market; all recovered.", "Travel_Takeaways": "Avoid visiting live bird markets or backyard poultry farms; practise good hand hygiene and only eat thoroughly cooked poultry and eggs; seek medical advice if respiratory symptoms develop.", "General_Recommendations": "Travellers should consider vaccination (when available) and speak with their healthcare provider before travel; practise insect bite prevention by using repellent, wearing long-sleeved clothing and sleeping under nets; practise food and water hygiene by eating only fully cooked food and boiled or treated water; avoid contact with sick people, bats, rodents and other wild or domestic animals and their excreta; avoid visiting live animal markets, caves and mines, and do not consume bushmeat or unpasteurised products; practise safe sex and avoid unnecessary medical or cosmetic procedures; carry a travel health kit and comprehensive travel insurance including medical evacuation; seek prompt medical advice if you develop fever, rash or other symptoms during or after travel.", "Source": "WHO WPRO", "Source_URL": "https://cdn.who.int/media/docs/default-source/wpro---documents/emergency/surveillance/avian-influenza/ai_20260116.pdf"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [45.079162, 23.885942]}, "properties": {"Outbreak_ID": "2026-01-29-06", "Threat": "Middle East respiratory syndrome (MERS)", "Country": "Saudi Arabia", "Location_Label": "Makkah, Riyad & Najran regions", "Date_First_Noted": "2025-09-01", "Date_Last_Updated": "2026-01-29", "Status": "Monitoring", "Severity": "Moderate", "Situation_Snapshot": "Since the beginning of 2025, and as of 5\u00a0January\u00a02026, 19 MERS\u2011CoV cases (including four deaths) have been reported, mostly in Saudi Arabia, with some cases linked to camel exposure; no community transmission has been detected and the risk to Europe remains low.", "Travel_Takeaways": "Avoid contact with camels and camel products, practise hand and respiratory hygiene and seek medical care if you develop fever and cough; travellers with underlying conditions should be especially cautious.", "General_Recommendations": "Travellers should consider vaccination (when available) and speak with their healthcare provider before travel; practise insect bite prevention by using repellent, wearing long-sleeved clothing and sleeping under nets; practise food and water hygiene by eating only fully cooked food and boiled or treated water; avoid contact with sick people, bats, rodents and other wild or domestic animals and their excreta; avoid visiting live animal markets, caves and mines, and do not consume bushmeat or unpasteurised products; practise safe sex and avoid unnecessary medical or cosmetic procedures; carry a travel health kit and comprehensive travel insurance including medical evacuation; seek prompt medical advice if you develop fever, rash or other symptoms during or after travel.", "Source": "ECDC", "Source_URL": "https://www.ecdc.europa.eu/en/middle-east-respiratory-syndrome-coronavirus-mers-cov-situation-update"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [80.771797, 7.873054]}, "properties": {"Outbreak_ID": "2026-01-29-07", "Threat": "Chikungunya", "Country": "Sri Lanka", "Location_Label": "Nationwide", "Date_First_Noted": "2025-12-01", "Date_Last_Updated": "2026-01-29", "Status": "Open", "Severity": "Moderate", "Situation_Snapshot": "Sri Lanka continues to experience an outbreak of chikungunya, a mosquito-borne viral illness causing fever and joint pain; travellers can be infected via daytime\u2011biting mosquitoes and there is no specific treatment.", "Travel_Takeaways": "Vaccination is recommended for eligible travellers and pregnant travellers should consult a healthcare provider or avoid travel. Prevent mosquito bites by using insect repellent, wearing long sleeves and staying in screened or air-conditioned areas.", "General_Recommendations": "Travellers should consider vaccination (when available) and speak with their healthcare provider before travel; practise insect bite prevention by using repellent, wearing long-sleeved clothing and sleeping under nets; practise food and water hygiene by eating only fully cooked food and boiled or treated water; avoid contact with sick people, bats, rodents and other wild or domestic animals and their excreta; avoid visiting live animal markets, caves and mines, and do not consume bushmeat or unpasteurised products; practise safe sex and avoid unnecessary medical or cosmetic procedures; carry a travel health kit and comprehensive travel insurance including medical evacuation; seek prompt medical advice if you develop fever, rash or other symptoms during or after travel.", "Source": "CDC", "Source_URL": "https://wwwnc.cdc.gov/travel/notices/watch/chikungunya-sri-lanka"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [40.489673, 9.145]}, "properties": {"Outbreak_ID": "2026-01-29-08", "Threat": "Marburg virus disease", "Country": "Ethiopia", "Location_Label": "South Ethiopia Region", "Date_First_Noted": "2025-11-14", "Date_Last_Updated": "2026-01-29", "Status": "Closed", "Severity": "High", "Situation_Snapshot": "Ethiopia declared the end of its first Marburg virus disease outbreak on 26\u00a0January\u00a02026 after 42 days without new cases; the outbreak, first detected in November\u00a02025, resulted in 19 cases (14 confirmed and five probable) and 14 deaths, with all 857 contacts completing follow\u2011up.", "Travel_Takeaways": "Risk is minimal now the outbreak is over, but visitors should still avoid contact with fruit bats and people showing haemorrhagic symptoms; practise good hygiene and follow local health advisories.", "General_Recommendations": "Travellers should consider vaccination (when available) and speak with their healthcare provider before travel; practise insect bite prevention by using repellent, wearing long-sleeved clothing and sleeping under nets; practise food and water hygiene by eating only fully cooked food and boiled or treated water; avoid contact with sick people, bats, rodents and other wild or domestic animals and their excreta; avoid visiting live animal markets, caves and mines, and do not consume bushmeat or unpasteurised products; practise safe sex and avoid unnecessary medical or cosmetic procedures; carry a travel health kit and comprehensive travel insurance including medical evacuation; seek prompt medical advice if you develop fever, rash or other symptoms during or after travel.", "Source": "WHO", "Source_URL": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON592"}}]}
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46.6,
+          -18.9
+        ]
+      },
+      "properties": {
+        "outbreak_id": "2026-02-03-001",
+        "threat": "Mpox (Clade Ib)",
+        "country": "Madagascar",
+        "location_label": "Madagascar (20 regions)",
+        "status": "Open",
+        "severity": "High",
+        "date_first_noted": "2025-12-17",
+        "date_last_updated": "2026-01-24",
+        "source_url": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026/outbreaks-under-monitoring-week-4-week-ending-25-january-2026",
+        "situation_snapshot": "UKHSA reported that as of 24 January 2026 there were 495 mpox (clade Ib) cases across Madagascar\nwith 182 confirmed. Most cases (267 total; 142 confirmed) were in Boeny region. This is an increase of 205 cases since 15 January 2026.\nTravel-associated cases were also reported in Reunion and Mayotte, and four cases with travel links to Madagascar were detected in Comoros.\nA first clade Ib case was reported in Czechia in a man with no recent travel history.",
+        "travel_health_takeaways": "Avoid close contact with people who have mpox-like symptoms and contaminated materials.\nPractise safe sex and good hand hygiene.\nConsider vaccination if recommended and monitor for rash or fever after travel."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.0,
+          -34.0
+        ]
+      },
+      "properties": {
+        "outbreak_id": "2026-02-03-002",
+        "threat": "Hantavirus",
+        "country": "Argentina",
+        "location_label": "Central region (Buenos Aires, Entre Ríos, Santa Fe)",
+        "status": "Open",
+        "severity": "Moderate",
+        "date_first_noted": "2025-06-30",
+        "date_last_updated": "2026-01-19",
+        "source_url": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026/outbreaks-under-monitoring-week-4-week-ending-25-january-2026",
+        "situation_snapshot": "Between 30 June 2025 and 10 January 2026 at least 58 confirmed hantavirus infections were reported in Argentina, including 20 deaths\n(case fatality rate about 34.5%). The 2025-26 season has seen an exceedance in reported cases in the Central region (Buenos Aires, Entre Ríos and Santa Fe)\nwith 56 cases, surpassing the previous peak in 2019.",
+        "travel_health_takeaways": "Avoid contact with rodents and their droppings by keeping food in rodent-proof containers and maintaining clean accommodation.\nDo not sweep or vacuum areas with rodent infestation; instead, wet-mop surfaces.\nSeek medical advice if you develop fever, muscle aches or respiratory symptoms after potential exposure."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          87.855,
+          22.986
+        ]
+      },
+      "properties": {
+        "outbreak_id": "2026-02-03-003",
+        "threat": "Nipah virus",
+        "country": "India",
+        "location_label": "West Bengal (Kolkata)",
+        "status": "Open",
+        "severity": "High",
+        "date_first_noted": "2026-01-13",
+        "date_last_updated": "2026-01-27",
+        "source_url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON593",
+        "situation_snapshot": "WHO reported two laboratory-confirmed Nipah virus infections in West Bengal, India.\nBoth cases were healthcare workers at the same private hospital in Barasat and were confirmed on 13 January 2026.\nOne case remained on mechanical ventilation while the second improved.\nMore than 190 contacts were tested and all results were negative. No further cases have been detected.",
+        "travel_health_takeaways": "Avoid contact with bats and pigs and refrain from consuming raw date palm sap.\nPractise good hygiene and avoid close contact with people showing symptoms.\nHealthcare workers should use appropriate personal protective equipment when caring for patients."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.0,
+          -31.41
+        ]
+      },
+      "properties": {
+        "outbreak_id": "2026-02-03-004",
+        "threat": "Argentine haemorrhagic fever (Junin virus)",
+        "country": "Argentina",
+        "location_label": "Santa Fe Province",
+        "status": "Monitoring",
+        "severity": "Moderate",
+        "date_first_noted": "2026-01-16",
+        "date_last_updated": "2026-01-16",
+        "source_url": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026/outbreaks-under-monitoring-week-3-week-ending-18-january-2026",
+        "situation_snapshot": "UKHSA reported a confirmed case of Argentine haemorrhagic fever in Santa Fe, Argentina.\nThe disease is endemic in Buenos Aires, Córdoba, Santa Fe and La Pampa provinces and cases typically occur during harvest season.\nThis is a monitored event with limited risk of international spread.",
+        "travel_health_takeaways": "Avoid rodent-infested rural areas and use protective measures such as gloves and masks when handling grain or crops.\nVaccination is available in Argentina for those at high risk.\nSeek prompt medical attention if you develop fever, bleeding or neurological symptoms after exposure."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.0,
+          35.0
+        ]
+      },
+      "properties": {
+        "outbreak_id": "2026-02-03-005",
+        "threat": "Avian influenza A(H9N2)",
+        "country": "China",
+        "location_label": "Hubei, Jiangsu and Guangxi",
+        "status": "Monitoring",
+        "severity": "Low",
+        "date_first_noted": "2025-11-30",
+        "date_last_updated": "2026-01-15",
+        "source_url": "https://cdn.who.int/media/docs/default-source/wpro---documents/emergency/surveillance/avian-influenza/ai_20260116.pdf",
+        "situation_snapshot": "WHO Western Pacific Region reported three new human cases of avian influenza A(H9N2) in China between 9 and 15 January 2026.\nA 5-year-old boy from Hubei (symptom onset 30 November 2025) had exposure to backyard poultry.\nAn 8-year-old girl from Jiangsu and a 1-year-old boy from Guangxi developed symptoms in December 2025; both had indirect exposure to live poultry.\nAll three children recovered.",
+        "travel_health_takeaways": "Avoid visiting live bird markets and farms and refrain from contact with birds or poultry.\nEnsure poultry and eggs are thoroughly cooked before consumption.\nPractise good hand hygiene and monitor for respiratory symptoms after travel."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          24.0
+        ]
+      },
+      "properties": {
+        "outbreak_id": "2026-02-03-006",
+        "threat": "Middle East respiratory syndrome (MERS)",
+        "country": "Saudi Arabia",
+        "location_label": "Makkah, Riyad and Najran",
+        "status": "Monitoring",
+        "severity": "Moderate",
+        "date_first_noted": "2025-09-01",
+        "date_last_updated": "2026-01-05",
+        "source_url": "https://www.ecdc.europa.eu/en/middle-east-respiratory-syndrome-coronavirus-mers-cov-situation-update",
+        "situation_snapshot": "ECDC reported that as of 5 January 2026 five new MERS cases (one fatality) were reported in Saudi Arabia, with onset between September and December 2025.\nThe patients were adults from Makkah (2), Riyad (2) and Najran (1); two had direct contact with camels.\nSince the start of 2025, 19 MERS cases (including four deaths) have been reported, with 17 cases in Saudi Arabia and two cases imported into France.",
+        "travel_health_takeaways": "Avoid contact with camels and camel products (raw milk, meat).\nPractise good hand hygiene and respiratory etiquette.\nPeople with chronic illnesses should avoid farms and markets where camels are present."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.5,
+          6.5
+        ]
+      },
+      "properties": {
+        "outbreak_id": "2026-02-03-007",
+        "threat": "Marburg virus disease",
+        "country": "Ethiopia",
+        "location_label": "South Ethiopia and Sidama regions",
+        "status": "Closed",
+        "severity": "High",
+        "date_first_noted": "2025-11-14",
+        "date_last_updated": "2026-01-26",
+        "source_url": "https://www.ecdc.europa.eu/sites/default/files/documents/Communicable-disease-threats-report-week-5-2026.pdf",
+        "situation_snapshot": "On 26 January 2026, Ethiopian authorities declared the Marburg virus disease outbreak over after 42 days with no new cases.\nDuring the outbreak (14 November 2025 to 14 December 2025), 19 cases were reported (14 confirmed and 5 probable) with 14 deaths.\nCases occurred in four districts across South Ethiopia and Sidama regions. The outbreak remained confined and no further cases have been detected.",
+        "travel_health_takeaways": "Avoid contact with bats and avoid entering caves or mines inhabited by bats.\nPractice safe burial practices and avoid contact with blood or body fluids of infected individuals.\nSeek immediate medical attention if you develop fever, vomiting or unexplained bleeding after exposure."
+      }
+    }
+  ]
+}
