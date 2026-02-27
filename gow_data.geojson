@@ -1,1 +1,235 @@
-{"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [46.6, -18.9]}, "properties": {"Outbreak_ID": "2026-02-04-001", "Threat": "Mpox (Clade Ib)", "Country": "Madagascar", "Location_Label": "Madagascar (20 regions)", "Latitude": -18.9, "Longitude": 46.6, "Status": "Open", "Severity": "High", "Date_First_Noted": "2025-12-17", "Date_Last_Updated": "2026-02-04", "Source_URL": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026/outbreaks-under-monitoring-week-4-week-ending-25-january-2026", "Situation_Snapshot": "UKHSA reported that as of 24 January 2026 there were 495 mpox (clade Ib) cases across Madagascar\nwith 182 confirmed. Most cases (267 total; 142 confirmed) were in Boeny region. This is an increase of 205 cases since 15 January 2026.\nTravel-associated cases were also reported in Reunion and Mayotte, and four cases with travel links to Madagascar were detected in Comoros.\nA first clade Ib case was reported in Czechia in a man with no recent travel history.", "Travel_Health_Takeaways": "Avoid close contact with people who have mpox-like symptoms and contaminated materials.\nPractise safe sex and good hand hygiene.\nConsider vaccination if recommended and monitor for rash or fever after travel."}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-64.0, -34.0]}, "properties": {"Outbreak_ID": "2026-02-04-002", "Threat": "Hantavirus", "Country": "Argentina", "Location_Label": "Central region (Buenos Aires, Entre R\u00edos, Santa Fe)", "Latitude": -34.0, "Longitude": -64.0, "Status": "Open", "Severity": "Moderate", "Date_First_Noted": "2025-06-30", "Date_Last_Updated": "2026-02-04", "Source_URL": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026/outbreaks-under-monitoring-week-4-week-ending-25-january-2026", "Situation_Snapshot": "Between 30 June 2025 and 10 January 2026 at least 58 confirmed hantavirus infections were reported in Argentina, including 20 deaths\n(case fatality rate about 34.5%). The 2025-26 season has seen an exceedance in reported cases in the Central region (Buenos Aires, Entre R\u00edos and Santa Fe)\nwith 56 cases, surpassing the previous peak in 2019.", "Travel_Health_Takeaways": "Avoid contact with rodents and their droppings by keeping food in rodent-proof containers and maintaining clean accommodation.\nDo not sweep or vacuum areas with rodent infestation; instead, wet-mop surfaces.\nSeek medical advice if you develop fever, muscle aches or respiratory symptoms after potential exposure."}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [87.855, 22.986]}, "properties": {"Outbreak_ID": "2026-02-04-003", "Threat": "Nipah virus", "Country": "India", "Location_Label": "West Bengal (Kolkata)", "Latitude": 22.986, "Longitude": 87.855, "Status": "Open", "Severity": "High", "Date_First_Noted": "2026-01-13", "Date_Last_Updated": "2026-02-04", "Source_URL": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON593", "Situation_Snapshot": "WHO reported two laboratory-confirmed Nipah virus infections in West Bengal, India.\nBoth cases were healthcare workers at the same private hospital in Barasat and were confirmed on 13 January 2026.\nOne case remained on mechanical ventilation while the second improved.\nMore than 190 contacts were tested and all results were negative. No further cases have been detected.", "Travel_Health_Takeaways": "Avoid contact with bats and pigs and refrain from consuming raw date palm sap.\nPractise good hygiene and avoid close contact with people showing symptoms.\nHealthcare workers should use appropriate personal protective equipment when caring for patients."}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-60.0, -31.41]}, "properties": {"Outbreak_ID": "2026-02-04-004", "Threat": "Argentine haemorrhagic fever (Junin virus)", "Country": "Argentina", "Location_Label": "Santa Fe Province", "Latitude": -31.41, "Longitude": -60.0, "Status": "Monitoring", "Severity": "Moderate", "Date_First_Noted": "2026-01-16", "Date_Last_Updated": "2026-02-04", "Source_URL": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026/outbreaks-under-monitoring-week-3-week-ending-18-january-2026", "Situation_Snapshot": "UKHSA reported a confirmed case of Argentine haemorrhagic fever in Santa Fe, Argentina.\nThe disease is endemic in Buenos Aires, C\u00f3rdoba, Santa Fe and La Pampa provinces and cases typically occur during harvest season.\nThis is a monitored event with limited risk of international spread.", "Travel_Health_Takeaways": "Avoid rodent-infested rural areas and use protective measures such as gloves and masks when handling grain or crops.\nVaccination is available in Argentina for those at high risk.\nSeek prompt medical attention if you develop fever, bleeding or neurological symptoms after exposure."}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [103.0, 35.0]}, "properties": {"Outbreak_ID": "2026-02-04-005", "Threat": "Avian influenza A(H9N2)", "Country": "China", "Location_Label": "Hubei, Jiangsu and Guangxi", "Latitude": 35.0, "Longitude": 103.0, "Status": "Monitoring", "Severity": "Low", "Date_First_Noted": "2025-11-30", "Date_Last_Updated": "2026-02-04", "Source_URL": "https://cdn.who.int/media/docs/default-source/wpro---documents/emergency/surveillance/avian-influenza/ai_20260116.pdf", "Situation_Snapshot": "WHO Western Pacific Region reported three new human cases of avian influenza A(H9N2) in China between 9 and 15 January 2026.\nA 5-year-old boy from Hubei (symptom onset 30 November 2025) had exposure to backyard poultry.\nAn 8-year-old girl from Jiangsu and a 1-year-old boy from Guangxi developed symptoms in December 2025; both had indirect exposure to live poultry.\nAll three children recovered.", "Travel_Health_Takeaways": "Avoid visiting live bird markets and farms and refrain from contact with birds or poultry.\nEnsure poultry and eggs are thoroughly cooked before consumption.\nPractise good hand hygiene and monitor for respiratory symptoms after travel."}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [45.0, 24.0]}, "properties": {"Outbreak_ID": "2026-02-04-006", "Threat": "Middle East respiratory syndrome (MERS)", "Country": "Saudi Arabia", "Location_Label": "Makkah, Riyad and Najran", "Latitude": 24.0, "Longitude": 45.0, "Status": "Monitoring", "Severity": "Moderate", "Date_First_Noted": "2025-09-01", "Date_Last_Updated": "2026-02-04", "Source_URL": "https://www.ecdc.europa.eu/en/middle-east-respiratory-syndrome-coronavirus-mers-cov-situation-update", "Situation_Snapshot": "ECDC reported that as of 5 January 2026 five new MERS cases (one fatality) were reported in Saudi Arabia, with onset between September and December 2025.\nThe patients were adults from Makkah (2), Riyad (2) and Najran (1); two had direct contact with camels.\nSince the start of 2025, 19 MERS cases (including four deaths) have been reported, with 17 cases in Saudi Arabia and two cases imported into France.", "Travel_Health_Takeaways": "Avoid contact with camels and camel products (raw milk, meat).\nPractise good hand hygiene and respiratory etiquette.\nPeople with chronic illnesses should avoid farms and markets where camels are present."}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [37.5, 6.5]}, "properties": {"Outbreak_ID": "2026-02-04-007", "Threat": "Marburg virus disease", "Country": "Ethiopia", "Location_Label": "South Ethiopia and Sidama regions", "Latitude": 6.5, "Longitude": 37.5, "Status": "Closed", "Severity": "High", "Date_First_Noted": "2025-11-14", "Date_Last_Updated": "2026-02-04", "Source_URL": "https://www.ecdc.europa.eu/sites/default/files/documents/Communicable-disease-threats-report-week-5-2026.pdf", "Situation_Snapshot": "On 26 January 2026, Ethiopian authorities declared the Marburg virus disease outbreak over after 42 days with no new cases.\nDuring the outbreak (14 November 2025 to 14 December 2025), 19 cases were reported (14 confirmed and 5 probable) with 14 deaths.\nCases occurred in four districts across South Ethiopia and Sidama regions. The outbreak remained confined and no further cases have been detected.", "Travel_Health_Takeaways": "Avoid contact with bats and avoid entering caves or mines inhabited by bats.\nPractice safe burial practices and avoid contact with blood or body fluids of infected individuals.\nSeek immediate medical attention if you develop fever, vomiting or unexplained bleeding after exposure."}}]}
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Outbreak_ID": "2026-02-27-001",
+        "Threat": "Crimean-Congo haemorrhagic fever (CCHF)",
+        "Country": "Senegal & Uganda",
+        "Location_Label": "Tambacounda (Senegal) & Kyankwanzi (Uganda)",
+        "Status": "Monitoring",
+        "Severity": "High",
+        "Date_First_Noted": "2026-02-18",
+        "Date_Last_Updated": "2026-02-27",
+        "Source_URL": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026/outbreaks-under-monitoring-week-8-week-ending-22-february-2026",
+        "Situation_Snapshot": "On 18 Feb 2026, Africa CDC reported two cases of Crimean-Congo haemorrhagic fever: a 7-year-old child from Tambacounda region in Senegal and a 21-year-old nurse from Kyankwanzi District, Uganda. Both cases tested PCR-positive in late January. Sporadic CCHF cases occur in Senegal and Uganda, and there is no evidence of established Hyalomma tick populations in the UK【301919499951224†L118-L146】.",
+        "Travel_Health_Takeaways": "Avoid tick bites by using insect repellents and wearing protective clothing in rural areas. Avoid contact with animal blood or tissues and practise good hygiene. There is no vaccine for CCHF; post-exposure prophylaxis may be recommended for high-risk exposures."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -14.8,
+          14.3
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Outbreak_ID": "2026-02-27-002",
+        "Threat": "Avian influenza A(H5N1)",
+        "Country": "Cambodia",
+        "Location_Label": "Meanrith village, Kampot Province",
+        "Status": "Monitoring",
+        "Severity": "High",
+        "Date_First_Noted": "2026-02-14",
+        "Date_Last_Updated": "2026-02-27",
+        "Source_URL": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026/outbreaks-under-monitoring-week-7-week-ending-15-february-2026",
+        "Situation_Snapshot": "On 14 Feb 2026, Cambodia reported its first human case of avian influenza A(H5N1) of 2026 in Meanrith village, Kampot province. The case cooked and ate a dead chicken three days before symptom onset and recovered after receiving treatment. Close contacts received oseltamivir prophylaxis【315196092635405†L118-L134】.",
+        "Travel_Health_Takeaways": "Avoid contact with sick or dead birds. Ensure poultry and eggs are thoroughly cooked. Maintain strict hygiene after handling poultry. Seek medical advice if experiencing flu-like symptoms after exposure."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          104.245,
+          10.61
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Outbreak_ID": "2026-02-27-003",
+        "Threat": "Mpox (recombinant clade Ib & IIb strain)",
+        "Country": "United Kingdom & India",
+        "Location_Label": "Cases detected in UK and India",
+        "Status": "Monitoring",
+        "Severity": "Moderate",
+        "Date_First_Noted": "2026-02-14",
+        "Date_Last_Updated": "2026-02-27",
+        "Source_URL": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026/outbreaks-under-monitoring-week-7-week-ending-15-february-2026",
+        "Situation_Snapshot": "WHO reported two mpox cases with a recombinant strain combining clade Ib and clade IIb in the UK and India. The UK case, detected in December 2025, involved a traveler to South-East Asia; whole genome sequencing showed clade Ib and IIb elements. The Indian case was reclassified as recombinant after initial clade IIb classification. No secondary cases were identified【315196092635405†L143-L166】.",
+        "Travel_Health_Takeaways": "Practice safe sex and avoid close contact with individuals showing mpox symptoms. Vaccination is advised for at-risk groups. Follow health authority guidance and monitor for updates on this recombinant strain."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.9629,
+          20.5937
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Outbreak_ID": "2026-02-27-004",
+        "Threat": "Nipah virus",
+        "Country": "Bangladesh & India",
+        "Location_Label": "Rajshahi Division (Bangladesh) & West Bengal (India)",
+        "Status": "Monitoring",
+        "Severity": "High",
+        "Date_First_Noted": "2026-02-06",
+        "Date_Last_Updated": "2026-02-27",
+        "Source_URL": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026/outbreaks-under-monitoring-week-6-week-ending-8-february-2026",
+        "Situation_Snapshot": "On 6 Feb 2026, WHO reported a fatal Nipah virus case in Rajshahi Division, Bangladesh. The patient consumed raw date palm sap, developed symptoms on 21 Jan 2026 and died on 28 Jan 2026. 35 contacts were identified, including six symptomatic contacts who tested negative. Earlier in January 2026, two Nipah cases were reported in healthcare workers in West Bengal, India【830300979064317†L118-L148】.",
+        "Travel_Health_Takeaways": "Avoid raw date palm sap and contact with bats or pigs. Practice good hygiene and avoid exposure to sick people. Seek medical care if you develop fever or neurological symptoms after travel to affected areas."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.6241,
+          24.3636
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Outbreak_ID": "2026-02-27-005",
+        "Threat": "Mpox (clade Ib)",
+        "Country": "Madagascar & Comoros",
+        "Location_Label": "Multiple regions, Madagascar; travellers to Comoros",
+        "Status": "Open",
+        "Severity": "Moderate",
+        "Date_First_Noted": "2025-12-17",
+        "Date_Last_Updated": "2026-02-27",
+        "Source_URL": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026/outbreaks-under-monitoring-week-5-week-ending-1-february-2026",
+        "Situation_Snapshot": "Health authorities in Madagascar declared an outbreak of mpox (clade Ib) on 31 Dec 2025 after detecting the first case on 17 Dec 2025. As of 1 Feb 2026, 410 mpox cases (including 229 confirmed) had been reported across 23 regions; most confirmed cases (167) were in Boeny. Since week 4, there has been an increase of 47 confirmed cases. Comoros reported nine mpox cases linked to travel from Madagascar【651899418754260†L118-L136】.",
+        "Travel_Health_Takeaways": "Avoid close physical contact with individuals with mpox-like symptoms. Practice safe sex and maintain hand hygiene. Vaccination is recommended for men who have sex with men with multiple partners and for people at occupational risk."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46.8691,
+          -18.7669
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Outbreak_ID": "2026-02-27-006",
+        "Threat": "Hantavirus",
+        "Country": "Argentina",
+        "Location_Label": "Central Argentina (Buenos Aires, Entre Ríos, Santa Fe)",
+        "Status": "Monitoring",
+        "Severity": "High",
+        "Date_First_Noted": "2025-06-30",
+        "Date_Last_Updated": "2026-02-27",
+        "Source_URL": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026/outbreaks-under-monitoring-week-4-week-ending-25-january-2026",
+        "Situation_Snapshot": "Between 30 Jun 2025 and 10 Jan 2026, Argentina reported at least 58 confirmed hantavirus infections with 20 deaths, primarily in the central provinces (Buenos Aires, Entre Ríos, Santa Fe). This exceeds previous seasonal peaks【651899418754260†L118-L136】.",
+        "Travel_Health_Takeaways": "Avoid exposure to rodent-infested areas, especially in rural or periurban settings. Ensure accommodation is rodent-proof, and store food properly. Seek medical attention if you develop fever, muscle aches and respiratory symptoms after exposure."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.3816,
+          -34.6037
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Outbreak_ID": "2026-02-27-007",
+        "Threat": "Argentine haemorrhagic fever (Junin virus)",
+        "Country": "Argentina",
+        "Location_Label": "Santa Fe Province",
+        "Status": "Monitoring",
+        "Severity": "High",
+        "Date_First_Noted": "2026-01-16",
+        "Date_Last_Updated": "2026-02-27",
+        "Source_URL": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026/outbreaks-under-monitoring-week-3-week-ending-18-january-2026",
+        "Situation_Snapshot": "A confirmed case of Argentine haemorrhagic fever (Junin virus) was reported on 16 Jan 2026 in Santa Fe, Argentina. The disease is endemic in the Pampas provinces (Buenos Aires, Córdoba, Santa Fe, La Pampa) with most cases during the harvest season. Rodent exposure is the main risk【651899418754260†L118-L136】.",
+        "Travel_Health_Takeaways": "Avoid exposure to rodents and rodent-contaminated environments in endemic areas. Use personal protective equipment during agricultural work. There is a vaccine (Candid #1) available in Argentina for high-risk populations."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.7,
+          -31.623
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Outbreak_ID": "2026-02-27-008",
+        "Threat": "Avian influenza A(H9N2)",
+        "Country": "China",
+        "Location_Label": "Hubei, Jiangsu & Guangxi provinces",
+        "Status": "Monitoring",
+        "Severity": "Moderate",
+        "Date_First_Noted": "2026-01-09",
+        "Date_Last_Updated": "2026-02-27",
+        "Source_URL": "https://cdn.who.int/media/docs/default-source/wpro---documents/emergency/surveillance/influenza/2026_wk03_ai.pdf?sfvrsn=53160d36_25",
+        "Situation_Snapshot": "From 9 to 15 Jan 2026, three human infections with avian influenza A(H9N2) were reported in China: a 5-year-old boy in Hubei, an 8-year-old girl in Jiangsu and a 1-year-old boy in Guangxi. All had exposure to backyard poultry or live poultry markets and recovered【315196092635405†L118-L134】.",
+        "Travel_Health_Takeaways": "Avoid contact with live or dead poultry and birds. Follow food safety guidelines and maintain personal hygiene. Consult a healthcare provider about seasonal influenza vaccination before travel."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0,
+          31.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Outbreak_ID": "2026-02-27-009",
+        "Threat": "MERS (Middle East respiratory syndrome)",
+        "Country": "Saudi Arabia & France",
+        "Location_Label": "Various regions, Saudi Arabia; imported cases in France",
+        "Status": "Monitoring",
+        "Severity": "Moderate",
+        "Date_First_Noted": "2026-01-05",
+        "Date_Last_Updated": "2026-02-27",
+        "Source_URL": "https://www.ecdc.europa.eu/en/middle-east-respiratory-syndrome-coronavirus-mers-cov-situation-update",
+        "Situation_Snapshot": "As of 3 Feb 2026, no new MERS cases have been reported since the previous update on 5 Jan 2026. There have been 2,647 MERS cases and 959 deaths worldwide since April 2012, but no cases reported in 2026【185441389595651†L121-L130】.",
+        "Travel_Health_Takeaways": "Avoid contact with camels and camel products in the Middle East. Practise strict hygiene (hand washing) and avoid unpasteurised milk or undercooked camel meat. Seek medical advice if you develop fever, cough or shortness of breath after travel to affected regions."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0792,
+          23.8859
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Outbreak_ID": "2026-02-27-010",
+        "Threat": "Marburg virus disease",
+        "Country": "Ethiopia",
+        "Location_Label": "Jinka, Malle, Dassenech districts & Hawassa",
+        "Status": "Closed",
+        "Severity": "High",
+        "Date_First_Noted": "2025-11-12",
+        "Date_Last_Updated": "2026-02-27",
+        "Source_URL": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026/outbreaks-under-monitoring-week-5-week-ending-1-february-2026",
+        "Situation_Snapshot": "Ethiopia declared an end to the Marburg virus disease outbreak on 26 Jan 2026 after two incubation periods without new cases. The outbreak involved 19 cases (14 confirmed and 5 probable) and 14 deaths. 857 contacts were monitored and public health measures were implemented to contain the outbreak【651899418754260†L147-L158】.",
+        "Travel_Health_Takeaways": "Avoid contact with bats, caves and bushmeat. Practise strict hygiene and avoid contact with bodily fluids of infected individuals. Seek immediate medical care if you experience fever, headache, muscle pain or bleeding after travel to affected regions."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.301,
+          6.822
+        ]
+      }
+    }
+  ]
+}
