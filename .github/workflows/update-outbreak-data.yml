@@ -1,0 +1,36 @@
+name: Update outbreak data
+
+on:
+  schedule:
+    - cron: "18 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Rebuild outbreak GeoJSON
+        run: python scripts/update_outbreak_data.py
+
+      - name: Commit refreshed data
+        run: |
+          if git diff --quiet -- gow_data.geojson gow_sources.json; then
+            echo "No outbreak data changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add gow_data.geojson gow_sources.json
+          git commit -m "Update outbreak watch data"
+          git push
