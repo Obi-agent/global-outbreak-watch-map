@@ -2,140 +2,1180 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Global Outbreak Watch Map</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Load Leaflet's CSS from the official CDN. The integrity and crossorigin
-       attributes help ensure the file is delivered securely. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Outbreak Watch</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="preconnect" href="https://server.arcgisonline.com" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-        crossorigin="" />
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
   <style>
-    /* Make the map fill the entire viewport */
-    html, body {
+    :root {
+      color-scheme: dark;
+      --ink: #f4f7fb;
+      --muted: #9baabe;
+      --subtle: #69798d;
+      --panel: rgba(9, 17, 31, 0.88);
+      --panel-solid: #101827;
+      --panel-line: rgba(180, 200, 226, 0.18);
+      --map-shell: #0b111d;
+      --critical: #e33b5f;
+      --high: #f17c44;
+      --moderate: #f4bf45;
+      --low: #43b581;
+      --unknown: #78a6d9;
+      --cyan: #4ec9d8;
+      --blue: #5f8df7;
+      --green: #69c58d;
+      --shadow: 0 18px 48px rgba(0, 0, 0, 0.34);
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #07101d;
+      color: var(--ink);
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    #app {
+      display: grid;
+      grid-template-columns: minmax(340px, 400px) 1fr;
+      height: 100%;
+      min-height: 0;
+      background: var(--map-shell);
+    }
+
+    .side {
+      z-index: 500;
+      display: grid;
+      grid-template-rows: auto auto auto 1fr auto;
+      min-height: 0;
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+      background:
+        linear-gradient(180deg, rgba(15, 28, 45, 0.96), rgba(7, 14, 26, 0.98)),
+        #0b1424;
+      box-shadow: 12px 0 34px rgba(0, 0, 0, 0.28);
+    }
+
+    .brand {
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid var(--panel-line);
+    }
+
+    .eyebrow {
+      margin: 0 0 6px;
+      color: var(--cyan);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.42rem;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .deck {
+      margin: 9px 0 0;
+      color: #c8d3e2;
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .meta-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 4px 8px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      white-space: nowrap;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      border-bottom: 1px solid var(--panel-line);
+      background: var(--panel-line);
+    }
+
+    .stat {
+      min-width: 0;
+      padding: 12px 10px;
+      background: rgba(13, 24, 39, 0.96);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.2rem;
+      line-height: 1.1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .filters {
+      display: grid;
+      gap: 10px;
+      padding: 14px 14px 12px;
+      border-bottom: 1px solid var(--panel-line);
+      background: rgba(8, 15, 27, 0.72);
+    }
+
+    .search-wrap {
+      position: relative;
+    }
+
+    .search-wrap input {
+      width: 100%;
+      min-height: 40px;
+      padding: 9px 11px;
+      border: 1px solid rgba(210, 224, 244, 0.2);
+      border-radius: 8px;
+      outline: 0;
+      background: rgba(2, 8, 18, 0.72);
+      color: var(--ink);
+    }
+
+    .search-wrap input:focus,
+    select:focus,
+    .segmented button:focus,
+    .row-button:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(78, 201, 216, 0.18);
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    label {
+      display: grid;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    select {
+      width: 100%;
+      min-height: 38px;
+      padding: 8px 9px;
+      border: 1px solid rgba(210, 224, 244, 0.18);
+      border-radius: 8px;
+      outline: 0;
+      background: rgba(2, 8, 18, 0.72);
+      color: var(--ink);
+    }
+
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .segmented button {
+      min-height: 32px;
+      border: 1px solid rgba(210, 224, 244, 0.17);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.055);
+      color: #dce5f2;
+      font-size: 0.76rem;
+      font-weight: 800;
+    }
+
+    .segmented button[aria-pressed="true"] {
+      border-color: rgba(78, 201, 216, 0.72);
+      background: rgba(78, 201, 216, 0.16);
+      color: #ffffff;
+    }
+
+    .feed {
+      min-height: 0;
+      overflow: auto;
+      padding: 12px 10px 14px;
+    }
+
+    .feed-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 0 4px 9px;
+    }
+
+    .feed-heading h2 {
+      margin: 0;
+      font-size: 0.88rem;
+      letter-spacing: 0;
+    }
+
+    .feed-count {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .event-list {
+      display: grid;
+      gap: 8px;
       margin: 0;
       padding: 0;
-      height: 100%;
-      width: 100%;
+      list-style: none;
     }
+
+    .row-button {
+      width: 100%;
+      padding: 10px 10px 10px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-left: 4px solid var(--unknown);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.045);
+      color: inherit;
+      text-align: left;
+    }
+
+    .row-button:hover,
+    .row-button.is-active {
+      background: rgba(255, 255, 255, 0.085);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .row-button.sev-critical { border-left-color: var(--critical); }
+    .row-button.sev-high { border-left-color: var(--high); }
+    .row-button.sev-moderate { border-left-color: var(--moderate); }
+    .row-button.sev-low { border-left-color: var(--low); }
+
+    .row-title {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .row-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 0.74rem;
+      line-height: 1.3;
+    }
+
+    .source-strip {
+      display: grid;
+      gap: 7px;
+      padding: 12px 14px;
+      border-top: 1px solid var(--panel-line);
+      background: rgba(4, 9, 18, 0.84);
+      color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.35;
+    }
+
+    .source-strip strong {
+      color: var(--ink);
+    }
+
+    .map-area {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+    }
+
     #map {
       height: 100%;
       width: 100%;
+      background: #081220;
+    }
+
+    .topbar {
+      position: absolute;
+      z-index: 460;
+      top: 14px;
+      left: 14px;
+      right: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      pointer-events: none;
+    }
+
+    .toolbar-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      pointer-events: auto;
+    }
+
+    .tool-button {
+      min-height: 36px;
+      padding: 8px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--ink);
+      box-shadow: var(--shadow);
+      font-weight: 800;
+    }
+
+    .tool-button:hover {
+      background: rgba(18, 31, 52, 0.94);
+    }
+
+    .legend {
+      position: absolute;
+      z-index: 460;
+      right: 14px;
+      bottom: 18px;
+      width: min(300px, calc(100vw - 32px));
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .legend h2 {
+      margin: 0 0 9px;
+      font-size: 0.82rem;
+    }
+
+    .legend-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      color: #d9e2f0;
+      font-size: 0.76rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .swatch {
+      width: 10px;
+      height: 10px;
+      flex: 0 0 10px;
+      border-radius: 999px;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.09);
+    }
+
+    .detail {
+      position: absolute;
+      z-index: 470;
+      top: 64px;
+      right: 14px;
+      width: min(420px, calc(100vw - 32px));
+      max-height: calc(100% - 158px);
+      overflow: auto;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      transform: translateX(0);
+    }
+
+    .detail.is-empty {
+      display: none;
+    }
+
+    .detail-head {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 14px 10px;
+      border-bottom: 1px solid var(--panel-line);
+    }
+
+    .detail h2 {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+
+    .close-button {
+      width: 32px;
+      height: 32px;
+      flex: 0 0 32px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    .detail-body {
+      display: grid;
+      gap: 12px;
+      padding: 12px 14px 14px;
+      color: #d7e0ee;
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+
+    .kv {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 8px;
+    }
+
+    .kv span:first-child {
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-size: 0.68rem;
+    }
+
+    .detail a,
+    .leaflet-popup-content a {
+      color: #7de1f0;
+      font-weight: 800;
+    }
+
+    .marker {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      transform: translate(-12px, -12px);
+    }
+
+    .marker::before {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: currentColor;
+      opacity: 0.24;
+      animation: pulse 1.8s ease-out infinite;
+    }
+
+    .marker span {
+      position: relative;
+      width: 12px;
+      height: 12px;
+      border: 2px solid white;
+      border-radius: 999px;
+      background: currentColor;
+      box-shadow: 0 7px 18px rgba(0, 0, 0, 0.42);
+    }
+
+    .marker.stale::before {
+      animation: none;
+      opacity: 0.12;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.6); opacity: 0.32; }
+      100% { transform: scale(1.9); opacity: 0; }
+    }
+
+    .leaflet-popup-content-wrapper,
+    .leaflet-popup-tip {
+      background: #101827;
+      color: var(--ink);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: var(--shadow);
+    }
+
+    .leaflet-popup-content {
+      width: 290px;
+      max-width: 290px;
+      margin: 13px;
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.4;
+    }
+
+    .popup-title {
+      margin: 0 0 6px;
+      font-size: 0.98rem;
+      line-height: 1.25;
+    }
+
+    .popup-meta {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .marker-cluster-small,
+    .marker-cluster-medium,
+    .marker-cluster-large {
+      background: rgba(78, 201, 216, 0.26);
+    }
+
+    .marker-cluster-small div,
+    .marker-cluster-medium div,
+    .marker-cluster-large div {
+      background: rgba(8, 18, 33, 0.92);
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .empty {
+      padding: 16px 10px;
+      color: var(--muted);
+      text-align: center;
+      border: 1px dashed rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+    }
+
+    .leaflet-control-layers,
+    .leaflet-control-zoom a {
+      background: rgba(10, 18, 31, 0.92);
+      color: var(--ink);
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    .leaflet-control-attribution {
+      background: rgba(5, 10, 18, 0.74);
+      color: #bcc7d6;
+    }
+
+    @media (max-width: 980px) {
+      html,
+      body {
+        overflow: auto;
+      }
+
+      #app {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 70vh;
+        height: auto;
+        min-height: 100%;
+      }
+
+      .side {
+        grid-template-rows: auto auto auto minmax(300px, 44vh) auto;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .filter-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .map-area {
+        min-height: 70vh;
+      }
+
+      .topbar {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .detail {
+        top: 104px;
+        left: 14px;
+        right: 14px;
+        width: auto;
+        max-height: calc(100% - 180px);
+      }
+
+      .legend {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
-  <div id="map"></div>
-  <!-- Load Leaflet's JavaScript from the official CDN. Make sure this comes
-       after the CSS link above. -->
+  <div id="app">
+    <aside class="side" aria-label="Outbreak intelligence controls">
+      <header class="brand">
+        <p class="eyebrow">Global Outbreak Watch</p>
+        <h1>Operational Disease Signal Map</h1>
+        <p class="deck">Official and trusted outbreak signals refreshed daily for rapid geographic triage.</p>
+        <div class="meta-line">
+          <span class="pill" id="generatedAt">Generated: loading</span>
+          <span class="pill" id="sourceHealth">Sources: loading</span>
+        </div>
+      </header>
+
+      <section class="stats" aria-label="Global outbreak snapshot">
+        <div class="stat"><strong id="statVisible">0</strong><span>Visible</span></div>
+        <div class="stat"><strong id="statCountries">0</strong><span>Places</span></div>
+        <div class="stat"><strong id="statPriority">0</strong><span>High+</span></div>
+        <div class="stat"><strong id="statSources">0</strong><span>Sources</span></div>
+      </section>
+
+      <section class="filters" aria-label="Outbreak filters">
+        <div class="search-wrap">
+          <input id="searchInput" type="search" autocomplete="off" placeholder="Search disease, country, source" />
+        </div>
+
+        <div class="segmented" role="group" aria-label="Severity">
+          <button type="button" data-severity="all" aria-pressed="true">All</button>
+          <button type="button" data-severity="critical" aria-pressed="false">Critical</button>
+          <button type="button" data-severity="high" aria-pressed="false">High</button>
+          <button type="button" data-severity="moderate" aria-pressed="false">Mod</button>
+          <button type="button" data-severity="low" aria-pressed="false">Low</button>
+        </div>
+
+        <div class="filter-grid">
+          <label>
+            Recency
+            <select id="recencyFilter">
+              <option value="all">All signals</option>
+              <option value="7">Updated 7 days</option>
+              <option value="30" selected>Updated 30 days</option>
+              <option value="90">Updated 90 days</option>
+              <option value="180">Updated 180 days</option>
+            </select>
+          </label>
+
+          <label>
+            Status
+            <select id="statusFilter">
+              <option value="all">Any status</option>
+              <option value="open">Open</option>
+              <option value="monitoring">Monitoring</option>
+              <option value="closed">Closed</option>
+            </select>
+          </label>
+
+          <label>
+            Source
+            <select id="sourceFilter">
+              <option value="all">All sources</option>
+            </select>
+          </label>
+
+          <label>
+            Sort
+            <select id="sortFilter">
+              <option value="priority">Priority</option>
+              <option value="recent">Most recent</option>
+              <option value="disease">Disease A-Z</option>
+              <option value="country">Place A-Z</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="feed" aria-label="Outbreak signal feed">
+        <div class="feed-heading">
+          <h2>Signal Feed</h2>
+          <span class="feed-count" id="feedCount">0 shown</span>
+        </div>
+        <ul class="event-list" id="eventList"></ul>
+      </section>
+
+      <footer class="source-strip">
+        <strong id="methodologyTitle">Source discipline</strong>
+        <span id="methodologyText">Automated public-source monitor. Verify operational decisions against linked authority sources.</span>
+      </footer>
+    </aside>
+
+    <main class="map-area">
+      <div id="map" role="application" aria-label="Global outbreak map"></div>
+
+      <div class="topbar">
+        <div class="toolbar-group">
+          <button class="tool-button" type="button" id="fitAllBtn">Fit signals</button>
+          <button class="tool-button" type="button" id="refreshBtn">Reload data</button>
+        </div>
+        <div class="toolbar-group">
+          <button class="tool-button" type="button" id="todayBtn">Recent only</button>
+        </div>
+      </div>
+
+      <section class="detail is-empty" id="detailPanel" aria-live="polite">
+        <div class="detail-head">
+          <h2 id="detailTitle"></h2>
+          <button class="close-button" type="button" id="closeDetailBtn" aria-label="Close detail">x</button>
+        </div>
+        <div class="detail-body" id="detailBody"></div>
+      </section>
+
+      <section class="legend" aria-label="Severity legend">
+        <h2>Severity</h2>
+        <div class="legend-grid">
+          <div class="legend-item"><span class="swatch" style="background: var(--critical)"></span>Critical</div>
+          <div class="legend-item"><span class="swatch" style="background: var(--high)"></span>High</div>
+          <div class="legend-item"><span class="swatch" style="background: var(--moderate)"></span>Moderate</div>
+          <div class="legend-item"><span class="swatch" style="background: var(--low)"></span>Low</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-          crossorigin=""></script>
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
   <script>
-    // Define base tile layers with English labels and satellite imagery. The
-    // standard OpenStreetMap tiles display names in the local language and
-    // cannot be switched to English【880829198194580†L194-L206】.  To provide
-    // English labels we instead use Esri's World Street Map tiles.  A second
-    // layer provides high‑resolution satellite imagery.  Both layers are
-    // public and do not require API keys.
-    var streetLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+    const DATA_URL = "gow_data.geojson";
+    const severityOrder = { critical: 4, high: 3, moderate: 2, low: 1, unknown: 0 };
+    const severityColors = {
+      critical: "#e33b5f",
+      high: "#f17c44",
+      moderate: "#f4bf45",
+      low: "#43b581",
+      unknown: "#78a6d9"
+    };
+
+    const state = {
+      raw: null,
+      records: [],
+      filtered: [],
+      markersById: new Map(),
+      selectedId: null,
+      severity: "all"
+    };
+
+    const els = {
+      generatedAt: document.getElementById("generatedAt"),
+      sourceHealth: document.getElementById("sourceHealth"),
+      statVisible: document.getElementById("statVisible"),
+      statCountries: document.getElementById("statCountries"),
+      statPriority: document.getElementById("statPriority"),
+      statSources: document.getElementById("statSources"),
+      searchInput: document.getElementById("searchInput"),
+      recencyFilter: document.getElementById("recencyFilter"),
+      statusFilter: document.getElementById("statusFilter"),
+      sourceFilter: document.getElementById("sourceFilter"),
+      sortFilter: document.getElementById("sortFilter"),
+      eventList: document.getElementById("eventList"),
+      feedCount: document.getElementById("feedCount"),
+      detailPanel: document.getElementById("detailPanel"),
+      detailTitle: document.getElementById("detailTitle"),
+      detailBody: document.getElementById("detailBody"),
+      methodologyTitle: document.getElementById("methodologyTitle"),
+      methodologyText: document.getElementById("methodologyText")
+    };
+
+    const streetLayer = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
       maxZoom: 19,
-      attribution: '&copy; Esri — Source: Esri, DeLorme, NAVTEQ, etc.'
-    });
-    var satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-      maxZoom: 19,
-      attribution: '&copy; Esri — Source: Esri, Earthstar Geographics'
+      attribution: "&copy; OpenStreetMap contributors &copy; CARTO"
     });
 
-    // Initialize the map with the English‑labelled street layer by default.
-    // We pass the default layers via the `layers` option.  Users can switch
-    // between the street and satellite views using the layer control below.
-    var map = L.map('map', {
-      center: [0, 0],
+    const satelliteLayer = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+      maxZoom: 19,
+      attribution: "&copy; Esri, Maxar, Earthstar Geographics"
+    });
+
+    const map = L.map("map", {
+      center: [18, 8],
       zoom: 2,
+      minZoom: 2,
+      worldCopyJump: true,
       layers: [streetLayer]
     });
 
-    // Create a layers control so users can toggle between the base layers.  The
-    // keys in this object will be the labels displayed in the control.  You
-    // can add additional base maps here if needed.
-    var baseMaps = {
-      'English labels': streetLayer,
-      'Satellite view': satelliteLayer
-    };
-    L.control.layers(baseMaps).addTo(map);
+    const clusterLayer = L.markerClusterGroup({
+      showCoverageOnHover: false,
+      maxClusterRadius: 46,
+      spiderfyDistanceMultiplier: 1.3
+    }).addTo(map);
 
-    // Function to assign colours based on the severity property. You can
-    // customise these colours or add more levels as your data evolves.
-    function getSeverityColour(severity) {
-      switch (severity) {
-        case 'Low': return 'green';
-        case 'Moderate': return 'orange';
-        case 'High': return 'red';
-        case 'Critical': return 'black';
-        default: return 'blue';
+    L.control.layers({
+      "Street intelligence": streetLayer,
+      "Satellite context": satelliteLayer
+    }, {}, { position: "bottomleft" }).addTo(map);
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function normalizeSeverity(value) {
+      const raw = String(value || "").trim().toLowerCase();
+      if (raw === "critical") return "critical";
+      if (raw === "high") return "high";
+      if (raw === "moderate" || raw === "medium") return "moderate";
+      if (raw === "low") return "low";
+      return "unknown";
+    }
+
+    function normalizeStatus(value) {
+      const raw = String(value || "").trim().toLowerCase();
+      if (raw.includes("closed") || raw.includes("resolved")) return "closed";
+      if (raw.includes("monitor")) return "monitoring";
+      if (raw.includes("open") || raw.includes("active")) return "open";
+      return raw || "unknown";
+    }
+
+    function parseDate(value) {
+      if (!value) return null;
+      const parsed = new Date(value);
+      return Number.isNaN(parsed.getTime()) ? null : parsed;
+    }
+
+    function formatDate(value) {
+      const parsed = parseDate(value);
+      return parsed ? parsed.toISOString().slice(0, 10) : (value || "Unknown");
+    }
+
+    function daysSince(value) {
+      const parsed = parseDate(value);
+      if (!parsed) return Infinity;
+      return Math.max(0, Math.floor((Date.now() - parsed.getTime()) / 86400000));
+    }
+
+    function getProp(props, names, fallback) {
+      for (const name of names) {
+        if (props[name] !== undefined && props[name] !== null && props[name] !== "") {
+          return props[name];
+        }
+      }
+      return fallback;
+    }
+
+    function buildRecord(feature, index) {
+      const props = feature.properties || {};
+      const coords = feature.geometry && Array.isArray(feature.geometry.coordinates)
+        ? feature.geometry.coordinates
+        : [0, 0];
+      const severity = normalizeSeverity(getProp(props, ["Severity", "severity"], "unknown"));
+      const status = normalizeStatus(getProp(props, ["Status", "status", "Signal_Status"], "monitoring"));
+      const updated = getProp(props, ["Date_Last_Updated", "date_last_updated", "Updated_At", "updated_at", "published_at"], "");
+      const title = getProp(props, ["Threat", "threat", "Disease", "disease", "Title", "title"], "Unknown disease signal");
+      const country = getProp(props, ["Country", "country", "Location_Label", "location"], "Unknown location");
+      const sourceName = getProp(props, ["Source_Name", "source_name", "Source", "source"], "Authority source");
+      const sourceUrl = getProp(props, ["Source_URL", "source_url", "url"], "");
+      const summary = getProp(props, ["Situation_Snapshot", "situation_snapshot", "Summary", "summary"], "");
+      const takeaways = getProp(props, ["Travel_Health_Takeaways", "General_Recommendations", "takeaways"], "");
+      const id = getProp(props, ["Outbreak_ID", "id"], `${title}-${country}-${index}`);
+
+      return {
+        id,
+        title,
+        country,
+        location: getProp(props, ["Location_Label", "location_label"], country),
+        severity,
+        status,
+        updated,
+        firstNoted: getProp(props, ["Date_First_Noted", "date_first_noted"], updated),
+        sourceName,
+        sourceUrl,
+        sourceType: getProp(props, ["Source_Type", "source_type"], "official"),
+        confidence: getProp(props, ["Confidence", "confidence"], "Automated extraction"),
+        summary,
+        takeaways,
+        lat: Number(coords[1]) || 0,
+        lng: Number(coords[0]) || 0,
+        rawProps: props
+      };
+    }
+
+    function markerHtml(record) {
+      const color = severityColors[record.severity] || severityColors.unknown;
+      const staleClass = daysSince(record.updated) > 30 ? " stale" : "";
+      return `<div class="marker${staleClass}" style="color:${color}"><span></span></div>`;
+    }
+
+    function popupHtml(record) {
+      const source = record.sourceUrl
+        ? `<a href="${escapeHtml(record.sourceUrl)}" target="_blank" rel="noopener noreferrer">Open source</a>`
+        : "Source link unavailable";
+      const summary = record.summary ? `<p>${escapeHtml(record.summary).slice(0, 420)}</p>` : "";
+      return `
+        <h3 class="popup-title">${escapeHtml(record.title)}</h3>
+        <div class="popup-meta">
+          ${escapeHtml(record.location)}<br>
+          ${record.severity.toUpperCase()} | ${escapeHtml(record.status)} | ${formatDate(record.updated)}
+        </div>
+        ${summary}
+        <div>${source}</div>
+      `;
+    }
+
+    function recordMatches(record) {
+      const query = els.searchInput.value.trim().toLowerCase();
+      const recency = els.recencyFilter.value;
+      const status = els.statusFilter.value;
+      const source = els.sourceFilter.value;
+      const haystack = [
+        record.title,
+        record.country,
+        record.location,
+        record.sourceName,
+        record.summary,
+        record.takeaways
+      ].join(" ").toLowerCase();
+
+      if (state.severity !== "all" && record.severity !== state.severity) return false;
+      if (status !== "all" && record.status !== status) return false;
+      if (source !== "all" && record.sourceName !== source) return false;
+      if (recency !== "all" && daysSince(record.updated) > Number(recency)) return false;
+      if (query && !haystack.includes(query)) return false;
+      return true;
+    }
+
+    function compareRecords(a, b) {
+      const sort = els.sortFilter.value;
+      if (sort === "recent") {
+        return String(b.updated).localeCompare(String(a.updated));
+      }
+      if (sort === "disease") {
+        return a.title.localeCompare(b.title);
+      }
+      if (sort === "country") {
+        return a.country.localeCompare(b.country);
+      }
+      const severityDiff = (severityOrder[b.severity] || 0) - (severityOrder[a.severity] || 0);
+      if (severityDiff) return severityDiff;
+      return String(b.updated).localeCompare(String(a.updated));
+    }
+
+    function renderStats(records) {
+      const places = new Set(records.map((record) => record.country).filter(Boolean));
+      const sources = new Set(records.map((record) => record.sourceName).filter(Boolean));
+      const priority = records.filter((record) => severityOrder[record.severity] >= severityOrder.high).length;
+
+      els.statVisible.textContent = records.length;
+      els.statCountries.textContent = places.size;
+      els.statPriority.textContent = priority;
+      els.statSources.textContent = sources.size;
+      els.feedCount.textContent = `${records.length} shown`;
+    }
+
+    function renderSourceFilter() {
+      const current = els.sourceFilter.value;
+      const sources = Array.from(new Set(state.records.map((record) => record.sourceName).filter(Boolean))).sort();
+      els.sourceFilter.innerHTML = `<option value="all">All sources</option>` + sources
+        .map((source) => `<option value="${escapeHtml(source)}">${escapeHtml(source)}</option>`)
+        .join("");
+      if (sources.includes(current)) {
+        els.sourceFilter.value = current;
       }
     }
 
-    // Fetch the GeoJSON data generated from the outbreak dataset. We store the
-    // GeoJSON in the same directory as this HTML page for simplicity.
-    fetch('gow_data.geojson')
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(geojson) {
-        // Create a GeoJSON layer with customised markers and pop-ups.
-        L.geoJSON(geojson, {
-          // Convert each Point feature into a circle marker with a colour
-          // reflecting its severity. You can switch to custom icons here
-          // instead of circle markers if desired.
-          pointToLayer: function(feature, latlng) {
-            // Support both upper- and lower-case property names for severity.
-            var props = feature.properties;
-            var severity = props.Severity || props.severity;
-            return L.circleMarker(latlng, {
-              radius: 8,
-              fillColor: getSeverityColour(severity),
-              color: '#000',
-              weight: 1,
-              opacity: 1,
-              fillOpacity: 0.8
-            });
-          },
-          // Attach a pop-up to each feature. The pop-up displays relevant
-          // information about the outbreak, including a link to the source.
-          onEachFeature: function(feature, layer) {
-            var p = feature.properties;
-            // Support both upper- and lower-case property names.
-            var threat = p.Threat || p.threat || 'Unknown threat';
-            var country = p.Country || p.country || 'Unknown location';
-            var status = p.Status || p.status || 'Unknown status';
-            var severity = p.Severity || p.severity || 'Unknown';
-            var updated = p.Date_Last_Updated || p.date_last_updated || '';
-            var snapshot = p.Situation_Snapshot || p.situation_snapshot || '';
-            var recommendations = p.General_Recommendations || p.general_recommendations || '';
-            var source = p.Source_URL || p.source_url || '#';
+    function renderMarkers(records) {
+      clusterLayer.clearLayers();
+      state.markersById.clear();
 
-            var popupContent = '';
-            popupContent += '<h3>' + threat + ' (' + country + ')</h3>';
-            popupContent += '<p><strong>Status:</strong> ' + status + '<br>';
-            popupContent += '<strong>Severity:</strong> ' + severity + '<br>';
-            popupContent += '<strong>Last updated:</strong> ' + updated + '</p>';
-            popupContent += '<p>' + snapshot + '</p>';
-            // Only include the general recommendations if present.
-            if (recommendations) {
-              popupContent += '<p><em>' + recommendations + '</em></p>';
-            }
-            // Include the source link if available.
-            if (source && source !== '#') {
-              popupContent += '<p><a href="' + source + '" target="_blank">Source</a></p>';
-            }
-            layer.bindPopup(popupContent);
-          }
-        }).addTo(map);
-      })
-      .catch(function(error) {
-        console.error('Error loading GeoJSON data:', error);
+      records.forEach((record) => {
+        const icon = L.divIcon({
+          html: markerHtml(record),
+          className: "",
+          iconSize: [24, 24],
+          iconAnchor: [12, 12]
+        });
+        const marker = L.marker([record.lat, record.lng], { icon, riseOnHover: true });
+        marker.bindPopup(popupHtml(record));
+        marker.on("click", () => selectRecord(record.id, false));
+        clusterLayer.addLayer(marker);
+        state.markersById.set(record.id, marker);
       });
+    }
+
+    function renderFeed(records) {
+      if (!records.length) {
+        els.eventList.innerHTML = `<li class="empty">No signals match the current filters.</li>`;
+        return;
+      }
+
+      els.eventList.innerHTML = records.map((record) => `
+        <li>
+          <button type="button" class="row-button sev-${record.severity}${record.id === state.selectedId ? " is-active" : ""}" data-id="${escapeHtml(record.id)}">
+            <span class="row-title">${escapeHtml(record.title)}</span>
+            <span class="row-meta">
+              <span>${escapeHtml(record.location)}</span>
+              <span>${record.severity.toUpperCase()}</span>
+              <span>${formatDate(record.updated)}</span>
+              <span>${escapeHtml(record.sourceName)}</span>
+            </span>
+          </button>
+        </li>
+      `).join("");
+    }
+
+    function renderDetail(record) {
+      if (!record) {
+        els.detailPanel.classList.add("is-empty");
+        return;
+      }
+
+      const source = record.sourceUrl
+        ? `<a href="${escapeHtml(record.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(record.sourceName)}</a>`
+        : escapeHtml(record.sourceName);
+      const takeaways = record.takeaways
+        ? `<div><strong>Public health note</strong><br>${escapeHtml(record.takeaways)}</div>`
+        : "";
+
+      els.detailTitle.textContent = record.title;
+      els.detailBody.innerHTML = `
+        <div class="kv"><span>Location</span><span>${escapeHtml(record.location)}</span></div>
+        <div class="kv"><span>Severity</span><span>${record.severity.toUpperCase()}</span></div>
+        <div class="kv"><span>Status</span><span>${escapeHtml(record.status)}</span></div>
+        <div class="kv"><span>Updated</span><span>${formatDate(record.updated)}</span></div>
+        <div class="kv"><span>Source</span><span>${source}</span></div>
+        <div class="kv"><span>Confidence</span><span>${escapeHtml(record.confidence)}</span></div>
+        ${record.summary ? `<div><strong>Situation snapshot</strong><br>${escapeHtml(record.summary)}</div>` : ""}
+        ${takeaways}
+      `;
+      els.detailPanel.classList.remove("is-empty");
+    }
+
+    function selectRecord(id, pan = true) {
+      const record = state.records.find((item) => item.id === id);
+      if (!record) return;
+      state.selectedId = id;
+      renderFeed(state.filtered);
+      renderDetail(record);
+
+      const marker = state.markersById.get(id);
+      if (marker) {
+        if (pan) {
+          map.setView(marker.getLatLng(), Math.max(map.getZoom(), 5), { animate: true });
+        }
+        marker.openPopup();
+      }
+    }
+
+    function fitSignals() {
+      const layers = [];
+      clusterLayer.eachLayer((layer) => layers.push(layer));
+      if (!layers.length) return;
+      const group = L.featureGroup(layers);
+      map.fitBounds(group.getBounds().pad(0.18), { maxZoom: 5 });
+    }
+
+    function renderMetadata() {
+      const metadata = state.raw && state.raw.metadata ? state.raw.metadata : {};
+      const sourceStatuses = Array.isArray(metadata.source_status) ? metadata.source_status : [];
+      const okCount = sourceStatuses.filter((source) => source.status === "ok").length;
+      const generated = metadata.generated_at ? formatDate(metadata.generated_at) : "unknown";
+      const method = metadata.methodology || "Automated public-source monitor. Verify operational decisions against linked authority sources.";
+
+      els.generatedAt.textContent = `Generated: ${generated}`;
+      els.sourceHealth.textContent = sourceStatuses.length
+        ? `Sources: ${okCount}/${sourceStatuses.length} online`
+        : `Sources: ${new Set(state.records.map((record) => record.sourceName)).size}`;
+      els.methodologyText.textContent = method;
+    }
+
+    function applyFilters() {
+      state.filtered = state.records.filter(recordMatches).sort(compareRecords);
+      renderStats(state.filtered);
+      renderMarkers(state.filtered);
+      renderFeed(state.filtered);
+      const selectedStillVisible = state.filtered.some((record) => record.id === state.selectedId);
+      if (!selectedStillVisible) {
+        state.selectedId = null;
+        renderDetail(null);
+      }
+    }
+
+    async function loadData() {
+      els.generatedAt.textContent = "Generated: loading";
+      const response = await fetch(`${DATA_URL}?v=${Date.now()}`, { cache: "no-store" });
+      if (!response.ok) {
+        throw new Error(`Unable to load ${DATA_URL}: HTTP ${response.status}`);
+      }
+      state.raw = await response.json();
+      const features = Array.isArray(state.raw.features) ? state.raw.features : [];
+      state.records = features.map(buildRecord).filter((record) => record.lat || record.lng);
+      renderSourceFilter();
+      renderMetadata();
+      applyFilters();
+      setTimeout(fitSignals, 60);
+    }
+
+    document.querySelectorAll("[data-severity]").forEach((button) => {
+      button.addEventListener("click", () => {
+        state.severity = button.dataset.severity;
+        document.querySelectorAll("[data-severity]").forEach((btn) => {
+          btn.setAttribute("aria-pressed", String(btn === button));
+        });
+        applyFilters();
+      });
+    });
+
+    [els.searchInput, els.recencyFilter, els.statusFilter, els.sourceFilter, els.sortFilter].forEach((control) => {
+      control.addEventListener("input", applyFilters);
+      control.addEventListener("change", applyFilters);
+    });
+
+    els.eventList.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-id]");
+      if (button) {
+        selectRecord(button.dataset.id);
+      }
+    });
+
+    document.getElementById("fitAllBtn").addEventListener("click", fitSignals);
+    document.getElementById("refreshBtn").addEventListener("click", () => loadData().catch(showLoadError));
+    document.getElementById("todayBtn").addEventListener("click", () => {
+      els.recencyFilter.value = "7";
+      applyFilters();
+    });
+    document.getElementById("closeDetailBtn").addEventListener("click", () => {
+      state.selectedId = null;
+      renderDetail(null);
+      renderFeed(state.filtered);
+    });
+
+    function showLoadError(error) {
+      console.error(error);
+      els.generatedAt.textContent = "Generated: failed";
+      els.sourceHealth.textContent = "Sources: unavailable";
+      els.eventList.innerHTML = `<li class="empty">The data feed could not be loaded.</li>`;
+    }
+
+    loadData().catch(showLoadError);
   </script>
 </body>
 </html>
