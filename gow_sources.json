@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-21T08:43:37.685973+00:00",
-  "feature_count": 152,
+  "generated_at": "2026-05-22T08:33:04.146299+00:00",
+  "feature_count": 156,
   "source_count": 8,
   "source_status": [
     {
@@ -11,7 +11,7 @@
       "status": "ok",
       "items_seen": 100,
       "features_added": 62,
-      "elapsed_seconds": 2.31
+      "elapsed_seconds": 1.16
     },
     {
       "id": "cdc-travel",
@@ -21,7 +21,7 @@
       "status": "ok",
       "items_seen": 25,
       "features_added": 25,
-      "elapsed_seconds": 0.09
+      "elapsed_seconds": 0.11
     },
     {
       "id": "cdc-us-outbreaks",
@@ -31,7 +31,7 @@
       "status": "ok",
       "items_seen": 7,
       "features_added": 7,
-      "elapsed_seconds": 0.17
+      "elapsed_seconds": 0.19
     },
     {
       "id": "cdc-int-outbreaks",
@@ -41,7 +41,7 @@
       "status": "ok",
       "items_seen": 3,
       "features_added": 3,
-      "elapsed_seconds": 0.16
+      "elapsed_seconds": 0.23
     },
     {
       "id": "ecdc-cdtr",
@@ -51,7 +51,7 @@
       "status": "ok",
       "items_seen": 10,
       "features_added": 10,
-      "elapsed_seconds": 0.84
+      "elapsed_seconds": 0.27
     },
     {
       "id": "paho-alerts",
@@ -60,8 +60,8 @@
       "url": "https://www.paho.org/en/epidemiological-alerts-and-updates",
       "status": "ok",
       "items_seen": 18,
-      "features_added": 18,
-      "elapsed_seconds": 0.31
+      "features_added": 21,
+      "elapsed_seconds": 0.39
     },
     {
       "id": "ukhsa-news",
@@ -71,7 +71,7 @@
       "status": "ok",
       "items_seen": 20,
       "features_added": 10,
-      "elapsed_seconds": 0.94
+      "elapsed_seconds": 0.76
     },
     {
       "id": "ukhsa-monitoring",
@@ -79,9 +79,9 @@
       "type": "National authority",
       "url": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026",
       "status": "ok",
-      "items_seen": 17,
-      "features_added": 17,
-      "elapsed_seconds": 1.1
+      "items_seen": 18,
+      "features_added": 18,
+      "elapsed_seconds": 0.21
     }
   ]
 }
