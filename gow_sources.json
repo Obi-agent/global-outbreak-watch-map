@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-22T08:33:04.146299+00:00",
-  "feature_count": 156,
+  "generated_at": "2026-05-23T07:43:56.201708+00:00",
+  "feature_count": 159,
   "source_count": 8,
   "source_status": [
     {
@@ -10,8 +10,8 @@
       "url": "https://cms.who.int/api/hubs/diseaseoutbreaknews?%24top=100&%24orderby=PublicationDateAndTime%20desc",
       "status": "ok",
       "items_seen": 100,
-      "features_added": 62,
-      "elapsed_seconds": 1.16
+      "features_added": 64,
+      "elapsed_seconds": 0.93
     },
     {
       "id": "cdc-travel",
@@ -21,7 +21,7 @@
       "status": "ok",
       "items_seen": 25,
       "features_added": 25,
-      "elapsed_seconds": 0.11
+      "elapsed_seconds": 0.13
     },
     {
       "id": "cdc-us-outbreaks",
@@ -31,7 +31,7 @@
       "status": "ok",
       "items_seen": 7,
       "features_added": 7,
-      "elapsed_seconds": 0.19
+      "elapsed_seconds": 0.12
     },
     {
       "id": "cdc-int-outbreaks",
@@ -41,7 +41,7 @@
       "status": "ok",
       "items_seen": 3,
       "features_added": 3,
-      "elapsed_seconds": 0.23
+      "elapsed_seconds": 0.11
     },
     {
       "id": "ecdc-cdtr",
@@ -51,7 +51,7 @@
       "status": "ok",
       "items_seen": 10,
       "features_added": 10,
-      "elapsed_seconds": 0.27
+      "elapsed_seconds": 4.61
     },
     {
       "id": "paho-alerts",
@@ -61,7 +61,7 @@
       "status": "ok",
       "items_seen": 18,
       "features_added": 21,
-      "elapsed_seconds": 0.39
+      "elapsed_seconds": 0.22
     },
     {
       "id": "ukhsa-news",
@@ -70,8 +70,8 @@
       "url": "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=uk-health-security-agency",
       "status": "ok",
       "items_seen": 20,
-      "features_added": 10,
-      "elapsed_seconds": 0.76
+      "features_added": 11,
+      "elapsed_seconds": 1.09
     },
     {
       "id": "ukhsa-monitoring",
@@ -81,7 +81,7 @@
       "status": "ok",
       "items_seen": 18,
       "features_added": 18,
-      "elapsed_seconds": 0.21
+      "elapsed_seconds": 0.17
     }
   ]
 }
