@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-24T08:01:01.040488+00:00",
+  "generated_at": "2026-05-26T08:44:04.638064+00:00",
   "feature_count": 159,
   "source_count": 8,
   "source_status": [
@@ -11,7 +11,7 @@
       "status": "ok",
       "items_seen": 100,
       "features_added": 64,
-      "elapsed_seconds": 2.18
+      "elapsed_seconds": 0.87
     },
     {
       "id": "cdc-travel",
@@ -21,7 +21,7 @@
       "status": "ok",
       "items_seen": 25,
       "features_added": 25,
-      "elapsed_seconds": 0.08
+      "elapsed_seconds": 0.1
     },
     {
       "id": "cdc-us-outbreaks",
@@ -31,7 +31,7 @@
       "status": "ok",
       "items_seen": 7,
       "features_added": 7,
-      "elapsed_seconds": 0.2
+      "elapsed_seconds": 0.15
     },
     {
       "id": "cdc-int-outbreaks",
@@ -41,7 +41,7 @@
       "status": "ok",
       "items_seen": 3,
       "features_added": 3,
-      "elapsed_seconds": 0.18
+      "elapsed_seconds": 0.13
     },
     {
       "id": "ecdc-cdtr",
@@ -51,7 +51,7 @@
       "status": "ok",
       "items_seen": 10,
       "features_added": 10,
-      "elapsed_seconds": 0.78
+      "elapsed_seconds": 0.22
     },
     {
       "id": "paho-alerts",
@@ -61,7 +61,7 @@
       "status": "ok",
       "items_seen": 18,
       "features_added": 21,
-      "elapsed_seconds": 0.37
+      "elapsed_seconds": 0.33
     },
     {
       "id": "ukhsa-news",
@@ -71,7 +71,7 @@
       "status": "ok",
       "items_seen": 20,
       "features_added": 11,
-      "elapsed_seconds": 0.94
+      "elapsed_seconds": 0.42
     },
     {
       "id": "ukhsa-monitoring",
@@ -81,7 +81,7 @@
       "status": "ok",
       "items_seen": 18,
       "features_added": 18,
-      "elapsed_seconds": 0.93
+      "elapsed_seconds": 0.28
     }
   ]
 }
