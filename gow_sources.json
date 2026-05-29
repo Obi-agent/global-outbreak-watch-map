@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-28T08:53:55.828372+00:00",
-  "feature_count": 160,
+  "generated_at": "2026-05-29T08:52:32.323809+00:00",
+  "feature_count": 163,
   "source_count": 8,
   "source_status": [
     {
@@ -10,8 +10,8 @@
       "url": "https://cms.who.int/api/hubs/diseaseoutbreaknews?%24top=100&%24orderby=PublicationDateAndTime%20desc",
       "status": "ok",
       "items_seen": 100,
-      "features_added": 64,
-      "elapsed_seconds": 0.82
+      "features_added": 66,
+      "elapsed_seconds": 0.84
     },
     {
       "id": "cdc-travel",
@@ -21,7 +21,7 @@
       "status": "ok",
       "items_seen": 25,
       "features_added": 25,
-      "elapsed_seconds": 0.14
+      "elapsed_seconds": 0.08
     },
     {
       "id": "cdc-us-outbreaks",
@@ -31,7 +31,7 @@
       "status": "ok",
       "items_seen": 7,
       "features_added": 7,
-      "elapsed_seconds": 0.05
+      "elapsed_seconds": 0.21
     },
     {
       "id": "cdc-int-outbreaks",
@@ -41,7 +41,7 @@
       "status": "ok",
       "items_seen": 3,
       "features_added": 3,
-      "elapsed_seconds": 0.23
+      "elapsed_seconds": 0.1
     },
     {
       "id": "ecdc-cdtr",
@@ -51,7 +51,7 @@
       "status": "ok",
       "items_seen": 10,
       "features_added": 10,
-      "elapsed_seconds": 4.57
+      "elapsed_seconds": 0.4
     },
     {
       "id": "paho-alerts",
@@ -61,7 +61,7 @@
       "status": "ok",
       "items_seen": 18,
       "features_added": 21,
-      "elapsed_seconds": 0.38
+      "elapsed_seconds": 0.19
     },
     {
       "id": "ukhsa-news",
@@ -71,7 +71,7 @@
       "status": "ok",
       "items_seen": 20,
       "features_added": 12,
-      "elapsed_seconds": 0.91
+      "elapsed_seconds": 0.83
     },
     {
       "id": "ukhsa-monitoring",
@@ -79,9 +79,9 @@
       "type": "National authority",
       "url": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026",
       "status": "ok",
-      "items_seen": 18,
-      "features_added": 18,
-      "elapsed_seconds": 0.58
+      "items_seen": 19,
+      "features_added": 19,
+      "elapsed_seconds": 0.72
     }
   ]
 }
