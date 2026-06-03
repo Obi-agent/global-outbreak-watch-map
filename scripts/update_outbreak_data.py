@@ -18,6 +18,7 @@ SOURCES_OUT = ROOT / "gow_sources.json"
 WINDOW_DAYS = int(os.environ.get("GOW_SIGNAL_WINDOW_DAYS", "210"))
 MAX_ITEMS = int(os.environ.get("GOW_MAX_ITEMS_PER_SOURCE", "45"))
 UA = "GlobalOutbreakWatch/1.0 public-source disease signal monitor"
+DETAIL_CACHE = {}
 
 SOURCES = [
     {"id":"who-don","name":"WHO Disease Outbreak News","type":"Global authority","adapter":"who","url":"https://cms.who.int/api/hubs/diseaseoutbreaknews?%24top=100&%24orderby=PublicationDateAndTime%20desc"},
@@ -35,20 +36,125 @@ COORDS = {
 }
 REGIONS = {"Global":(15,10),"Americas Region":(-74,5),"EU/EEA":(14,50),"Africa Region":(20,2.5),"European Region":(15,50),"Eastern Mediterranean Region":(44,25),"South-East Asia Region":(89,16),"Western Pacific Region":(136,10)}
 ALIASES = {"USA":"United States","U.S.":"United States","US":"United States","United States of America":"United States","UK":"United Kingdom","DRC":"Democratic Republic of the Congo","Democratic Republic of Congo":"Democratic Republic of the Congo"}
-DISEASES = [(r"h5n1|bird flu","Avian influenza A(H5N1)"),(r"h7n9","Avian influenza A(H7N9)"),(r"h9n2","Avian influenza A(H9N2)"),(r"avian influenza","Avian influenza"),(r"cholera","Cholera"),(r"mpox|monkeypox","Mpox"),(r"measles","Measles"),(r"dengue","Dengue"),(r"yellow fever","Yellow fever"),(r"hantavirus","Hantavirus"),(r"marburg","Marburg virus disease"),(r"ebola|sudan virus disease","Ebola virus disease"),(r"nipah","Nipah virus"),(r"polio|poliovirus","Poliovirus"),(r"middle east respiratory syndrome|\bmers\b","MERS"),(r"crimean-congo|cchf","Crimean-Congo haemorrhagic fever"),(r"lassa fever","Lassa fever"),(r"rift valley fever","Rift Valley fever"),(r"chikungunya","Chikungunya"),(r"oropouche","Oropouche virus disease"),(r"pertussis|whooping cough","Pertussis"),(r"seasonal influenza","Seasonal influenza"),(r"covid-19|sars-cov-2","COVID-19"),(r"listeria","Listeriosis"),(r"salmonella","Salmonellosis"),(r"botulism","Botulism"),(r"diphtheria","Diphtheria")]
+DISEASES = [(r"west nile","West Nile virus"),(r"swine influenza|h1n1v","Swine influenza A(H1N1)v"),(r"plague|yersinia pestis","Plague"),(r"h5n1|bird flu","Avian influenza A(H5N1)"),(r"h7n9","Avian influenza A(H7N9)"),(r"h9n2","Avian influenza A(H9N2)"),(r"avian influenza","Avian influenza"),(r"cholera","Cholera"),(r"mpox|monkeypox","Mpox"),(r"measles","Measles"),(r"dengue","Dengue"),(r"yellow fever","Yellow fever"),(r"hantavirus","Hantavirus"),(r"marburg","Marburg virus disease"),(r"ebola|sudan virus disease","Ebola virus disease"),(r"nipah","Nipah virus"),(r"polio|poliovirus","Poliovirus"),(r"middle east respiratory syndrome|\bmers\b","MERS"),(r"crimean-congo|cchf","Crimean-Congo haemorrhagic fever"),(r"lassa fever","Lassa fever"),(r"rift valley fever","Rift Valley fever"),(r"chikungunya","Chikungunya"),(r"oropouche","Oropouche virus disease"),(r"pertussis|whooping cough","Pertussis"),(r"seasonal influenza","Seasonal influenza"),(r"covid-19|sars-cov-2","COVID-19"),(r"listeria","Listeriosis"),(r"salmonella","Salmonellosis"),(r"botulism","Botulism"),(r"diphtheria","Diphtheria")]
 RELEVANT = re.compile(r"outbreak|epidemiolog|alert|update|disease|infection|virus|fever|cholera|mpox|measles|dengue|influenza|marburg|ebola|hantavirus|polio|pertussis|salmonella|listeria|botulism|chikungunya|oropouche|nipah|mers|cchf", re.I)
 EXCLUDE = re.compile(r"glp-1|methanol|chemical|radionuclear|heatwave|heat wave|poisoning", re.I)
+NOISE = re.compile(r"loading\s*=|stroke-width|aria-hidden|data-ga4-link|govuk-link|views-field|tabindex=|data-module=|href=|<a\b|<div\b|</d\b|M\d+,\d+H\d+|h\d+v-?\d", re.I)
+
+def strip_markup(value):
+    value = html.unescape(str(value or ""))
+    value = re.sub(r"<!--.*?-->", " ", value, flags=re.S)
+    value = re.sub(r"<script\b.*?</script>|<style\b.*?</style>|<svg\b.*?</svg>|<noscript\b.*?</noscript>", " ", value, flags=re.I|re.S)
+    value = re.sub(r"<img\b[^>]*>", " ", value, flags=re.I)
+    return value
 
 def clean(value):
-    value = html.unescape(str(value or ""))
-    value = re.sub(r"<script\b.*?</script>|<style\b.*?</style>", " ", value, flags=re.I|re.S)
+    value = strip_markup(value)
     value = re.sub(r"<[^>]+>", " ", value)
+    value = re.sub(r"<[^>]*", " ", value)
     return re.sub(r"\s+", " ", value).strip()
 
+def looks_noisy(value):
+    text = clean(value)
+    return bool(text and NOISE.search(text))
+
+def tidy_summary(value, fallback=""):
+    text = clean(value)
+    text = re.sub(r"^\d+\s*\"?\s*loading\s*=\s*\"lazy\"\s*/?>?\s*", "", text, flags=re.I)
+    text = re.sub(r"\b(?:HTML|Details)\b\s+.*$", "", text, flags=re.I)
+    text = re.sub(r"\b(?:target|tabindex|aria-hidden|data-ga4-link|data-module)\s*=.*$", "", text, flags=re.I)
+    text = re.sub(r"\s+", " ", text).strip(" -|,;:")
+    if not text or text.lower() in {"html", "details"} or looks_noisy(text):
+        return clean(fallback)
+    return text
+
+def meta_content(text, names):
+    for name in names:
+        pattern = rf'<meta[^>]+(?:name|property)=["\']{re.escape(name)}["\'][^>]+content=["\'](.*?)["\']'
+        match = re.search(pattern, text, re.I | re.S)
+        if match:
+            value = clean(match.group(1))
+            if value:
+                return value
+    return ""
+
+def linked_context(source, title, url):
+    key = (source["id"], url)
+    if key in DETAIL_CACHE:
+        return DETAIL_CACHE[key]
+    try:
+        page = fetch(url)
+    except Exception:
+        DETAIL_CACHE[key] = title
+        return title
+
+    if source["id"] == "paho-alerts":
+        summary = meta_content(page, ["description", "og:description", "twitter:description"])
+        DETAIL_CACHE[key] = tidy_summary(summary, fallback=title)
+        return DETAIL_CACHE[key]
+
+    if source["id"] == "ukhsa-monitoring":
+        scripts = re.findall(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', page, re.I | re.S)
+        for script in scripts:
+            try:
+                payload = json.loads(script.strip())
+            except Exception:
+                continue
+            article_body = payload.get("articleBody", "") if isinstance(payload, dict) else ""
+            if article_body:
+                disease_match = re.search(r"Disease or pathogen</(?:th|td)>\s*<(?:th|td)[^>]*>(.*?)</(?:th|td)>", article_body, re.I | re.S)
+                summary_match = re.search(r"Summary</(?:td|th)>\s*<(?:td|th)[^>]*>(.*?)</(?:td|th)>", article_body, re.I | re.S)
+                disease_name = clean(disease_match.group(1)) if disease_match else ""
+                summary_text = clean(summary_match.group(1).replace("<br>", " ").replace("<br/>", " ").replace("<br />", " ")) if summary_match else ""
+                if disease_name or summary_text:
+                    combined = f"{disease_name}. {summary_text}".strip(". ").strip()
+                    DETAIL_CACHE[key] = tidy_summary(combined, fallback=title)
+                    return DETAIL_CACHE[key]
+            entities = payload.get("mainEntity", [])
+            if isinstance(entities, dict):
+                entities = [entities]
+            for entity in entities:
+                answer = entity.get("acceptedAnswer", {}).get("text", "")
+                if not answer:
+                    continue
+                disease_match = re.search(r"Disease or pathogen.*?<strong>(.*?)</strong>", answer, re.I | re.S)
+                summary_match = re.search(r"Summary</td>\s*<td>(.*?)</td>", answer, re.I | re.S)
+                disease_name = clean(disease_match.group(1)) if disease_match else ""
+                summary_text = clean(summary_match.group(1).replace("<br>", " ").replace("<br/>", " ").replace("<br />", " ")) if summary_match else ""
+                if disease_name or summary_text:
+                    combined = f"{disease_name}. {summary_text}".strip(". ").strip()
+                    DETAIL_CACHE[key] = tidy_summary(combined, fallback=title)
+                    return DETAIL_CACHE[key]
+        body_match = re.search(r'<main\b.*?</main>', page, re.I | re.S)
+        body = body_match.group(0) if body_match else page
+        disease_match = re.search(r"Disease or pathogen</(?:strong|b)>\s*</(?:td|th)>\s*<(?:td|th)[^>]*>\s*<(?:strong|b)>(.*?)</(?:strong|b)>", body, re.I | re.S)
+        if not disease_match:
+            disease_match = re.search(r"Disease or pathogen</(?:td|th)>\s*<(?:td|th)[^>]*>(.*?)</(?:td|th)>", body, re.I | re.S)
+        summary_match = re.search(r"Summary</(?:td|th)>\s*<(?:td|th)[^>]*>(.*?)</(?:td|th)>", body, re.I | re.S)
+        disease_name = clean(disease_match.group(1)) if disease_match else ""
+        summary_text = clean(summary_match.group(1).replace("<br>", " ").replace("<br/>", " ").replace("<br />", " ")) if summary_match else ""
+        if disease_name or summary_text:
+            combined = f"{disease_name}. {summary_text}".strip(". ").strip()
+            DETAIL_CACHE[key] = tidy_summary(combined, fallback=title)
+            return DETAIL_CACHE[key]
+
+    summary = meta_content(page, ["description", "og:description", "twitter:description"])
+    DETAIL_CACHE[key] = tidy_summary(summary, fallback=title)
+    return DETAIL_CACHE[key]
+
 def fetch(url):
-    req = urllib.request.Request(url, headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=24) as res:
-        return res.read().decode(res.headers.get_content_charset() or "utf-8", errors="replace")
+    last_exc = None
+    for attempt in range(3):
+        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        try:
+            with urllib.request.urlopen(req, timeout=24) as res:
+                return res.read().decode(res.headers.get_content_charset() or "utf-8", errors="replace")
+        except Exception as exc:
+            last_exc = exc
+            if attempt == 2:
+                raise
+            time.sleep(1.5 * (attempt + 1))
+    raise last_exc
 
 def dt(value):
     raw = clean(value)
@@ -81,21 +187,25 @@ def rss_items(source, text):
     ns = {"a":"http://www.w3.org/2005/Atom"}
     for entry in root.findall(".//a:entry", ns):
         title = clean(entry.findtext("a:title", namespaces=ns)); summary = clean(entry.findtext("a:summary", namespaces=ns) or entry.findtext("a:content", namespaces=ns))
-        link_node = entry.find("a:link[@href]", ns) or entry.find("a:link", ns)
+        link_node = entry.find("a:link[@href]", ns)
+        if link_node is None:
+            link_node = entry.find("a:link", ns)
         link = urllib.parse.urljoin(source["url"], link_node.get("href")) if link_node is not None and link_node.get("href") else source["url"]
         out.append((title, summary, link, dt(entry.findtext("a:updated", namespaces=ns) or entry.findtext("a:published", namespaces=ns))))
     return [x for x in out if x[0]]
 
 def html_items(source, text):
+    text = strip_markup(text)
     out = []
     for m in re.finditer(r"<a\s[^>]*href=[\"']([^\"']+)[\"'][^>]*>(.*?)</a>", text, re.I|re.S):
         href, body = m.groups(); title = clean(body)
         url = urllib.parse.urljoin(source["url"], html.unescape(href or ""))
-        if len(title) < 8 or not RELEVANT.search(title):
+        if len(title) < 8 or not RELEVANT.search(title) or looks_noisy(title):
             continue
         if source.get("must") and source["must"].lower() not in url.lower():
             continue
-        context = clean(text[max(0,m.start()-280):min(len(text),m.end()+420)])
+        context_raw = text[m.end():min(len(text), m.end() + 900)]
+        context = tidy_summary(context_raw, fallback=title)
         out.append((title, context, url, dt(context)))
     return out
 
@@ -153,24 +263,32 @@ def coord(place):
     return COORDS.get(place) or REGIONS.get(place) or REGIONS["Global"]
 
 def feature(source, title, summary, url, when, place, offset, now):
-    text = f"{title} {summary}"; name = disease(text); lon, lat = coord(place)
+    summary = tidy_summary(summary, fallback=title)
+    name_source = summary if summary and summary != title else title
+    text = title if summary == title else f"{summary} {title}"; name = disease(name_source); lon, lat = coord(place)
     h = hashlib.sha1(f"{source['id']}|{url}|{place}|{name}".encode()).hexdigest()[:10]
     when = when or now
-    snap = clean(summary or title)
+    snap = tidy_summary(summary or title, fallback=title)
     if len(snap) > 540: snap = snap[:540].rsplit(" ",1)[0] + "..."
     return {"type":"Feature","properties":{"Outbreak_ID":f"{iso(when)}-{source['id']}-{h}","Threat":name,"Disease":name,"Country":place,"Location_Label":place,"Status":status(title, summary),"Signal_Status":status(title, summary),"Severity":severity(name, text),"Date_First_Noted":iso(when),"Date_Last_Updated":iso(when),"Source_Name":source["name"],"Source_Type":source["type"],"Source_URL":url,"Confidence":"Automated extraction from linked public authority source","Situation_Snapshot":snap,"Travel_Health_Takeaways":"Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.","Title":title,"Generated_At":now.isoformat()},"geometry":{"type":"Point","coordinates":[lon + offset*0.12, lat + offset*0.08]}}
 
 def main():
     now = datetime.now(timezone.utc); feats = []; seen = set(); statuses = []
     for source in SOURCES:
-        start = time.time(); st = {"id":source["id"],"name":source["name"],"type":source["type"],"url":source["url"],"status":"ok","items_seen":0,"features_added":0,"elapsed_seconds":0.0}
+        start = time.time(); st = {"id":source["id"],"name":source["name"],"type":source["type"],"url":source["url"],"status":"ok","items_seen":0,"features_added":0,"skipped_noisy":0,"elapsed_seconds":0.0}
         try:
             text = fetch(source["url"])
             items = who_items(source, text) if source["adapter"] == "who" else rss_items(source, text) if source["adapter"] == "rss" else html_items(source, text)
             st["items_seen"] = len(items); accepted = 0
             for title, summary, url, when in items:
                 if accepted >= MAX_ITEMS: break
+                summary = tidy_summary(summary, fallback=title)
+                if source["adapter"] == "html" and summary == title:
+                    summary = linked_context(source, title, url)
                 alltext = f"{title} {summary}"
+                if looks_noisy(title):
+                    st["skipped_noisy"] += 1
+                    continue
                 if EXCLUDE.search(alltext) or not RELEVANT.search(alltext): continue
                 if when and (now - when).days > WINDOW_DAYS: continue
                 for offset, place in enumerate(places(alltext, source.get("default"))):
