@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-07T08:30:37.613605+00:00",
-  "feature_count": 201,
+  "generated_at": "2026-06-08T09:57:12.745981+00:00",
+  "feature_count": 199,
   "source_count": 8,
   "source_status": [
     {
@@ -12,7 +12,7 @@
       "items_seen": 100,
       "features_added": 69,
       "skipped_noisy": 0,
-      "elapsed_seconds": 1.18
+      "elapsed_seconds": 0.89
     },
     {
       "id": "cdc-travel",
@@ -20,10 +20,10 @@
       "type": "National authority",
       "url": "https://wwwnc.cdc.gov/travel/rss/notices.xml",
       "status": "ok",
-      "items_seen": 27,
-      "features_added": 29,
+      "items_seen": 25,
+      "features_added": 27,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.19
+      "elapsed_seconds": 0.09
     },
     {
       "id": "cdc-us-outbreaks",
@@ -34,7 +34,7 @@
       "items_seen": 7,
       "features_added": 7,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.35
+      "elapsed_seconds": 0.19
     },
     {
       "id": "cdc-int-outbreaks",
@@ -45,7 +45,7 @@
       "items_seen": 3,
       "features_added": 3,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.66
+      "elapsed_seconds": 0.12
     },
     {
       "id": "ecdc-cdtr",
@@ -56,7 +56,7 @@
       "items_seen": 10,
       "features_added": 10,
       "skipped_noisy": 0,
-      "elapsed_seconds": 1.06
+      "elapsed_seconds": 0.24
     },
     {
       "id": "paho-alerts",
@@ -67,7 +67,7 @@
       "items_seen": 18,
       "features_added": 21,
       "skipped_noisy": 0,
-      "elapsed_seconds": 1.55
+      "elapsed_seconds": 3.57
     },
     {
       "id": "ukhsa-news",
@@ -78,7 +78,7 @@
       "items_seen": 20,
       "features_added": 12,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.44
+      "elapsed_seconds": 0.11
     },
     {
       "id": "ukhsa-monitoring",
@@ -89,7 +89,7 @@
       "items_seen": 20,
       "features_added": 50,
       "skipped_noisy": 0,
-      "elapsed_seconds": 14.35
+      "elapsed_seconds": 14.3
     }
   ]
 }
