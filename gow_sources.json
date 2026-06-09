@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-08T09:57:12.745981+00:00",
-  "feature_count": 199,
+  "generated_at": "2026-06-09T08:41:51.764948+00:00",
+  "feature_count": 204,
   "source_count": 8,
   "source_status": [
     {
@@ -10,9 +10,9 @@
       "url": "https://cms.who.int/api/hubs/diseaseoutbreaknews?%24top=100&%24orderby=PublicationDateAndTime%20desc",
       "status": "ok",
       "items_seen": 100,
-      "features_added": 69,
+      "features_added": 72,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.89
+      "elapsed_seconds": 2.66
     },
     {
       "id": "cdc-travel",
@@ -20,10 +20,10 @@
       "type": "National authority",
       "url": "https://wwwnc.cdc.gov/travel/rss/notices.xml",
       "status": "ok",
-      "items_seen": 25,
-      "features_added": 27,
+      "items_seen": 27,
+      "features_added": 29,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.09
+      "elapsed_seconds": 0.14
     },
     {
       "id": "cdc-us-outbreaks",
@@ -34,7 +34,7 @@
       "items_seen": 7,
       "features_added": 7,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.19
+      "elapsed_seconds": 0.21
     },
     {
       "id": "cdc-int-outbreaks",
@@ -45,7 +45,7 @@
       "items_seen": 3,
       "features_added": 3,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.12
+      "elapsed_seconds": 0.54
     },
     {
       "id": "ecdc-cdtr",
@@ -56,7 +56,7 @@
       "items_seen": 10,
       "features_added": 10,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.24
+      "elapsed_seconds": 0.52
     },
     {
       "id": "paho-alerts",
@@ -67,7 +67,7 @@
       "items_seen": 18,
       "features_added": 21,
       "skipped_noisy": 0,
-      "elapsed_seconds": 3.57
+      "elapsed_seconds": 2.34
     },
     {
       "id": "ukhsa-news",
@@ -78,7 +78,7 @@
       "items_seen": 20,
       "features_added": 12,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.11
+      "elapsed_seconds": 0.08
     },
     {
       "id": "ukhsa-monitoring",
@@ -89,7 +89,7 @@
       "items_seen": 20,
       "features_added": 50,
       "skipped_noisy": 0,
-      "elapsed_seconds": 14.3
+      "elapsed_seconds": 8.33
     }
   ]
 }
