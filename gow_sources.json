@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-09T08:41:51.764948+00:00",
-  "feature_count": 204,
+  "generated_at": "2026-06-10T09:01:48.798182+00:00",
+  "feature_count": 203,
   "source_count": 8,
   "source_status": [
     {
@@ -12,7 +12,7 @@
       "items_seen": 100,
       "features_added": 72,
       "skipped_noisy": 0,
-      "elapsed_seconds": 2.66
+      "elapsed_seconds": 1.03
     },
     {
       "id": "cdc-travel",
@@ -34,7 +34,7 @@
       "items_seen": 7,
       "features_added": 7,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.21
+      "elapsed_seconds": 0.06
     },
     {
       "id": "cdc-int-outbreaks",
@@ -45,7 +45,7 @@
       "items_seen": 3,
       "features_added": 3,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.54
+      "elapsed_seconds": 0.65
     },
     {
       "id": "ecdc-cdtr",
@@ -56,7 +56,7 @@
       "items_seen": 10,
       "features_added": 10,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.52
+      "elapsed_seconds": 0.51
     },
     {
       "id": "paho-alerts",
@@ -67,7 +67,7 @@
       "items_seen": 18,
       "features_added": 21,
       "skipped_noisy": 0,
-      "elapsed_seconds": 2.34
+      "elapsed_seconds": 1.33
     },
     {
       "id": "ukhsa-news",
@@ -76,9 +76,9 @@
       "url": "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=uk-health-security-agency",
       "status": "ok",
       "items_seen": 20,
-      "features_added": 12,
+      "features_added": 11,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.08
+      "elapsed_seconds": 0.65
     },
     {
       "id": "ukhsa-monitoring",
@@ -89,7 +89,7 @@
       "items_seen": 20,
       "features_added": 50,
       "skipped_noisy": 0,
-      "elapsed_seconds": 8.33
+      "elapsed_seconds": 11.69
     }
   ]
 }
