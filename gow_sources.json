@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-11T09:45:39.056092+00:00",
-  "feature_count": 201,
+  "generated_at": "2026-06-12T09:13:51.489021+00:00",
+  "feature_count": 205,
   "source_count": 8,
   "source_status": [
     {
@@ -12,7 +12,7 @@
       "items_seen": 100,
       "features_added": 72,
       "skipped_noisy": 0,
-      "elapsed_seconds": 1.01
+      "elapsed_seconds": 1.25
     },
     {
       "id": "cdc-travel",
@@ -20,10 +20,10 @@
       "type": "National authority",
       "url": "https://wwwnc.cdc.gov/travel/rss/notices.xml",
       "status": "ok",
-      "items_seen": 25,
-      "features_added": 27,
+      "items_seen": 28,
+      "features_added": 29,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.09
+      "elapsed_seconds": 0.06
     },
     {
       "id": "cdc-us-outbreaks",
@@ -34,7 +34,7 @@
       "items_seen": 7,
       "features_added": 7,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.07
+      "elapsed_seconds": 0.18
     },
     {
       "id": "cdc-int-outbreaks",
@@ -45,7 +45,7 @@
       "items_seen": 3,
       "features_added": 3,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.05
+      "elapsed_seconds": 0.17
     },
     {
       "id": "ecdc-cdtr",
@@ -56,7 +56,7 @@
       "items_seen": 10,
       "features_added": 10,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.29
+      "elapsed_seconds": 0.48
     },
     {
       "id": "paho-alerts",
@@ -64,10 +64,10 @@
       "type": "Regional authority",
       "url": "https://www.paho.org/en/epidemiological-alerts-and-updates",
       "status": "ok",
-      "items_seen": 18,
-      "features_added": 21,
+      "items_seen": 17,
+      "features_added": 20,
       "skipped_noisy": 0,
-      "elapsed_seconds": 3.7
+      "elapsed_seconds": 2.32
     },
     {
       "id": "ukhsa-news",
@@ -76,9 +76,9 @@
       "url": "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=uk-health-security-agency",
       "status": "ok",
       "items_seen": 20,
-      "features_added": 11,
+      "features_added": 10,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.55
+      "elapsed_seconds": 0.05
     },
     {
       "id": "ukhsa-monitoring",
@@ -86,10 +86,10 @@
       "type": "National authority",
       "url": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026",
       "status": "ok",
-      "items_seen": 20,
-      "features_added": 50,
+      "items_seen": 21,
+      "features_added": 54,
       "skipped_noisy": 0,
-      "elapsed_seconds": 9.82
+      "elapsed_seconds": 8.79
     }
   ]
 }
