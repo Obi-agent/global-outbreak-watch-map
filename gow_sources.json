@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-02T08:25:25.724167+00:00",
-  "feature_count": 222,
+  "generated_at": "2026-07-03T08:28:21.535880+00:00",
+  "feature_count": 226,
   "source_count": 8,
   "source_status": [
     {
@@ -12,7 +12,7 @@
       "items_seen": 100,
       "features_added": 75,
       "skipped_noisy": 0,
-      "elapsed_seconds": 3.78
+      "elapsed_seconds": 4.4
     },
     {
       "id": "cdc-travel",
@@ -23,7 +23,7 @@
       "items_seen": 28,
       "features_added": 32,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.05
+      "elapsed_seconds": 0.15
     },
     {
       "id": "cdc-us-outbreaks",
@@ -34,7 +34,7 @@
       "items_seen": 7,
       "features_added": 7,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.06
+      "elapsed_seconds": 0.09
     },
     {
       "id": "cdc-int-outbreaks",
@@ -45,7 +45,7 @@
       "items_seen": 3,
       "features_added": 3,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.04
+      "elapsed_seconds": 0.03
     },
     {
       "id": "ecdc-cdtr",
@@ -56,7 +56,7 @@
       "items_seen": 10,
       "features_added": 10,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.47
+      "elapsed_seconds": 0.34
     },
     {
       "id": "paho-alerts",
@@ -67,7 +67,7 @@
       "items_seen": 17,
       "features_added": 20,
       "skipped_noisy": 0,
-      "elapsed_seconds": 3.27
+      "elapsed_seconds": 2.66
     },
     {
       "id": "ukhsa-news",
@@ -78,7 +78,7 @@
       "items_seen": 20,
       "features_added": 12,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.52
+      "elapsed_seconds": 1.12
     },
     {
       "id": "ukhsa-monitoring",
@@ -86,10 +86,10 @@
       "type": "National authority",
       "url": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026",
       "status": "ok",
-      "items_seen": 23,
-      "features_added": 63,
+      "items_seen": 24,
+      "features_added": 67,
       "skipped_noisy": 0,
-      "elapsed_seconds": 11.9
+      "elapsed_seconds": 11.84
     }
   ]
 }
