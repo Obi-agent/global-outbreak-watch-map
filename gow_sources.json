@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-11T07:19:44.668243+00:00",
+  "generated_at": "2026-07-12T07:37:32.820090+00:00",
   "feature_count": 222,
   "source_count": 8,
   "source_status": [
@@ -12,7 +12,7 @@
       "items_seen": 100,
       "features_added": 77,
       "skipped_noisy": 0,
-      "elapsed_seconds": 6.28
+      "elapsed_seconds": 5.17
     },
     {
       "id": "cdc-travel",
@@ -23,7 +23,7 @@
       "items_seen": 26,
       "features_added": 32,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.08
+      "elapsed_seconds": 0.14
     },
     {
       "id": "cdc-us-outbreaks",
@@ -34,7 +34,7 @@
       "items_seen": 0,
       "features_added": 0,
       "skipped_noisy": 0,
-      "elapsed_seconds": 4.6,
+      "elapsed_seconds": 4.66,
       "error": "HTTP Error 403: Forbidden"
     },
     {
@@ -46,7 +46,7 @@
       "items_seen": 0,
       "features_added": 0,
       "skipped_noisy": 0,
-      "elapsed_seconds": 4.59,
+      "elapsed_seconds": 4.63,
       "error": "HTTP Error 403: Forbidden"
     },
     {
@@ -58,7 +58,7 @@
       "items_seen": 10,
       "features_added": 10,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.33
+      "elapsed_seconds": 0.89
     },
     {
       "id": "paho-alerts",
@@ -69,7 +69,7 @@
       "items_seen": 17,
       "features_added": 20,
       "skipped_noisy": 0,
-      "elapsed_seconds": 2.27
+      "elapsed_seconds": 3.16
     },
     {
       "id": "ukhsa-news",
@@ -80,7 +80,7 @@
       "items_seen": 20,
       "features_added": 12,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.08
+      "elapsed_seconds": 0.43
     },
     {
       "id": "ukhsa-monitoring",
@@ -91,7 +91,7 @@
       "items_seen": 25,
       "features_added": 71,
       "skipped_noisy": 0,
-      "elapsed_seconds": 11.21
+      "elapsed_seconds": 16.02
     }
   ]
 }
