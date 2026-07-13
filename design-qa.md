@@ -26,6 +26,7 @@ Implementation: ObiCRM Atlas, desktop 1440 x 1024 and mobile 390 x 844
 ## Responsive Comparison
 
 - Desktop 1440 x 1024: no overlap, clipping, horizontal overflow, blank map, missing tiles, or uncontrolled layout shift observed.
+- Short desktop 922 x 699: pagination remains fully visible and clickable with the evidence drawer expanded or collapsed; incident rows scroll within their reserved track when necessary.
 - Mobile 390 x 844: zero horizontal overflow; Map and List remain available from the first screen.
 - Mobile ledger rows form a continuous 90px three-column list with compact pagination.
 - Mobile evidence stays closed on initial load, opens from incident selection, scrolls internally, and closes without changing the selected incident.
