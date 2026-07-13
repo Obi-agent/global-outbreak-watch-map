@@ -20,6 +20,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Verify updater quality rules
+        run: python -m unittest discover -s tests -v
+
       - name: Rebuild outbreak GeoJSON
         run: python scripts/update_outbreak_data.py
 

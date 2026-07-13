@@ -1,7 +1,32 @@
 {
-  "generated_at": "2026-07-13T08:27:50.607401+00:00",
-  "feature_count": 222,
+  "generated_at": "2026-07-13T17:32:32.248136+00:00",
+  "feature_count": 146,
+  "incident_count": 62,
   "source_count": 8,
+  "quality": {
+    "status": "Healthy",
+    "score": 95,
+    "feature_quality_score": 89,
+    "source_health_score": 100,
+    "sources_ok": 8,
+    "sources_last_known_good": 0,
+    "sources_error": 0,
+    "signals_current": 146,
+    "signals_last_known_good": 0,
+    "signals_quarantined": 16,
+    "signals_rejected_noisy": 2,
+    "incidents": 62
+  },
+  "quality_history": [
+    {
+      "date": "2026-07-13",
+      "score": 95,
+      "status": "Healthy",
+      "incidents": 62,
+      "signals": 146,
+      "sources_ok": 8
+    }
+  ],
   "source_status": [
     {
       "id": "who-don",
@@ -10,9 +35,12 @@
       "url": "https://cms.who.int/api/hubs/diseaseoutbreaknews?%24top=100&%24orderby=PublicationDateAndTime%20desc",
       "status": "ok",
       "items_seen": 100,
-      "features_added": 77,
+      "features_added": 55,
+      "features_carried_forward": 0,
       "skipped_noisy": 0,
-      "elapsed_seconds": 3.08
+      "skipped_quarantined": 2,
+      "elapsed_seconds": 0.36,
+      "last_success_at": "2026-07-13T17:32:32.248136+00:00"
     },
     {
       "id": "cdc-travel",
@@ -21,33 +49,40 @@
       "url": "https://wwwnc.cdc.gov/travel/rss/notices.xml",
       "status": "ok",
       "items_seen": 26,
-      "features_added": 32,
+      "features_added": 27,
+      "features_carried_forward": 0,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.06
+      "skipped_quarantined": 0,
+      "elapsed_seconds": 0.11,
+      "last_success_at": "2026-07-13T17:32:32.248136+00:00"
     },
     {
       "id": "cdc-us-outbreaks",
       "name": "CDC U.S. Outbreak List",
       "type": "National authority",
       "url": "https://www.cdc.gov/outbreaks/rss/us-outbreaks.html",
-      "status": "error",
-      "items_seen": 0,
-      "features_added": 0,
+      "status": "ok",
+      "items_seen": 7,
+      "features_added": 6,
+      "features_carried_forward": 0,
       "skipped_noisy": 0,
-      "elapsed_seconds": 4.57,
-      "error": "HTTP Error 403: Forbidden"
+      "skipped_quarantined": 1,
+      "elapsed_seconds": 0.27,
+      "last_success_at": "2026-07-13T17:32:32.248136+00:00"
     },
     {
       "id": "cdc-int-outbreaks",
       "name": "CDC International Outbreak List",
       "type": "National authority",
       "url": "https://www.cdc.gov/outbreaks/rss/int-outbreaks.html",
-      "status": "error",
-      "items_seen": 0,
-      "features_added": 0,
+      "status": "ok",
+      "items_seen": 3,
+      "features_added": 1,
+      "features_carried_forward": 0,
       "skipped_noisy": 0,
-      "elapsed_seconds": 4.56,
-      "error": "HTTP Error 403: Forbidden"
+      "skipped_quarantined": 2,
+      "elapsed_seconds": 0.69,
+      "last_success_at": "2026-07-13T17:32:32.248136+00:00"
     },
     {
       "id": "ecdc-cdtr",
@@ -57,8 +92,11 @@
       "status": "ok",
       "items_seen": 10,
       "features_added": 10,
+      "features_carried_forward": 0,
       "skipped_noisy": 0,
-      "elapsed_seconds": 0.65
+      "skipped_quarantined": 0,
+      "elapsed_seconds": 0.1,
+      "last_success_at": "2026-07-13T17:32:32.248136+00:00"
     },
     {
       "id": "paho-alerts",
@@ -67,9 +105,12 @@
       "url": "https://www.paho.org/en/epidemiological-alerts-and-updates",
       "status": "ok",
       "items_seen": 17,
-      "features_added": 20,
-      "skipped_noisy": 0,
-      "elapsed_seconds": 3.48
+      "features_added": 6,
+      "features_carried_forward": 0,
+      "skipped_noisy": 1,
+      "skipped_quarantined": 10,
+      "elapsed_seconds": 7.62,
+      "last_success_at": "2026-07-13T17:32:32.248136+00:00"
     },
     {
       "id": "ukhsa-news",
@@ -78,9 +119,12 @@
       "url": "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=uk-health-security-agency",
       "status": "ok",
       "items_seen": 20,
-      "features_added": 12,
-      "skipped_noisy": 0,
-      "elapsed_seconds": 0.22
+      "features_added": 8,
+      "features_carried_forward": 0,
+      "skipped_noisy": 1,
+      "skipped_quarantined": 1,
+      "elapsed_seconds": 0.16,
+      "last_success_at": "2026-07-13T17:32:32.248136+00:00"
     },
     {
       "id": "ukhsa-monitoring",
@@ -89,9 +133,12 @@
       "url": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026",
       "status": "ok",
       "items_seen": 25,
-      "features_added": 71,
+      "features_added": 33,
+      "features_carried_forward": 0,
       "skipped_noisy": 0,
-      "elapsed_seconds": 12.48
+      "skipped_quarantined": 0,
+      "elapsed_seconds": 2.55,
+      "last_success_at": "2026-07-13T17:32:32.248136+00:00"
     }
   ]
 }
