@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-15T07:23:51.000143+00:00",
-  "feature_count": 147,
-  "incident_count": 63,
+  "generated_at": "2026-07-16T07:32:20.009294+00:00",
+  "feature_count": 146,
+  "incident_count": 62,
   "source_count": 8,
   "quality": {
     "status": "Healthy",
@@ -11,11 +11,11 @@
     "sources_ok": 8,
     "sources_last_known_good": 0,
     "sources_error": 0,
-    "signals_current": 147,
+    "signals_current": 146,
     "signals_last_known_good": 0,
     "signals_quarantined": 16,
     "signals_rejected_noisy": 2,
-    "incidents": 63
+    "incidents": 62
   },
   "quality_history": [
     {
@@ -41,6 +41,14 @@
       "incidents": 63,
       "signals": 147,
       "sources_ok": 8
+    },
+    {
+      "date": "2026-07-16",
+      "score": 95,
+      "status": "Healthy",
+      "incidents": 62,
+      "signals": 146,
+      "sources_ok": 8
     }
   ],
   "source_status": [
@@ -55,8 +63,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 2,
-      "elapsed_seconds": 2.74,
-      "last_success_at": "2026-07-15T07:23:51.000143+00:00"
+      "elapsed_seconds": 2.8,
+      "last_success_at": "2026-07-16T07:32:20.009294+00:00"
     },
     {
       "id": "cdc-travel",
@@ -69,8 +77,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.08,
-      "last_success_at": "2026-07-15T07:23:51.000143+00:00"
+      "elapsed_seconds": 0.11,
+      "last_success_at": "2026-07-16T07:32:20.009294+00:00"
     },
     {
       "id": "cdc-us-outbreaks",
@@ -83,8 +91,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 0.38,
-      "last_success_at": "2026-07-15T07:23:51.000143+00:00"
+      "elapsed_seconds": 0.39,
+      "last_success_at": "2026-07-16T07:32:20.009294+00:00"
     },
     {
       "id": "cdc-int-outbreaks",
@@ -97,8 +105,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 2,
-      "elapsed_seconds": 0.18,
-      "last_success_at": "2026-07-15T07:23:51.000143+00:00"
+      "elapsed_seconds": 0.16,
+      "last_success_at": "2026-07-16T07:32:20.009294+00:00"
     },
     {
       "id": "ecdc-cdtr",
@@ -111,8 +119,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.35,
-      "last_success_at": "2026-07-15T07:23:51.000143+00:00"
+      "elapsed_seconds": 0.3,
+      "last_success_at": "2026-07-16T07:32:20.009294+00:00"
     },
     {
       "id": "paho-alerts",
@@ -125,8 +133,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 1,
       "skipped_quarantined": 10,
-      "elapsed_seconds": 1.11,
-      "last_success_at": "2026-07-15T07:23:51.000143+00:00"
+      "elapsed_seconds": 3.75,
+      "last_success_at": "2026-07-16T07:32:20.009294+00:00"
     },
     {
       "id": "ukhsa-news",
@@ -135,12 +143,12 @@
       "url": "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=uk-health-security-agency",
       "status": "ok",
       "items_seen": 20,
-      "features_added": 9,
+      "features_added": 8,
       "features_carried_forward": 0,
       "skipped_noisy": 1,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 0.46,
-      "last_success_at": "2026-07-15T07:23:51.000143+00:00"
+      "elapsed_seconds": 0.12,
+      "last_success_at": "2026-07-16T07:32:20.009294+00:00"
     },
     {
       "id": "ukhsa-monitoring",
@@ -153,8 +161,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 8.31,
-      "last_success_at": "2026-07-15T07:23:51.000143+00:00"
+      "elapsed_seconds": 20.55,
+      "last_success_at": "2026-07-16T07:32:20.009294+00:00"
     }
   ]
 }
