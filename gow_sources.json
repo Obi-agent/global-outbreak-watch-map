@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-16T07:32:20.009294+00:00",
-  "feature_count": 146,
+  "generated_at": "2026-07-17T07:29:06.952944+00:00",
+  "feature_count": 148,
   "incident_count": 62,
   "source_count": 8,
   "quality": {
@@ -11,7 +11,7 @@
     "sources_ok": 8,
     "sources_last_known_good": 0,
     "sources_error": 0,
-    "signals_current": 146,
+    "signals_current": 148,
     "signals_last_known_good": 0,
     "signals_quarantined": 16,
     "signals_rejected_noisy": 2,
@@ -49,6 +49,14 @@
       "incidents": 62,
       "signals": 146,
       "sources_ok": 8
+    },
+    {
+      "date": "2026-07-17",
+      "score": 95,
+      "status": "Healthy",
+      "incidents": 62,
+      "signals": 148,
+      "sources_ok": 8
     }
   ],
   "source_status": [
@@ -63,8 +71,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 2,
-      "elapsed_seconds": 2.8,
-      "last_success_at": "2026-07-16T07:32:20.009294+00:00"
+      "elapsed_seconds": 3.38,
+      "last_success_at": "2026-07-17T07:29:06.952944+00:00"
     },
     {
       "id": "cdc-travel",
@@ -77,8 +85,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.11,
-      "last_success_at": "2026-07-16T07:32:20.009294+00:00"
+      "elapsed_seconds": 0.14,
+      "last_success_at": "2026-07-17T07:29:06.952944+00:00"
     },
     {
       "id": "cdc-us-outbreaks",
@@ -91,8 +99,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 0.39,
-      "last_success_at": "2026-07-16T07:32:20.009294+00:00"
+      "elapsed_seconds": 0.22,
+      "last_success_at": "2026-07-17T07:29:06.952944+00:00"
     },
     {
       "id": "cdc-int-outbreaks",
@@ -106,7 +114,7 @@
       "skipped_noisy": 0,
       "skipped_quarantined": 2,
       "elapsed_seconds": 0.16,
-      "last_success_at": "2026-07-16T07:32:20.009294+00:00"
+      "last_success_at": "2026-07-17T07:29:06.952944+00:00"
     },
     {
       "id": "ecdc-cdtr",
@@ -119,8 +127,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.3,
-      "last_success_at": "2026-07-16T07:32:20.009294+00:00"
+      "elapsed_seconds": 0.39,
+      "last_success_at": "2026-07-17T07:29:06.952944+00:00"
     },
     {
       "id": "paho-alerts",
@@ -133,8 +141,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 1,
       "skipped_quarantined": 10,
-      "elapsed_seconds": 3.75,
-      "last_success_at": "2026-07-16T07:32:20.009294+00:00"
+      "elapsed_seconds": 4.82,
+      "last_success_at": "2026-07-17T07:29:06.952944+00:00"
     },
     {
       "id": "ukhsa-news",
@@ -147,8 +155,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 1,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 0.12,
-      "last_success_at": "2026-07-16T07:32:20.009294+00:00"
+      "elapsed_seconds": 0.2,
+      "last_success_at": "2026-07-17T07:29:06.952944+00:00"
     },
     {
       "id": "ukhsa-monitoring",
@@ -156,13 +164,13 @@
       "type": "National authority",
       "url": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026",
       "status": "ok",
-      "items_seen": 25,
-      "features_added": 33,
+      "items_seen": 26,
+      "features_added": 35,
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 20.55,
-      "last_success_at": "2026-07-16T07:32:20.009294+00:00"
+      "elapsed_seconds": 11.46,
+      "last_success_at": "2026-07-17T07:29:06.952944+00:00"
     }
   ]
 }
