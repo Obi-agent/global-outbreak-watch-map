@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-19T07:35:56.239349+00:00",
+  "generated_at": "2026-07-20T08:18:20.874330+00:00",
   "feature_count": 150,
   "incident_count": 61,
   "source_count": 8,
@@ -73,6 +73,14 @@
       "incidents": 61,
       "signals": 150,
       "sources_ok": 8
+    },
+    {
+      "date": "2026-07-20",
+      "score": 95,
+      "status": "Healthy",
+      "incidents": 61,
+      "signals": 150,
+      "sources_ok": 8
     }
   ],
   "source_status": [
@@ -87,8 +95,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 2,
-      "elapsed_seconds": 3.77,
-      "last_success_at": "2026-07-19T07:35:56.239349+00:00"
+      "elapsed_seconds": 2.82,
+      "last_success_at": "2026-07-20T08:18:20.874330+00:00"
     },
     {
       "id": "cdc-travel",
@@ -101,8 +109,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.07,
-      "last_success_at": "2026-07-19T07:35:56.239349+00:00"
+      "elapsed_seconds": 0.27,
+      "last_success_at": "2026-07-20T08:18:20.874330+00:00"
     },
     {
       "id": "cdc-us-outbreaks",
@@ -115,8 +123,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 0.26,
-      "last_success_at": "2026-07-19T07:35:56.239349+00:00"
+      "elapsed_seconds": 0.3,
+      "last_success_at": "2026-07-20T08:18:20.874330+00:00"
     },
     {
       "id": "cdc-int-outbreaks",
@@ -129,8 +137,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 2,
-      "elapsed_seconds": 0.19,
-      "last_success_at": "2026-07-19T07:35:56.239349+00:00"
+      "elapsed_seconds": 0.24,
+      "last_success_at": "2026-07-20T08:18:20.874330+00:00"
     },
     {
       "id": "ecdc-cdtr",
@@ -143,8 +151,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.24,
-      "last_success_at": "2026-07-19T07:35:56.239349+00:00"
+      "elapsed_seconds": 0.27,
+      "last_success_at": "2026-07-20T08:18:20.874330+00:00"
     },
     {
       "id": "paho-alerts",
@@ -157,8 +165,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 1,
       "skipped_quarantined": 10,
-      "elapsed_seconds": 2.98,
-      "last_success_at": "2026-07-19T07:35:56.239349+00:00"
+      "elapsed_seconds": 1.52,
+      "last_success_at": "2026-07-20T08:18:20.874330+00:00"
     },
     {
       "id": "ukhsa-news",
@@ -171,8 +179,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 1,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 0.44,
-      "last_success_at": "2026-07-19T07:35:56.239349+00:00"
+      "elapsed_seconds": 1.51,
+      "last_success_at": "2026-07-20T08:18:20.874330+00:00"
     },
     {
       "id": "ukhsa-monitoring",
@@ -185,8 +193,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 10.99,
-      "last_success_at": "2026-07-19T07:35:56.239349+00:00"
+      "elapsed_seconds": 20.79,
+      "last_success_at": "2026-07-20T08:18:20.874330+00:00"
     }
   ]
 }
