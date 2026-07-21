@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-07-20T08:18:20.874330+00:00",
-  "feature_count": 150,
-  "incident_count": 61,
+  "generated_at": "2026-07-21T07:42:41.734845+00:00",
+  "feature_count": 149,
+  "incident_count": 60,
   "source_count": 8,
   "quality": {
     "status": "Healthy",
-    "score": 95,
-    "feature_quality_score": 89,
-    "source_health_score": 100,
-    "sources_ok": 8,
-    "sources_last_known_good": 0,
+    "score": 91,
+    "feature_quality_score": 87,
+    "source_health_score": 94,
+    "sources_ok": 7,
+    "sources_last_known_good": 1,
     "sources_error": 0,
-    "signals_current": 150,
-    "signals_last_known_good": 0,
-    "signals_quarantined": 16,
+    "signals_current": 121,
+    "signals_last_known_good": 28,
+    "signals_quarantined": 15,
     "signals_rejected_noisy": 2,
-    "incidents": 61
+    "incidents": 60
   },
   "quality_history": [
     {
@@ -81,6 +81,14 @@
       "incidents": 61,
       "signals": 150,
       "sources_ok": 8
+    },
+    {
+      "date": "2026-07-21",
+      "score": 91,
+      "status": "Healthy",
+      "incidents": 60,
+      "signals": 149,
+      "sources_ok": 7
     }
   ],
   "source_status": [
@@ -95,22 +103,23 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 2,
-      "elapsed_seconds": 2.82,
-      "last_success_at": "2026-07-20T08:18:20.874330+00:00"
+      "elapsed_seconds": 1.06,
+      "last_success_at": "2026-07-21T07:42:41.734845+00:00"
     },
     {
       "id": "cdc-travel",
       "name": "CDC Travel Health Notices",
       "type": "National authority",
       "url": "https://wwwnc.cdc.gov/travel/rss/notices.xml",
-      "status": "ok",
-      "items_seen": 27,
-      "features_added": 28,
-      "features_carried_forward": 0,
+      "status": "using_last_known_good",
+      "items_seen": 0,
+      "features_added": 0,
+      "features_carried_forward": 28,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.27,
-      "last_success_at": "2026-07-20T08:18:20.874330+00:00"
+      "elapsed_seconds": 60.24,
+      "last_success_at": "2026-07-20T08:18:20.874330+00:00",
+      "error": "HTTP Error 404: Not Found"
     },
     {
       "id": "cdc-us-outbreaks",
@@ -123,8 +132,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 0.3,
-      "last_success_at": "2026-07-20T08:18:20.874330+00:00"
+      "elapsed_seconds": 0.5,
+      "last_success_at": "2026-07-21T07:42:41.734845+00:00"
     },
     {
       "id": "cdc-int-outbreaks",
@@ -138,7 +147,7 @@
       "skipped_noisy": 0,
       "skipped_quarantined": 2,
       "elapsed_seconds": 0.24,
-      "last_success_at": "2026-07-20T08:18:20.874330+00:00"
+      "last_success_at": "2026-07-21T07:42:41.734845+00:00"
     },
     {
       "id": "ecdc-cdtr",
@@ -151,8 +160,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.27,
-      "last_success_at": "2026-07-20T08:18:20.874330+00:00"
+      "elapsed_seconds": 0.29,
+      "last_success_at": "2026-07-21T07:42:41.734845+00:00"
     },
     {
       "id": "paho-alerts",
@@ -164,9 +173,9 @@
       "features_added": 6,
       "features_carried_forward": 0,
       "skipped_noisy": 1,
-      "skipped_quarantined": 10,
-      "elapsed_seconds": 1.52,
-      "last_success_at": "2026-07-20T08:18:20.874330+00:00"
+      "skipped_quarantined": 9,
+      "elapsed_seconds": 3.12,
+      "last_success_at": "2026-07-21T07:42:41.734845+00:00"
     },
     {
       "id": "ukhsa-news",
@@ -175,12 +184,12 @@
       "url": "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=uk-health-security-agency",
       "status": "ok",
       "items_seen": 20,
-      "features_added": 8,
+      "features_added": 7,
       "features_carried_forward": 0,
       "skipped_noisy": 1,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 1.51,
-      "last_success_at": "2026-07-20T08:18:20.874330+00:00"
+      "elapsed_seconds": 0.53,
+      "last_success_at": "2026-07-21T07:42:41.734845+00:00"
     },
     {
       "id": "ukhsa-monitoring",
@@ -193,8 +202,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 20.79,
-      "last_success_at": "2026-07-20T08:18:20.874330+00:00"
+      "elapsed_seconds": 18.94,
+      "last_success_at": "2026-07-21T07:42:41.734845+00:00"
     }
   ]
 }
