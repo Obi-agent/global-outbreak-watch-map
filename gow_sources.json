@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-03T08:43:00.462240+00:00",
-  "feature_count": 152,
+  "generated_at": "2026-08-04T07:48:02.684386+00:00",
+  "feature_count": 153,
   "incident_count": 56,
   "source_count": 8,
   "quality": {
@@ -11,21 +11,13 @@
     "sources_ok": 8,
     "sources_last_known_good": 0,
     "sources_error": 0,
-    "signals_current": 152,
+    "signals_current": 153,
     "signals_last_known_good": 0,
     "signals_quarantined": 15,
     "signals_rejected_noisy": 2,
     "incidents": 56
   },
   "quality_history": [
-    {
-      "date": "2026-07-21",
-      "score": 91,
-      "status": "Healthy",
-      "incidents": 60,
-      "signals": 149,
-      "sources_ok": 7
-    },
     {
       "date": "2026-07-22",
       "score": 96,
@@ -129,6 +121,14 @@
       "incidents": 56,
       "signals": 152,
       "sources_ok": 8
+    },
+    {
+      "date": "2026-08-04",
+      "score": 96,
+      "status": "Healthy",
+      "incidents": 56,
+      "signals": 153,
+      "sources_ok": 8
     }
   ],
   "source_status": [
@@ -143,8 +143,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 2,
-      "elapsed_seconds": 3.0,
-      "last_success_at": "2026-08-03T08:43:00.462240+00:00"
+      "elapsed_seconds": 3.14,
+      "last_success_at": "2026-08-04T07:48:02.684386+00:00"
     },
     {
       "id": "cdc-travel",
@@ -152,13 +152,13 @@
       "type": "National authority",
       "url": "https://wwwnc.cdc.gov/travel/rss/notices.xml",
       "status": "ok",
-      "items_seen": 22,
-      "features_added": 25,
+      "items_seen": 23,
+      "features_added": 26,
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.13,
-      "last_success_at": "2026-08-03T08:43:00.462240+00:00"
+      "elapsed_seconds": 0.09,
+      "last_success_at": "2026-08-04T07:48:02.684386+00:00"
     },
     {
       "id": "cdc-us-outbreaks",
@@ -171,8 +171,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 0.59,
-      "last_success_at": "2026-08-03T08:43:00.462240+00:00"
+      "elapsed_seconds": 0.5,
+      "last_success_at": "2026-08-04T07:48:02.684386+00:00"
     },
     {
       "id": "cdc-int-outbreaks",
@@ -185,8 +185,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 2,
-      "elapsed_seconds": 0.38,
-      "last_success_at": "2026-08-03T08:43:00.462240+00:00"
+      "elapsed_seconds": 0.25,
+      "last_success_at": "2026-08-04T07:48:02.684386+00:00"
     },
     {
       "id": "ecdc-cdtr",
@@ -199,8 +199,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.47,
-      "last_success_at": "2026-08-03T08:43:00.462240+00:00"
+      "elapsed_seconds": 0.28,
+      "last_success_at": "2026-08-04T07:48:02.684386+00:00"
     },
     {
       "id": "paho-alerts",
@@ -213,8 +213,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 1,
       "skipped_quarantined": 9,
-      "elapsed_seconds": 2.92,
-      "last_success_at": "2026-08-03T08:43:00.462240+00:00"
+      "elapsed_seconds": 3.84,
+      "last_success_at": "2026-08-04T07:48:02.684386+00:00"
     },
     {
       "id": "ukhsa-news",
@@ -227,8 +227,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 1,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 0.3,
-      "last_success_at": "2026-08-03T08:43:00.462240+00:00"
+      "elapsed_seconds": 0.77,
+      "last_success_at": "2026-08-04T07:48:02.684386+00:00"
     },
     {
       "id": "ukhsa-monitoring",
@@ -241,8 +241,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 15.88,
-      "last_success_at": "2026-08-03T08:43:00.462240+00:00"
+      "elapsed_seconds": 21.47,
+      "last_success_at": "2026-08-04T07:48:02.684386+00:00"
     }
   ]
 }
