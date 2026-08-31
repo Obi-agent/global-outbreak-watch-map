@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-30T10:29:25.050335+00:00",
-  "feature_count": 159,
-  "incident_count": 59,
+  "generated_at": "2026-08-31T11:37:14.317816+00:00",
+  "feature_count": 158,
+  "incident_count": 58,
   "source_count": 8,
   "quality": {
     "status": "Healthy",
@@ -11,21 +11,13 @@
     "sources_ok": 8,
     "sources_last_known_good": 0,
     "sources_error": 0,
-    "signals_current": 159,
+    "signals_current": 158,
     "signals_last_known_good": 0,
     "signals_quarantined": 18,
     "signals_rejected_noisy": 2,
-    "incidents": 59
+    "incidents": 58
   },
   "quality_history": [
-    {
-      "date": "2026-08-17",
-      "score": 95,
-      "status": "Healthy",
-      "incidents": 59,
-      "signals": 158,
-      "sources_ok": 8
-    },
     {
       "date": "2026-08-18",
       "score": 95,
@@ -129,6 +121,14 @@
       "incidents": 59,
       "signals": 159,
       "sources_ok": 8
+    },
+    {
+      "date": "2026-08-31",
+      "score": 96,
+      "status": "Healthy",
+      "incidents": 58,
+      "signals": 158,
+      "sources_ok": 8
     }
   ],
   "source_status": [
@@ -143,8 +143,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 2,
-      "elapsed_seconds": 8.15,
-      "last_success_at": "2026-08-30T10:29:25.050335+00:00"
+      "elapsed_seconds": 4.69,
+      "last_success_at": "2026-08-31T11:37:14.317816+00:00"
     },
     {
       "id": "cdc-travel",
@@ -157,8 +157,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.13,
-      "last_success_at": "2026-08-30T10:29:25.050335+00:00"
+      "elapsed_seconds": 0.09,
+      "last_success_at": "2026-08-31T11:37:14.317816+00:00"
     },
     {
       "id": "cdc-us-outbreaks",
@@ -171,8 +171,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 0.58,
-      "last_success_at": "2026-08-30T10:29:25.050335+00:00"
+      "elapsed_seconds": 0.27,
+      "last_success_at": "2026-08-31T11:37:14.317816+00:00"
     },
     {
       "id": "cdc-int-outbreaks",
@@ -185,8 +185,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 2,
-      "elapsed_seconds": 0.24,
-      "last_success_at": "2026-08-30T10:29:25.050335+00:00"
+      "elapsed_seconds": 0.35,
+      "last_success_at": "2026-08-31T11:37:14.317816+00:00"
     },
     {
       "id": "ecdc-cdtr",
@@ -199,8 +199,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.45,
-      "last_success_at": "2026-08-30T10:29:25.050335+00:00"
+      "elapsed_seconds": 0.87,
+      "last_success_at": "2026-08-31T11:37:14.317816+00:00"
     },
     {
       "id": "paho-alerts",
@@ -213,8 +213,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 1,
       "skipped_quarantined": 12,
-      "elapsed_seconds": 3.46,
-      "last_success_at": "2026-08-30T10:29:25.050335+00:00"
+      "elapsed_seconds": 4.26,
+      "last_success_at": "2026-08-31T11:37:14.317816+00:00"
     },
     {
       "id": "ukhsa-news",
@@ -227,8 +227,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 1,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 0.53,
-      "last_success_at": "2026-08-30T10:29:25.050335+00:00"
+      "elapsed_seconds": 0.81,
+      "last_success_at": "2026-08-31T11:37:14.317816+00:00"
     },
     {
       "id": "ukhsa-monitoring",
@@ -237,12 +237,12 @@
       "url": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026",
       "status": "ok",
       "items_seen": 32,
-      "features_added": 44,
+      "features_added": 43,
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 16.26,
-      "last_success_at": "2026-08-30T10:29:25.050335+00:00"
+      "elapsed_seconds": 22.17,
+      "last_success_at": "2026-08-31T11:37:14.317816+00:00"
     }
   ]
 }
