@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-17T10:01:09.619153+00:00",
+  "generated_at": "2026-09-18T09:48:09.911732+00:00",
   "feature_count": 156,
-  "incident_count": 57,
+  "incident_count": 56,
   "source_count": 8,
   "quality": {
     "status": "Healthy",
@@ -15,17 +15,9 @@
     "signals_last_known_good": 0,
     "signals_quarantined": 15,
     "signals_rejected_noisy": 2,
-    "incidents": 57
+    "incidents": 56
   },
   "quality_history": [
-    {
-      "date": "2026-09-04",
-      "score": 96,
-      "status": "Healthy",
-      "incidents": 59,
-      "signals": 159,
-      "sources_ok": 8
-    },
     {
       "date": "2026-09-05",
       "score": 96,
@@ -129,6 +121,14 @@
       "incidents": 57,
       "signals": 156,
       "sources_ok": 8
+    },
+    {
+      "date": "2026-09-18",
+      "score": 96,
+      "status": "Healthy",
+      "incidents": 56,
+      "signals": 156,
+      "sources_ok": 8
     }
   ],
   "source_status": [
@@ -143,8 +143,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 2,
-      "elapsed_seconds": 3.24,
-      "last_success_at": "2026-09-17T10:01:09.619153+00:00"
+      "elapsed_seconds": 4.93,
+      "last_success_at": "2026-09-18T09:48:09.911732+00:00"
     },
     {
       "id": "cdc-travel",
@@ -152,13 +152,13 @@
       "type": "National authority",
       "url": "https://wwwnc.cdc.gov/travel/rss/notices.xml",
       "status": "ok",
-      "items_seen": 23,
-      "features_added": 26,
+      "items_seen": 22,
+      "features_added": 24,
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.23,
-      "last_success_at": "2026-09-17T10:01:09.619153+00:00"
+      "elapsed_seconds": 0.16,
+      "last_success_at": "2026-09-18T09:48:09.911732+00:00"
     },
     {
       "id": "cdc-us-outbreaks",
@@ -171,8 +171,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 0.36,
-      "last_success_at": "2026-09-17T10:01:09.619153+00:00"
+      "elapsed_seconds": 0.27,
+      "last_success_at": "2026-09-18T09:48:09.911732+00:00"
     },
     {
       "id": "cdc-int-outbreaks",
@@ -185,8 +185,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 2,
-      "elapsed_seconds": 0.34,
-      "last_success_at": "2026-09-17T10:01:09.619153+00:00"
+      "elapsed_seconds": 0.2,
+      "last_success_at": "2026-09-18T09:48:09.911732+00:00"
     },
     {
       "id": "ecdc-cdtr",
@@ -199,8 +199,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.27,
-      "last_success_at": "2026-09-17T10:01:09.619153+00:00"
+      "elapsed_seconds": 0.32,
+      "last_success_at": "2026-09-18T09:48:09.911732+00:00"
     },
     {
       "id": "paho-alerts",
@@ -213,8 +213,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 1,
       "skipped_quarantined": 10,
-      "elapsed_seconds": 3.46,
-      "last_success_at": "2026-09-17T10:01:09.619153+00:00"
+      "elapsed_seconds": 2.44,
+      "last_success_at": "2026-09-18T09:48:09.911732+00:00"
     },
     {
       "id": "ukhsa-news",
@@ -227,8 +227,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 1,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.59,
-      "last_success_at": "2026-09-17T10:01:09.619153+00:00"
+      "elapsed_seconds": 0.21,
+      "last_success_at": "2026-09-18T09:48:09.911732+00:00"
     },
     {
       "id": "ukhsa-monitoring",
@@ -236,13 +236,13 @@
       "type": "National authority",
       "url": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026",
       "status": "ok",
-      "items_seen": 34,
-      "features_added": 45,
+      "items_seen": 35,
+      "features_added": 47,
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 8.7,
-      "last_success_at": "2026-09-17T10:01:09.619153+00:00"
+      "elapsed_seconds": 19.87,
+      "last_success_at": "2026-09-18T09:48:09.911732+00:00"
     }
   ]
 }
