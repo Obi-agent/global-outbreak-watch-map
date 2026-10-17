@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-16T09:52:35.138946+00:00",
-  "feature_count": 160,
-  "incident_count": 56,
+  "generated_at": "2026-10-17T09:24:19.804352+00:00",
+  "feature_count": 161,
+  "incident_count": 55,
   "source_count": 8,
   "quality": {
     "status": "Healthy",
@@ -11,21 +11,13 @@
     "sources_ok": 8,
     "sources_last_known_good": 0,
     "sources_error": 0,
-    "signals_current": 160,
+    "signals_current": 161,
     "signals_last_known_good": 0,
-    "signals_quarantined": 14,
+    "signals_quarantined": 13,
     "signals_rejected_noisy": 2,
-    "incidents": 56
+    "incidents": 55
   },
   "quality_history": [
-    {
-      "date": "2026-10-03",
-      "score": 96,
-      "status": "Healthy",
-      "incidents": 56,
-      "signals": 159,
-      "sources_ok": 8
-    },
     {
       "date": "2026-10-04",
       "score": 96,
@@ -129,6 +121,14 @@
       "incidents": 56,
       "signals": 160,
       "sources_ok": 8
+    },
+    {
+      "date": "2026-10-17",
+      "score": 96,
+      "status": "Healthy",
+      "incidents": 55,
+      "signals": 161,
+      "sources_ok": 8
     }
   ],
   "source_status": [
@@ -143,8 +143,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 2,
-      "elapsed_seconds": 4.77,
-      "last_success_at": "2026-10-16T09:52:35.138946+00:00"
+      "elapsed_seconds": 3.54,
+      "last_success_at": "2026-10-17T09:24:19.804352+00:00"
     },
     {
       "id": "cdc-travel",
@@ -157,8 +157,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.1,
-      "last_success_at": "2026-10-16T09:52:35.138946+00:00"
+      "elapsed_seconds": 0.22,
+      "last_success_at": "2026-10-17T09:24:19.804352+00:00"
     },
     {
       "id": "cdc-us-outbreaks",
@@ -171,8 +171,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 0.29,
-      "last_success_at": "2026-10-16T09:52:35.138946+00:00"
+      "elapsed_seconds": 0.07,
+      "last_success_at": "2026-10-17T09:24:19.804352+00:00"
     },
     {
       "id": "cdc-int-outbreaks",
@@ -185,8 +185,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 2,
-      "elapsed_seconds": 0.25,
-      "last_success_at": "2026-10-16T09:52:35.138946+00:00"
+      "elapsed_seconds": 0.28,
+      "last_success_at": "2026-10-17T09:24:19.804352+00:00"
     },
     {
       "id": "ecdc-cdtr",
@@ -199,8 +199,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.23,
-      "last_success_at": "2026-10-16T09:52:35.138946+00:00"
+      "elapsed_seconds": 0.44,
+      "last_success_at": "2026-10-17T09:24:19.804352+00:00"
     },
     {
       "id": "paho-alerts",
@@ -209,12 +209,12 @@
       "url": "https://www.paho.org/en/epidemiological-alerts-and-updates",
       "status": "ok",
       "items_seen": 17,
-      "features_added": 4,
+      "features_added": 5,
       "features_carried_forward": 0,
       "skipped_noisy": 1,
-      "skipped_quarantined": 8,
-      "elapsed_seconds": 1.44,
-      "last_success_at": "2026-10-16T09:52:35.138946+00:00"
+      "skipped_quarantined": 7,
+      "elapsed_seconds": 0.52,
+      "last_success_at": "2026-10-17T09:24:19.804352+00:00"
     },
     {
       "id": "ukhsa-news",
@@ -227,8 +227,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 1,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 0.76,
-      "last_success_at": "2026-10-16T09:52:35.138946+00:00"
+      "elapsed_seconds": 0.36,
+      "last_success_at": "2026-10-17T09:24:19.804352+00:00"
     },
     {
       "id": "ukhsa-monitoring",
@@ -241,8 +241,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 34.01,
-      "last_success_at": "2026-10-16T09:52:35.138946+00:00"
+      "elapsed_seconds": 24.97,
+      "last_success_at": "2026-10-17T09:24:19.804352+00:00"
     }
   ]
 }
