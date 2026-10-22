@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-21T10:12:50.438065+00:00",
-  "feature_count": 161,
-  "incident_count": 59,
+  "generated_at": "2026-10-22T10:14:03.254032+00:00",
+  "feature_count": 160,
+  "incident_count": 58,
   "source_count": 8,
   "quality": {
     "status": "Healthy",
@@ -11,21 +11,13 @@
     "sources_ok": 8,
     "sources_last_known_good": 0,
     "sources_error": 0,
-    "signals_current": 161,
+    "signals_current": 160,
     "signals_last_known_good": 0,
-    "signals_quarantined": 13,
+    "signals_quarantined": 12,
     "signals_rejected_noisy": 2,
-    "incidents": 59
+    "incidents": 58
   },
   "quality_history": [
-    {
-      "date": "2026-10-08",
-      "score": 96,
-      "status": "Healthy",
-      "incidents": 56,
-      "signals": 158,
-      "sources_ok": 8
-    },
     {
       "date": "2026-10-09",
       "score": 96,
@@ -129,6 +121,14 @@
       "incidents": 59,
       "signals": 161,
       "sources_ok": 8
+    },
+    {
+      "date": "2026-10-22",
+      "score": 96,
+      "status": "Healthy",
+      "incidents": 58,
+      "signals": 160,
+      "sources_ok": 8
     }
   ],
   "source_status": [
@@ -143,8 +143,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 2,
-      "elapsed_seconds": 4.32,
-      "last_success_at": "2026-10-21T10:12:50.438065+00:00"
+      "elapsed_seconds": 3.65,
+      "last_success_at": "2026-10-22T10:14:03.254032+00:00"
     },
     {
       "id": "cdc-travel",
@@ -157,8 +157,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.1,
-      "last_success_at": "2026-10-21T10:12:50.438065+00:00"
+      "elapsed_seconds": 0.12,
+      "last_success_at": "2026-10-22T10:14:03.254032+00:00"
     },
     {
       "id": "cdc-us-outbreaks",
@@ -171,8 +171,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 0.57,
-      "last_success_at": "2026-10-21T10:12:50.438065+00:00"
+      "elapsed_seconds": 0.24,
+      "last_success_at": "2026-10-22T10:14:03.254032+00:00"
     },
     {
       "id": "cdc-int-outbreaks",
@@ -185,8 +185,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 2,
-      "elapsed_seconds": 0.23,
-      "last_success_at": "2026-10-21T10:12:50.438065+00:00"
+      "elapsed_seconds": 0.3,
+      "last_success_at": "2026-10-22T10:14:03.254032+00:00"
     },
     {
       "id": "ecdc-cdtr",
@@ -199,8 +199,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.63,
-      "last_success_at": "2026-10-21T10:12:50.438065+00:00"
+      "elapsed_seconds": 0.44,
+      "last_success_at": "2026-10-22T10:14:03.254032+00:00"
     },
     {
       "id": "paho-alerts",
@@ -212,9 +212,9 @@
       "features_added": 6,
       "features_carried_forward": 0,
       "skipped_noisy": 1,
-      "skipped_quarantined": 7,
-      "elapsed_seconds": 0.65,
-      "last_success_at": "2026-10-21T10:12:50.438065+00:00"
+      "skipped_quarantined": 6,
+      "elapsed_seconds": 0.69,
+      "last_success_at": "2026-10-22T10:14:03.254032+00:00"
     },
     {
       "id": "ukhsa-news",
@@ -223,12 +223,12 @@
       "url": "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=uk-health-security-agency",
       "status": "ok",
       "items_seen": 20,
-      "features_added": 5,
+      "features_added": 4,
       "features_carried_forward": 0,
       "skipped_noisy": 1,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 1.07,
-      "last_success_at": "2026-10-21T10:12:50.438065+00:00"
+      "elapsed_seconds": 0.33,
+      "last_success_at": "2026-10-22T10:14:03.254032+00:00"
     },
     {
       "id": "ukhsa-monitoring",
@@ -241,8 +241,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 27.23,
-      "last_success_at": "2026-10-21T10:12:50.438065+00:00"
+      "elapsed_seconds": 9.24,
+      "last_success_at": "2026-10-22T10:14:03.254032+00:00"
     }
   ]
 }
