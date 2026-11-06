@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-05T13:13:53.549823+00:00",
-  "feature_count": 165,
-  "incident_count": 60,
+  "generated_at": "2026-11-06T12:58:30.680434+00:00",
+  "feature_count": 168,
+  "incident_count": 61,
   "source_count": 8,
   "quality": {
     "status": "Healthy",
@@ -11,21 +11,13 @@
     "sources_ok": 8,
     "sources_last_known_good": 0,
     "sources_error": 0,
-    "signals_current": 165,
+    "signals_current": 168,
     "signals_last_known_good": 0,
-    "signals_quarantined": 11,
+    "signals_quarantined": 10,
     "signals_rejected_noisy": 1,
-    "incidents": 60
+    "incidents": 61
   },
   "quality_history": [
-    {
-      "date": "2026-10-23",
-      "score": 96,
-      "status": "Healthy",
-      "incidents": 58,
-      "signals": 162,
-      "sources_ok": 8
-    },
     {
       "date": "2026-10-24",
       "score": 96,
@@ -129,6 +121,14 @@
       "incidents": 60,
       "signals": 165,
       "sources_ok": 8
+    },
+    {
+      "date": "2026-11-06",
+      "score": 96,
+      "status": "Healthy",
+      "incidents": 61,
+      "signals": 168,
+      "sources_ok": 8
     }
   ],
   "source_status": [
@@ -139,12 +139,12 @@
       "url": "https://cms.who.int/api/hubs/diseaseoutbreaknews?%24top=100&%24orderby=PublicationDateAndTime%20desc",
       "status": "ok",
       "items_seen": 100,
-      "features_added": 58,
+      "features_added": 59,
       "features_carried_forward": 0,
       "skipped_noisy": 0,
-      "skipped_quarantined": 1,
-      "elapsed_seconds": 3.8,
-      "last_success_at": "2026-11-05T13:13:53.549823+00:00"
+      "skipped_quarantined": 0,
+      "elapsed_seconds": 4.08,
+      "last_success_at": "2026-11-06T12:58:30.680434+00:00"
     },
     {
       "id": "cdc-travel",
@@ -158,7 +158,7 @@
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
       "elapsed_seconds": 0.17,
-      "last_success_at": "2026-11-05T13:13:53.549823+00:00"
+      "last_success_at": "2026-11-06T12:58:30.680434+00:00"
     },
     {
       "id": "cdc-us-outbreaks",
@@ -171,8 +171,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 0.12,
-      "last_success_at": "2026-11-05T13:13:53.549823+00:00"
+      "elapsed_seconds": 0.43,
+      "last_success_at": "2026-11-06T12:58:30.680434+00:00"
     },
     {
       "id": "cdc-int-outbreaks",
@@ -185,8 +185,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 2,
-      "elapsed_seconds": 0.36,
-      "last_success_at": "2026-11-05T13:13:53.549823+00:00"
+      "elapsed_seconds": 0.42,
+      "last_success_at": "2026-11-06T12:58:30.680434+00:00"
     },
     {
       "id": "ecdc-cdtr",
@@ -199,8 +199,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.21,
-      "last_success_at": "2026-11-05T13:13:53.549823+00:00"
+      "elapsed_seconds": 0.34,
+      "last_success_at": "2026-11-06T12:58:30.680434+00:00"
     },
     {
       "id": "paho-alerts",
@@ -213,8 +213,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 1,
       "skipped_quarantined": 6,
-      "elapsed_seconds": 5.41,
-      "last_success_at": "2026-11-05T13:13:53.549823+00:00"
+      "elapsed_seconds": 4.7,
+      "last_success_at": "2026-11-06T12:58:30.680434+00:00"
     },
     {
       "id": "ukhsa-news",
@@ -227,8 +227,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 0.14,
-      "last_success_at": "2026-11-05T13:13:53.549823+00:00"
+      "elapsed_seconds": 0.77,
+      "last_success_at": "2026-11-06T12:58:30.680434+00:00"
     },
     {
       "id": "ukhsa-monitoring",
@@ -236,13 +236,13 @@
       "type": "National authority",
       "url": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026",
       "status": "ok",
-      "items_seen": 41,
-      "features_added": 52,
+      "items_seen": 42,
+      "features_added": 54,
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 20.47,
-      "last_success_at": "2026-11-05T13:13:53.549823+00:00"
+      "elapsed_seconds": 32.01,
+      "last_success_at": "2026-11-06T12:58:30.680434+00:00"
     }
   ]
 }
