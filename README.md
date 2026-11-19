@@ -26,7 +26,11 @@ The dependency-free updater now:
 - retains recent last-known-good signals when an individual source fails
 - publishes daily source health, a 0-100 quality score, and a 14-day quality history
 
-The atlas uses Esri World Imagery satellite tiles with a separate English boundaries-and-places reference layer. Both the main map and satellite minimap use a non-wrapping world basemap with hard longitude bounds, so horizontal panning cannot reveal duplicate copies of the Earth. Trend labels (`Worsening`, `Increasing`, `Stable`, and `Improving`) summarize language in linked authority updates; they are transparent triage signals, not independent epidemiological forecasts.
+The atlas uses Esri World Imagery satellite tiles with a separate English boundaries-and-places reference layer. Both maps are constrained to one world.
+
+Report dates come from the authority, not the daily scan. A dated weekly reporting period may be used when no publication metadata is available. Unknown dates stay blank. Directional trends use only the newest dated, non-retained evidence, no more than seven calendar days old. Older evidence is historical. Missing dates and reports that do not establish a direction are marked not assessed. Severity describes the report and is not a forecast.
+
+Evidence counts are distinct reports per feed and URL, not the number of country markers. Feed counts do not establish independent corroboration. Saved links to regrouped single bulletins open that bulletin while it remains in the dataset.
 
 Every published signal retains its direct authority URL. The resulting classifications support triage; linked authority notices remain the operational source of truth.
 
