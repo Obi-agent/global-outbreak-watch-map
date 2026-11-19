@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="ObiCRM Atlas turns official public-health signals into explainable outbreak incidents.">
+  <title>ObiCRM Atlas | Global Outbreak Watch</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-minimap@3.6.1/dist/Control.MiniMap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #10243f;
+      --ink-2: #273b56;
+      --muted: #66758a;
+      --subtle: #8795a8;
+      --line: #d9e1ea;
+      --line-strong: #bdcad8;
+      --surface: #ffffff;
+      --surface-soft: #f6f8fb;
+      --surface-blue: #f1f7ff;
+      --blue: #0868cf;
+      --blue-dark: #0754a5;
+      --critical: #dc2f3e;
+      --high: #f06a13;
+      --moderate: #f3b600;
+      --low: #129665;
+      --info: #1269bb;
+      --purple: #7442b5;
+      --purple-soft: #ebe2f7;
+      --green: #16835f;
+      --orange: #f07a24;
+      --shadow: 0 7px 22px rgba(16, 36, 63, .13);
+      --topbar-h: 58px;
+      --drawer-h: 326px;
+      --footer-h: 46px;
+      --sidebar-w: clamp(548px, 41vw, 620px);
+      font-family: "Inter", "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html, body { width: 100%; height: 100%; margin: 0; }
+    body { color: var(--ink); background: white; font-size: 13px; overflow: hidden; }
+    button, input, select { font: inherit; letter-spacing: 0; }
+    button, select { cursor: pointer; }
+    a { color: var(--blue); }
+    :focus-visible { outline: 3px solid rgba(8, 104, 207, .28); outline-offset: 2px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .skip-link { position: fixed; top: -50px; left: 12px; z-index: 4000; padding: 9px 12px; color: white; background: var(--ink); }
+    .skip-link:focus { top: 8px; }
+
+    .topbar {
+      height: var(--topbar-h); display: grid; grid-template-columns: minmax(390px, 1fr) auto auto;
+      align-items: center; gap: 18px; padding: 0 18px; background: white; border-bottom: 1px solid var(--line);
+      position: relative; z-index: 1200;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; min-width: 0; white-space: nowrap; }
+    .brand-mark { width: 34px; height: 34px; display: grid; place-items: center; color: white; background: var(--ink); border-radius: 50%; font-size: 18px; }
+    .brand-primary { font-size: 17px; font-weight: 800; letter-spacing: 0; }
+    .brand-rule { width: 1px; height: 24px; background: var(--line-strong); }
+    .brand-secondary { color: var(--ink-2); font-size: 12px; font-weight: 600; letter-spacing: 3px; }
+    .status-cluster { display: flex; align-items: center; gap: 16px; white-space: nowrap; }
+    .date-block { line-height: 1.25; text-align: right; }
+    .date-block strong { display: block; font-size: 12px; }
+    .date-block span { color: var(--muted); font-size: 9px; }
+    .status-rule { width: 1px; height: 32px; background: var(--line-strong); }
+    .source-summary { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 2px 8px; }
+    .source-summary i { grid-row: 1 / 3; color: var(--green); font-size: 20px; }
+    .source-summary.warning i { color: var(--orange); }
+    .source-summary strong { font-size: 11px; }
+    .source-summary span { color: var(--muted); font-size: 9px; }
+    .top-actions { display: flex; align-items: center; justify-content: flex-end; gap: 4px; }
+    .top-action { height: 36px; border: 0; border-radius: 4px; background: transparent; color: var(--ink); padding: 0 8px; display: inline-flex; align-items: center; gap: 7px; font-size: 11px; }
+    .top-action i { font-size: 17px; }
+    .top-action:hover { background: var(--surface-soft); color: var(--blue); }
+    .top-action.is-spinning i { animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .workspace { height: calc(100vh - var(--topbar-h) - var(--drawer-h) - var(--footer-h)); min-height: 0; display: grid; grid-template-columns: var(--sidebar-w) minmax(0, 1fr); }
+    body.drawer-collapsed { --drawer-h: 62px; }
+    body.sidebar-collapsed { --sidebar-w: 0px; }
+
+    .ledger-panel { position: relative; min-width: 0; min-height: 0; background: white; border-right: 1px solid var(--line-strong); display: grid; grid-template-rows: 58px 31px minmax(0,1fr) 55px; overflow: hidden; z-index: 600; }
+    body.sidebar-collapsed .ledger-panel { border-right: 0; overflow: visible; }
+    body.sidebar-collapsed .ledger-panel > :not(.sidebar-toggle) { display: none; }
+    .ledger-summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 10px 0 18px; border-bottom: 1px solid var(--line); }
+    .summary-count { color: var(--muted); font-size: 11px; white-space: nowrap; }
+    .summary-count strong { color: var(--ink); font-size: 17px; margin-right: 4px; }
+    .ledger-actions { display: flex; align-items: center; gap: 7px; }
+    .outline-button, .icon-button, .pager-button, .seg-button {
+      border: 1px solid var(--line-strong); border-radius: 4px; background: white; color: var(--ink);
+      display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+    }
+    .outline-button { height: 34px; padding: 0 12px; font-size: 11px; font-weight: 600; }
+    .outline-button:hover, .icon-button:hover, .pager-button:hover { border-color: #7f9cbd; background: var(--surface-blue); }
+    .outline-button.active { color: var(--blue); border-color: var(--blue); background: var(--surface-blue); }
+    .icon-button { width: 34px; height: 34px; padding: 0; font-size: 15px; }
+    .sidebar-toggle { position: absolute; top: 10px; right: -1px; transform: translateX(100%); width: 31px; height: 37px; border: 1px solid var(--line-strong); border-left: 0; border-radius: 0 4px 4px 0; background: white; color: var(--ink); z-index: 800; }
+    body.sidebar-collapsed .sidebar-toggle { right: -31px; transform: none; border-left: 1px solid var(--line-strong); }
+
+    .filter-tray { position: absolute; z-index: 850; top: 56px; left: 10px; right: 10px; background: white; border: 1px solid var(--line-strong); border-radius: 5px; box-shadow: var(--shadow); padding: 11px; }
+    .filter-search { position: relative; margin-bottom: 8px; }
+    .filter-search i { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--subtle); }
+    .filter-search input { width: 100%; height: 35px; border: 1px solid var(--line-strong); border-radius: 4px; padding: 0 34px; color: var(--ink); }
+    .filter-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
+    .filter-grid select { width: 100%; min-width: 0; height: 33px; border: 1px solid var(--line); border-radius: 4px; background: white; color: var(--ink); padding: 0 6px; font-size: 10px; }
+    .filter-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+    .text-button { border: 0; background: transparent; color: var(--blue); padding: 4px 0; font-size: 10px; }
+    .watch-filter { color: var(--muted); display: inline-flex; align-items: center; gap: 5px; }
+    .watch-filter.active { color: var(--blue); font-weight: 700; }
+
+    .ledger-head, .incident-row { display: grid; grid-template-columns: minmax(0, 2.25fr) 76px 82px 91px 78px; align-items: center; }
+    .ledger-head { padding: 0 12px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 8px; font-weight: 800; text-transform: uppercase; }
+    .ledger-head span:not(:first-child) { text-align: center; }
+    .incident-list { min-height: 0; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; }
+    .incident-row { height: 100%; max-height: 92px; min-height: 72px; padding: 7px 11px; border: 0; border-bottom: 1px solid var(--line); border-left: 3px solid transparent; background: white; color: inherit; text-align: left; cursor: pointer; }
+    .incident-row:hover { background: #f9fbfe; }
+    .incident-row.selected { position: relative; border: 2px solid var(--blue); border-left-width: 2px; background: var(--surface-blue); padding: 6px 10px; z-index: 2; }
+    .incident-cell { min-width: 0; display: grid; grid-template-columns: 42px minmax(0,1fr); gap: 8px; align-items: center; }
+    .disease-orb { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; color: white; background: var(--disease-color); font-size: 18px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.35); }
+    .incident-copy { min-width: 0; }
+    .incident-name { display: block; font-size: 12px; line-height: 1.2; font-weight: 750; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .incident-location { display: block; margin-top: 3px; color: var(--muted); font-size: 9px; line-height: 1.2; max-height: 22px; overflow: hidden; }
+    .incident-stats { display: flex; align-items: center; gap: 7px; margin-top: 5px; color: var(--muted); font-size: 8px; white-space: nowrap; }
+    .incident-stats span { display: inline-flex; align-items: center; gap: 3px; }
+    .severity-badge { justify-self: center; min-width: 55px; height: 23px; border: 0; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; padding: 0 6px; color: white; background: var(--severity-color); font-size: 9px; font-weight: 800; text-transform: uppercase; }
+    .severity-badge.moderate { color: #4c3a00; }
+    .trend-cell { text-align: center; color: var(--trend-color); }
+    .trend-icon { width: 25px; height: 25px; margin: 0 auto 3px; border: 1px solid currentColor; border-radius: 50%; display: grid; place-items: center; font-size: 13px; }
+    .trend-label { display: block; color: var(--ink-2); font-size: 8px; font-weight: 500; }
+    .confidence-cell { text-align: center; }
+    .confidence-dots { display: flex; justify-content: center; gap: 3px; }
+    .confidence-dot { width: 8px; height: 8px; border-radius: 50%; background: #e5ddf1; border: 1px solid #cfc1e3; }
+    .confidence-dot.filled { background: var(--purple); border-color: var(--purple); }
+    .confidence-label { display: block; margin-top: 5px; color: var(--ink-2); font-size: 8px; }
+    .updated-cell { text-align: center; font-size: 9px; line-height: 1.35; white-space: nowrap; }
+    .updated-cell span { display: block; color: var(--muted); font-size: 8px; }
+    .empty-state { height: 100%; display: grid; place-items: center; padding: 20px; color: var(--muted); text-align: center; }
+    .empty-state i { display: block; margin-bottom: 8px; font-size: 22px; }
+
+    .pager { position: relative; z-index: 3; min-height: 55px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 15px; border-top: 1px solid var(--line); background: white; }
+    .pager-label { color: var(--muted); font-size: 10px; white-space: nowrap; }
+    .pager-controls { display: flex; align-items: center; gap: 4px; }
+    .pager-button { width: 30px; height: 30px; padding: 0; font-size: 10px; }
+    .pager-button.active { color: white; border-color: var(--blue); background: var(--blue); }
+    .pager-button:disabled { cursor: default; opacity: .4; }
+    .pager-ellipsis { width: 20px; text-align: center; color: var(--muted); }
+
+    .atlas { position: relative; min-width: 0; overflow: hidden; background: #0d3547; }
+    #map, .table-view { position: absolute; inset: 0; }
+    #map { z-index: 1; }
+    .leaflet-container { font-family: inherit; background: #0d3547; }
+    .leaflet-control-zoom { margin-top: 76px !important; border: 1px solid var(--line-strong) !important; box-shadow: 0 2px 8px rgba(16,36,63,.08) !important; }
+    .leaflet-control-zoom a { color: var(--ink); }
+    .leaflet-control-scale-line { color: var(--ink); border-color: var(--ink); background: rgba(255,255,255,.72); }
+    .leaflet-control-attribution { font-size: 8px; }
+    .leaflet-control-minimap { border: 1px solid #8fa6bb !important; border-radius: 4px; box-shadow: none !important; }
+    .map-toolbar { position: absolute; z-index: 500; top: 12px; left: 12px; }
+    .segmented { display: inline-flex; align-items: center; gap: 2px; padding: 3px; border: 1px solid var(--line-strong); border-radius: 5px; background: white; box-shadow: 0 2px 9px rgba(16,36,63,.08); }
+    .seg-button { height: 32px; padding: 0 13px; border: 0; background: white; font-size: 11px; }
+    .seg-button.active { color: white; background: var(--blue); }
+    .geo-legend { position: absolute; z-index: 500; top: 14px; right: 14px; width: 185px; padding: 12px 13px; border: 1px solid var(--line-strong); border-radius: 5px; background: rgba(255,255,255,.96); box-shadow: 0 2px 10px rgba(16,36,63,.08); }
+    .geo-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 9px; font-size: 10px; font-weight: 750; }
+    .geo-title i { color: var(--subtle); }
+    .geo-item { display: flex; align-items: center; gap: 8px; margin-top: 7px; color: var(--muted); font-size: 9px; }
+    .precision-symbol { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+    .precision-symbol.country { border: 2px solid var(--orange); background: white; }
+    .precision-symbol.region { background: var(--green); box-shadow: 0 0 0 2px white, 0 0 0 3px rgba(22,131,95,.25); }
+    .reset-world-control { width: 32px; height: 32px; border: 1px solid var(--line-strong); border-radius: 4px; background: white; color: var(--ink); display: grid; place-items: center; box-shadow: 0 2px 8px rgba(16,36,63,.08); font-size: 15px; }
+
+    .atlas-marker { background: transparent; border: 0; }
+    .marker-shell { position: relative; width: 176px; min-height: 48px; pointer-events: none; }
+    .marker-target { position: absolute; left: 0; top: 7px; width: 22px; height: 22px; border: 3px solid white; border-radius: 50%; background: var(--marker-color); box-shadow: 0 0 0 2px var(--marker-color), 0 2px 5px rgba(16,36,63,.25); }
+    .marker-target::after { content: ""; position: absolute; inset: 5px; border-radius: 50%; background: white; opacity: .9; }
+    .marker-copy { position: absolute; left: 30px; top: 0; max-width: 138px; text-shadow: 0 1px 2px white, 0 -1px 2px white, 1px 0 2px white, -1px 0 2px white; }
+    .marker-name { display: block; color: var(--ink); font-size: 10px; line-height: 1.2; font-weight: 750; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .marker-place { display: block; margin: 2px 0 3px; color: var(--ink-2); font-size: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .marker-severity { display: inline-flex; min-height: 17px; align-items: center; padding: 0 5px; border-radius: 2px; color: white; background: var(--marker-color); font-size: 7px; font-weight: 800; text-shadow: none; text-transform: uppercase; }
+    .atlas-marker.selected .marker-target { width: 25px; height: 25px; left: -2px; top: 5px; box-shadow: 0 0 0 3px white, 0 0 0 5px var(--ink), 0 3px 7px rgba(16,36,63,.3); }
+    .atlas-marker.compact .marker-shell { width: 28px; }
+    .atlas-marker.compact .marker-copy { display: none; }
+    .atlas-cluster { background: transparent; }
+    .atlas-cluster span { width: 37px; height: 37px; border-radius: 50%; display: grid; place-items: center; color: white; background: var(--ink); border: 3px solid white; box-shadow: 0 0 0 3px rgba(16,36,63,.14), 0 3px 9px rgba(16,36,63,.25); font-size: 11px; font-weight: 800; }
+    .table-view { z-index: 4; display: none; overflow: auto; background: white; padding-top: 49px; }
+    .table-view.visible { display: block; }
+    .incident-table { width: 100%; min-width: 800px; border-collapse: collapse; }
+    .incident-table th { position: sticky; top: 49px; z-index: 2; padding: 10px 12px; color: var(--muted); background: var(--surface-soft); border-bottom: 1px solid var(--line-strong); font-size: 8px; text-align: left; text-transform: uppercase; }
+    .incident-table td { padding: 10px 12px; border-bottom: 1px solid var(--line); font-size: 10px; }
+    .incident-table tbody tr { cursor: pointer; }
+    .incident-table tbody tr:hover, .incident-table tbody tr.selected { background: var(--surface-blue); }
+    .table-title { font-weight: 700; }
+    .table-sub { margin-top: 3px; color: var(--muted); font-size: 8px; }
+
+    .evidence-drawer { height: var(--drawer-h); background: white; border-top: 1px solid var(--blue-dark); position: relative; z-index: 900; overflow: hidden; }
+    .drawer-placeholder { height: 100%; display: grid; place-items: center; color: var(--muted); }
+    .drawer-content { height: 100%; display: grid; grid-template-rows: 59px minmax(0,1fr); }
+    body.drawer-collapsed .drawer-content { grid-template-rows: 61px 0; }
+    body.drawer-collapsed .drawer-body { display: none; }
+    .drawer-head { display: flex; align-items: center; gap: 11px; padding: 0 12px; border-bottom: 1px solid var(--line); }
+    .collapse-drawer { width: 31px; height: 31px; border: 0; border-right: 1px solid var(--line); background: transparent; color: var(--ink); font-size: 15px; }
+    .drawer-orb { width: 38px; height: 38px; flex: 0 0 auto; border-radius: 50%; display: grid; place-items: center; color: white; background: var(--disease-color); font-size: 18px; }
+    .drawer-title-block { min-width: 0; }
+    .drawer-title-line { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .drawer-title-line h2 { margin: 0; max-width: 560px; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .drawer-trend { display: inline-flex; align-items: center; gap: 5px; color: var(--trend-color); font-size: 9px; white-space: nowrap; }
+    .drawer-trend i { width: 22px; height: 22px; border: 1px solid currentColor; border-radius: 50%; display: grid; place-items: center; }
+    .drawer-meta { display: flex; gap: 9px; margin-top: 4px; color: var(--muted); font-size: 8px; white-space: nowrap; }
+    .drawer-meta span { display: inline-flex; align-items: center; gap: 4px; }
+    .drawer-actions { margin-left: auto; display: flex; align-items: center; gap: 7px; }
+    .drawer-actions .outline-button { min-width: 86px; }
+    .drawer-actions .primary-link { min-width: 145px; }
+    .drawer-actions .active { color: var(--blue); border-color: var(--blue); background: var(--surface-blue); }
+    .drawer-body { min-height: 0; display: grid; grid-template-columns: 1fr 1fr 1.28fr; overflow: hidden; }
+    .drawer-column { min-width: 0; overflow: auto; padding: 15px 20px; border-right: 1px solid var(--line); }
+    .drawer-column:last-child { border-right: 0; }
+    .section-heading { margin: 0 0 11px; color: var(--ink-2); font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .4px; }
+    .section-heading.critical { color: var(--critical); border-bottom: 2px solid var(--critical); width: max-content; padding-bottom: 3px; }
+    .section-heading.purple { color: var(--purple); }
+    .reason-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+    .reason-list li { display: grid; grid-template-columns: 8px 1fr; gap: 8px; color: var(--ink-2); font-size: 9px; line-height: 1.45; }
+    .reason-list li::before { content: ""; width: 6px; height: 6px; margin-top: 4px; border-radius: 50%; background: var(--critical); }
+    .precision-note { margin-top: 15px; padding: 9px 10px; border: 1px solid #9bb8dc; border-radius: 4px; color: var(--ink-2); background: #f7fbff; font-size: 8px; line-height: 1.4; }
+    .precision-note i { margin-right: 5px; color: var(--blue); }
+    .precision-note strong { color: var(--blue-dark); }
+    .confidence-summary { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 9px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .large-dots .confidence-dot { width: 12px; height: 12px; }
+    .confidence-copy strong { display: block; font-size: 10px; }
+    .confidence-copy span { display: block; margin-top: 2px; color: var(--muted); font-size: 7px; }
+    .authorities-heading { margin-top: 12px; }
+    .authority-list { display: grid; gap: 5px; }
+    .authority-row { min-height: 28px; display: grid; grid-template-columns: 22px minmax(0,1fr) auto; align-items: center; gap: 7px; padding: 3px 7px; border: 1px solid var(--line); border-radius: 3px; }
+    .authority-icon { width: 21px; height: 21px; border-radius: 50%; display: grid; place-items: center; color: white; background: var(--blue); font-size: 10px; }
+    .authority-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 8px; font-weight: 650; }
+    .authority-row i.bi-check-circle { color: var(--green); }
+    .timeline { position: relative; display: grid; gap: 10px; }
+    .timeline::before { content: ""; position: absolute; left: 4px; top: 6px; bottom: 6px; width: 1px; background: #d8cae9; }
+    .timeline-item { position: relative; display: grid; grid-template-columns: 11px minmax(0,1fr) auto; gap: 8px; color: inherit; text-decoration: none; }
+    .timeline-dot { width: 9px; height: 9px; margin-top: 3px; border-radius: 50%; background: var(--purple); z-index: 1; }
+    .timeline-date { color: var(--muted); font-size: 8px; }
+    .timeline-title { margin-top: 3px; font-size: 9px; line-height: 1.35; font-weight: 700; }
+    .timeline-snapshot { margin-top: 2px; color: var(--muted); font-size: 8px; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .official-tag { align-self: start; padding: 2px 5px; border-radius: 3px; color: var(--purple); background: var(--purple-soft); font-size: 7px; font-weight: 700; }
+    .view-all { display: inline-flex; gap: 7px; align-items: center; margin-top: 10px; color: var(--blue); font-size: 9px; text-decoration: none; }
+
+    .health-footer { height: var(--footer-h); display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 22px; padding: 0 20px; border-top: 1px solid var(--line); background: white; position: relative; z-index: 950; }
+    .health-left { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+    .health-left strong { font-size: 9px; text-transform: uppercase; }
+    .health-left span { color: var(--muted); font-size: 8px; }
+    .source-dots { display: flex; gap: 5px; }
+    .source-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); box-shadow: inset 0 0 0 2px white, 0 0 0 1px var(--green); }
+    .source-dot.warning { background: var(--orange); box-shadow: inset 0 0 0 2px white, 0 0 0 1px var(--orange); }
+    .source-dot.error { background: #9aa7b7; box-shadow: inset 0 0 0 2px white, 0 0 0 1px #9aa7b7; }
+    .severity-summary { display: flex; justify-content: center; align-items: center; gap: 22px; }
+    .severity-stat { display: inline-flex; align-items: center; gap: 6px; color: var(--ink-2); font-size: 8px; }
+    .severity-stat::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--stat-color); }
+    .refresh-stamp { color: var(--muted); font-size: 8px; white-space: nowrap; }
+
+    dialog { width: min(760px, calc(100vw - 30px)); max-height: calc(100vh - 30px); padding: 0; border: 1px solid var(--line-strong); border-radius: 6px; color: var(--ink); box-shadow: var(--shadow); }
+    dialog::backdrop { background: rgba(16,36,63,.35); }
+    .dialog-head { height: 54px; display: flex; align-items: center; padding: 0 14px; border-bottom: 1px solid var(--line); }
+    .dialog-head h2 { margin: 0; font-size: 14px; }
+    .dialog-head .icon-button { margin-left: auto; }
+    .dialog-body { max-height: calc(100vh - 100px); overflow: auto; padding: 14px; }
+    .health-metrics { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid var(--line); border-radius: 4px; margin-bottom: 13px; }
+    .health-metric { padding: 10px; border-right: 1px solid var(--line); }
+    .health-metric:last-child { border-right: 0; }
+    .health-metric strong { display: block; font-size: 17px; }
+    .health-metric span { color: var(--muted); font-size: 8px; text-transform: uppercase; }
+    .source-table { width: 100%; border-collapse: collapse; }
+    .source-table th, .source-table td { padding: 8px 6px; border-bottom: 1px solid var(--line); text-align: left; font-size: 9px; }
+    .source-table th { color: var(--muted); font-size: 7px; text-transform: uppercase; }
+    .source-state { display: inline-flex; align-items: center; gap: 4px; color: var(--green); font-weight: 700; }
+    .source-state.warning { color: var(--orange); }
+    .source-state.error { color: var(--critical); }
+    .method-note { margin: 12px 0 0; color: var(--muted); font-size: 9px; line-height: 1.45; }
+    .menu-list { display: grid; gap: 3px; }
+    .menu-item { min-height: 40px; border: 0; border-radius: 3px; background: white; color: var(--ink); display: flex; align-items: center; gap: 9px; padding: 0 9px; text-align: left; }
+    .menu-item:hover { background: var(--surface-soft); }
+    .menu-item i { color: var(--blue); font-size: 15px; }
+    .toast { position: fixed; left: 50%; bottom: 20px; z-index: 5000; transform: translate(-50%, 15px); opacity: 0; pointer-events: none; padding: 9px 13px; border-radius: 4px; color: white; background: var(--ink); box-shadow: var(--shadow); transition: .18s ease; font-size: 10px; }
+    .toast.visible { opacity: 1; transform: translate(-50%,0); }
+    .loading-overlay { position: fixed; inset: var(--topbar-h) 0 0; z-index: 4500; display: grid; place-items: center; background: rgba(246,248,251,.94); }
+    .loading-box { display: flex; align-items: center; gap: 9px; color: var(--muted); font-weight: 650; }
+    .loading-box i { color: var(--blue); font-size: 18px; animation: spin .8s linear infinite; }
+    .mobile-map-switch { display: none; }
+
+    @media (max-width: 1180px) {
+      :root { --sidebar-w: 520px; }
+      .brand-secondary { display: none; }
+      .brand-rule { display: none; }
+      .top-action span { display: none; }
+      .top-action { width: 35px; justify-content: center; padding: 0; }
+      .drawer-title-line h2 { max-width: 360px; }
+    }
+
+    @media (max-width: 820px) {
+      :root { --topbar-h: 56px; --drawer-h: 0px; --footer-h: 0px; --sidebar-w: 100vw; }
+      .topbar { grid-template-columns: minmax(0,1fr) auto; padding: 0 10px; gap: 7px; }
+      .brand-primary { font-size: 14px; }
+      .brand-mark { width: 32px; height: 32px; }
+      .status-cluster { display: none; }
+      .top-actions .mobile-hide { display: none; }
+      .workspace { height: calc(100vh - var(--topbar-h)); display: block; min-height: 0; }
+      .ledger-panel, .atlas { position: fixed; inset: var(--topbar-h) 0 0; width: 100vw; height: calc(100vh - var(--topbar-h)); }
+      .ledger-panel { z-index: 600; grid-template-rows: 58px 31px minmax(0,1fr) 55px; }
+      .atlas { z-index: 500; }
+      .mobile-hidden { display: none !important; }
+      .mobile-map-switch { display: inline-flex; }
+      .sidebar-toggle { display: none; }
+      .ledger-summary { padding-left: 11px; }
+      .summary-count strong { font-size: 14px; }
+      .ledger-head, .incident-row { grid-template-columns: minmax(0,2.2fr) 64px 73px; }
+      .ledger-head span:nth-child(4), .incident-row .updated-cell { display: none; }
+      .ledger-head span:nth-child(5) { display: none; }
+      .ledger-head span:nth-child(4)::before { content: "Updated"; }
+      .confidence-cell { display: none; }
+      .incident-list { align-content: start; }
+      .incident-row { min-height: 74px; max-height: 90px; }
+      .filter-grid { grid-template-columns: 1fr 1fr; }
+      .map-toolbar { top: 10px; left: 10px; }
+      .geo-legend { top: 10px; right: 10px; width: 158px; }
+      .evidence-drawer { position: fixed; left: 0; right: 0; bottom: 0; z-index: 1600; height: min(70vh, 580px); border-radius: 7px 7px 0 0; box-shadow: 0 -8px 26px rgba(16,36,63,.2); transform: translateY(105%); transition: transform .22s ease; }
+      .evidence-drawer.open { transform: translateY(0); }
+      .drawer-content { grid-template-rows: 65px minmax(0,1fr); }
+      .drawer-head { padding: 0 9px; }
+      .collapse-drawer { display: none; }
+      .drawer-title-line h2 { max-width: 190px; font-size: 12px; }
+      .drawer-title-line .severity-badge { display: none; }
+      .drawer-meta span:nth-child(-n+2) { display: none; }
+      .drawer-actions .primary-link, .drawer-actions .outline-button span { display: none; }
+      .drawer-actions .outline-button { min-width: 34px; width: 34px; padding: 0; }
+      .drawer-body { display: block; overflow: auto; }
+      .drawer-column { overflow: visible; border-right: 0; border-bottom: 1px solid var(--line); }
+      .health-footer { display: none; }
+      .marker-copy { display: none; }
+      .marker-shell { width: 28px; }
+    }
+
+    /* The ledger and briefing own the reading hierarchy. */
+    :root { --footer-h: 32px; --drawer-h: clamp(224px,26vh,295px); }
+    .brand-secondary { letter-spacing: 0; }
+    .topbar { grid-template-columns: minmax(0,1fr) auto auto; }
+    #healthButton { display: grid; width: auto; height: 42px; gap: 0 7px; padding: 3px 9px; text-align: left; }
+    #healthButton span { display: block; font-size: 11px; }
+    #healthButton strong { font-size: 12px; }
+    .ledger-head,.incident-row { grid-template-columns: minmax(0,1fr) 75px 89px; }
+    .ledger-head { background: #f5f8fa; font-size: 10px; }
+    .incident-row,.incident-row.selected { height: auto; min-height: 84px; max-height: none; padding: 10px 12px; border: 0; border-bottom: 1px solid var(--line); border-left: 3px solid transparent; }
+    .incident-row.selected { background: #edf5ff; border-left-color: var(--blue); }
+    .incident-cell { grid-template-columns: 32px minmax(0,1fr); gap: 11px; }
+    .disease-orb,.drawer-orb { width: 32px; height: 32px; background: #e5edf1; color: #345464; font-size: 16px; }
+    .incident-name { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-size: 16px; line-height: 1.25; font-weight: 700; white-space: normal; }
+    .incident-location,.incident-stats { font-size: 12px; color: #475c70; }
+    .incident-location { max-height: none; white-space: nowrap; text-overflow: ellipsis; }
+    .incident-stats { gap: 5px; }
+    .trend-label { font-size: 11px; }
+    .trend-icon { width: auto; height: 18px; border: 0; font-size: 16px; }
+    .severity-badge { font-size: 10px; }
+    .satellite-image { filter: saturate(.66) contrast(.94); }
+    .geo-legend { width: auto; padding: 8px 10px; pointer-events: none; font-size: 11px; }
+    .geo-legend i { margin-right: 5px; }
+    .selected-callout { white-space: normal; width: 222px; max-width: 50vw; padding: 10px 12px; border-radius: 4px; color: var(--ink); }
+    .selected-callout .marker-copy { display: block; position: static; max-width: none; text-shadow: none; }
+    .marker-name,.marker-place { white-space: normal; overflow: visible; }
+    .marker-name { font-size: 14px; }
+    .marker-place { margin: 4px 0; font-size: 12px; }
+    .marker-severity { display: none; }
+    .drawer-content { grid-template-rows: auto minmax(0,1fr); }
+    .drawer-head { min-height: 68px; padding: 10px 16px; background: #f4f8fa; }
+    .drawer-title-line { flex-wrap: wrap; gap: 5px 9px; }
+    .drawer-title-line h2 { font-size: 19px; line-height: 1.25; white-space: normal; max-width: none; }
+    .drawer-trend { font-size: 12px; }
+    .drawer-meta { font-size: 12px; flex-wrap: wrap; white-space: normal; }
+    .drawer-actions { flex-shrink: 0; }
+    .drawer-body { grid-template-columns: 1fr 1.24fr .9fr; }
+    .drawer-column { padding: 16px 20px; }
+    .section-heading { font-size: 11px; margin-bottom: 10px; color: #4b6072; letter-spacing: 0; }
+    #finding { margin: 0 0 12px; font-size: 16px; line-height: 1.45; color: var(--ink); }
+    details { margin-top: 10px; }
+    summary { cursor: pointer; color: var(--blue-dark); font-size: 13px; font-weight: 600; padding: 5px 0; }
+    .report-entry { padding-bottom: 4px; }
+    .report-byline,.precision-note,.confidence-copy span { color: #495e70; font-size: 12px; line-height: 1.45; }
+    .report-entry strong { display: block; font-size: 15px; line-height: 1.4; margin: 4px 0; }
+    .report-entry a { display: inline-block; padding: 3px 0; font-size: 13px; }
+    .timeline { gap: 8px; margin-top: 8px; }
+    .timeline::before { display: none; }
+    .timeline .report-entry { border-top: 1px solid var(--line); padding-top: 8px; }
+    .reason-list li,.authority-name { font-size: 12px; line-height: 1.5; }
+    .reason-list li::before { background: #586a78; }
+    .precision-note { margin: 10px 0 0; padding: 0; display: block; border: 0; background: none; }
+    .confidence-copy strong { font-size: 14px; }
+    .health-footer { display: flex; justify-content: center; }
+    @media (max-width: 820px) {
+      .topbar { grid-template-columns: 1fr auto auto; gap: 2px; padding: 0 6px; }
+      .status-cluster { display: flex; }
+      #healthButton { padding: 2px 4px; gap: 0 3px; }
+      #healthButton i { font-size: 12px; }
+      #healthButton strong,#healthButton span { font-size: 10px; }
+      .ledger-head,.incident-row { grid-template-columns: minmax(0,1fr) 65px 73px; }
+      .incident-cell { grid-template-columns: 25px minmax(0,1fr); gap: 6px; }
+      .disease-orb { width: 25px; height: 25px; font-size: 13px; }
+      .drawer-head { padding: 10px; align-items: flex-start; gap: 6px; }
+      .drawer-head .drawer-orb { display: none; }
+      .drawer-title-line h2 { width: 100%; max-width: none; font-size: 16px; }
+      .drawer-title-line .severity-badge { display: inline-flex; }
+      .selected-callout { max-width: 42vw; padding: 6px 8px; }
+      .drawer-meta span:nth-child(-n+2) { display: inline; }
+      .drawer-body { display: block; }
+      .evidence-drawer { height: min(60dvh,520px); }
+      body:has(.evidence-drawer.open) .atlas { height: calc(100dvh - var(--topbar-h) - min(60dvh,520px)); }
+      .drawer-column { padding: 12px 15px; }
+      .health-footer { display: none; }
+      .top-actions { gap: 0; }
+      .top-action { width: 30px; }
+    }
+    @media (max-width: 370px) { .brand-mark { display: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#incidentList">Skip to incidents</a>
+  <header class="topbar">
+    <div class="brand" aria-label="ObiCRM Atlas, Global Outbreak Watch">
+      <div class="brand-mark" aria-hidden="true"><i class="bi bi-globe-americas"></i></div>
+      <span class="brand-primary">OBICRM ATLAS</span><span class="brand-rule"></span><span class="brand-secondary">GLOBAL OUTBREAK WATCH</span>
+    </div>
+    <div class="status-cluster">
+      <button class="top-action source-summary" id="healthButton" type="button" aria-label="View source health">
+        <i class="bi bi-check-circle-fill"></i><strong id="sourceSummaryTitle">Checking sources</strong><span id="sourceSummaryDetail">Daily health</span>
+      </button>
+    </div>
+    <nav class="top-actions" aria-label="Workspace actions">
+      <button class="top-action" id="refreshButton" type="button" title="Refresh data"><i class="bi bi-arrow-clockwise"></i><span>Refresh</span></button>
+      <button class="top-action" id="watchlistButton" type="button" title="Show watchlist"><i class="bi bi-star"></i><span>Watchlist</span></button>
+      <button class="top-action mobile-hide" id="shareButton" type="button" title="Share current view"><i class="bi bi-share"></i><span>Share</span></button>
+      <button class="top-action mobile-hide" id="exportButton" type="button" title="Export incidents"><i class="bi bi-upload"></i><span>Export</span></button>
+      <button class="top-action" id="menuButton" type="button" title="Menu"><i class="bi bi-list"></i><span>Menu</span></button>
+    </nav>
+  </header>
+
+  <main class="workspace">
+    <aside class="ledger-panel" id="ledgerPanel" aria-label="Incident ledger">
+      <div class="ledger-summary">
+        <div class="summary-count"><strong id="shownCount">0</strong> incidents from <span id="signalCount">0</span> signals &middot; last <span id="windowDays">0</span> days</div>
+        <div class="ledger-actions">
+          <button class="outline-button" id="filterButton" type="button" aria-expanded="false"><i class="bi bi-funnel"></i> Filters</button>
+          <button class="outline-button mobile-map-switch" id="mobileMapButton" type="button"><i class="bi bi-map"></i> Map</button>
+        </div>
+      </div>
+      <button class="sidebar-toggle" id="sidebarToggle" type="button" title="Collapse incident ledger" aria-label="Collapse incident ledger"><i class="bi bi-chevron-left"></i></button>
+
+      <div class="filter-tray" id="filterTray" hidden>
+        <label class="filter-search"><span class="sr-only">Search incidents</span><i class="bi bi-search"></i><input id="searchInput" type="search" placeholder="Search disease, place, or source" autocomplete="off"></label>
+        <div class="filter-grid">
+          <label><span class="sr-only">Severity</span><select id="severityFilter"><option value="all">All severities</option><option>Critical</option><option>High</option><option>Moderate</option><option>Low</option></select></label>
+          <label><span class="sr-only">Trend</span><select id="trendFilter"><option value="all">All trends</option><option>Worsening</option><option>Increasing</option><option>Not assessed</option><option>Historical</option><option>Improving</option></select></label>
+          <label><span class="sr-only">Confidence</span><select id="confidenceFilter"><option value="all">All confidence</option><option>High</option><option>Moderate</option><option>Low</option></select></label>
+          <label><span class="sr-only">Sort incidents</span><select id="sortFilter"><option value="priority">Priority order</option><option value="recent">Most recent</option><option value="confidence">Highest confidence</option><option value="sources">Most sources</option></select></label>
+        </div>
+        <div class="filter-foot"><button class="text-button watch-filter" id="watchFilter" type="button" aria-pressed="false"><i class="bi bi-star"></i> Watchlist only</button><button class="text-button" id="resetFilters" type="button">Reset filters</button></div>
+      </div>
+
+      <div class="ledger-head" aria-hidden="true"><span>Incident / source report</span><span>Severity</span><span>Trend</span></div>
+      <div class="incident-list" id="incidentList" tabindex="-1" aria-live="polite"></div>
+      <div class="pager"><span class="pager-label" id="pagerLabel">Showing 0 incidents</span><div class="pager-controls" id="pagerControls"></div></div>
+    </aside>
+
+    <section class="atlas" id="atlas" aria-label="Global outbreak atlas">
+      <div id="map" role="application" aria-label="Interactive global outbreak map bounded to one world"></div>
+      <div class="table-view" id="tableView" aria-label="Incident table"></div>
+      <div class="map-toolbar">
+        <div class="segmented" role="group" aria-label="Choose atlas view">
+          <button class="seg-button active" id="mapViewButton" type="button" aria-pressed="true"><i class="bi bi-map"></i> Map</button>
+          <button class="seg-button" id="listViewButton" type="button" aria-pressed="false"><i class="bi bi-list-ul"></i> List</button>
+        </div>
+      </div>
+      <div class="geo-legend"><i class="bi bi-layers"></i>Satellite &middot; English labels</div>
+    </section>
+  </main>
+
+  <section class="evidence-drawer" id="evidenceDrawer" aria-label="Selected incident evidence">
+    <div class="drawer-placeholder" id="drawerPlaceholder">Select an incident to inspect its evidence.</div>
+    <div class="drawer-content" id="drawerContent" hidden>
+      <div class="drawer-head">
+        <button class="collapse-drawer" id="collapseDrawer" type="button" title="Collapse evidence"><i class="bi bi-chevron-up"></i></button>
+        <div class="drawer-orb" id="drawerOrb"><i class="bi bi-virus"></i></div>
+        <div class="drawer-title-block">
+          <div class="drawer-title-line"><h2 id="drawerTitle"></h2><span class="severity-badge" id="drawerSeverity"></span><span class="drawer-trend" id="drawerTrend"></span></div>
+          <div class="drawer-meta" id="drawerMeta"></div>
+        </div>
+        <div class="drawer-actions">
+          <button class="outline-button" id="drawerWatch" type="button"><i class="bi bi-bell"></i><span>Follow</span></button>
+          <a class="outline-button primary-link" id="openLatest" href="#" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right"></i><span>Open latest update</span></a>
+          <button class="icon-button" id="closeDrawer" type="button" title="Close evidence" aria-label="Close evidence"><i class="bi bi-x-lg"></i></button>
+        </div>
+      </div>
+      <div class="drawer-body">
+        <section class="drawer-column"><h3 class="section-heading">Assessment</h3><p id="finding"></p><details><summary>Scoring rationale</summary><ul class="reason-list" id="reasonList"></ul></details><p class="precision-note" id="precisionNote"></p></section>
+        <section class="drawer-column evidence-col"><h3 class="section-heading">Latest evidence</h3><div id="latestEvidence"></div><details id="historyDetails"><summary id="historyLabel">Report history</summary><div class="timeline" id="timeline"></div></details></section>
+        <section class="drawer-column"><h3 class="section-heading">Evidence quality</h3><div class="confidence-summary"><div id="drawerConfidenceDots"></div><div class="confidence-copy"><strong id="drawerConfidenceLabel"></strong><span id="evidenceCounts"></span></div></div><details><summary id="authoritiesHeading">Reporting feeds</summary><div class="authority-list" id="authorityList"></div></details></section>
+      </div>
+    </div>
+  </section>
+
+  <footer class="health-footer">
+    <div class="severity-summary" id="severitySummary"></div>
+  </footer>
+
+  <dialog id="healthDialog" aria-labelledby="healthDialogTitle"><div class="dialog-head"><h2 id="healthDialogTitle">Source and data health</h2><button class="icon-button" data-close-dialog type="button" aria-label="Close source health"><i class="bi bi-x-lg"></i></button></div><div class="dialog-body" id="healthDialogBody"></div></dialog>
+  <dialog id="menuDialog" aria-labelledby="menuDialogTitle"><div class="dialog-head"><h2 id="menuDialogTitle">Map actions</h2><button class="icon-button" data-close-dialog type="button" aria-label="Close menu"><i class="bi bi-x-lg"></i></button></div><div class="dialog-body menu-list"><button class="menu-item" id="menuShare" type="button"><i class="bi bi-share"></i>Share current view</button><button class="menu-item" id="menuExport" type="button"><i class="bi bi-upload"></i>Export filtered incidents</button><button class="menu-item" id="menuHealth" type="button"><i class="bi bi-activity"></i>Review source health</button><button class="menu-item" id="menuReset" type="button"><i class="bi bi-arrow-counterclockwise"></i>Reset workspace</button></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="loading-overlay" id="loadingOverlay"><div class="loading-box"><i class="bi bi-arrow-clockwise"></i><span>Building the latest incident picture...</span></div></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet-minimap@3.6.1/dist/Control.MiniMap.min.js"></script>
+  <script>
+    (() => {
+      "use strict";
+
+      const DATA_URL = "gow_data.geojson";
+      const CACHE_KEY = "gow:last-known-good:v4";
+      const WATCH_KEY = "gow:watchlist:v3";
+      const PAGE_SIZE = 5;
+      const SEVERITY_COLORS = { Critical: "#dc2f3e", High: "#b54708", Moderate: "#f3b600", Low: "#617786" };
+      const SEVERITY_RANK = { Critical: 4, High: 3, Moderate: 2, Low: 1 };
+      const TREND_COLORS = { Worsening: "#384252", Increasing: "#384252", Improving: "#384252" };
+      const WORLD_BOUNDS = L.latLngBounds([[-82, -180], [84, 180]]);
+      const state = {
+        payload: null, incidents: [], filtered: [], selectedId: null, page: 1, view: "map",
+        watchlist: new Set(readStorage(WATCH_KEY, [])), watchOnly: false, usingCachedData: false,
+        filterOpen: false, sidebarCollapsed: false, drawerCollapsed: false, markers: new Map(), markerLayer: null, selectedLayer: null,
+      };
+      const el = id => document.getElementById(id);
+
+      const map = L.map("map", {
+        center: [18, 5], zoom: window.innerWidth <= 820 ? 1 : 2, minZoom: window.innerWidth <= 820 ? 1 : 2, maxZoom: 8,
+        zoomControl: false, worldCopyJump: false, maxBounds: WORLD_BOUNDS, maxBoundsViscosity: 1, bounceAtZoomLimits: false,
+      });
+      const baseTiles = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+        attribution: "Satellite imagery &copy; Esri, Maxar, Earthstar Geographics, and the GIS User Community", className: "satellite-image", maxZoom: 20,
+        noWrap: true, bounds: WORLD_BOUNDS,
+      }).addTo(map);
+      const englishLabels = L.tileLayer("https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}", {
+        attribution: "Reference labels &copy; Esri", opacity: .72, maxZoom: 20, noWrap: true, bounds: WORLD_BOUNDS,
+      }).addTo(map);
+      L.control.zoom({ position: "topleft" }).addTo(map);
+      L.control.scale({ position: "bottomleft", imperial: false, maxWidth: 90 }).addTo(map);
+      new ResizeObserver(() => {
+        map.invalidateSize({pan:false});
+        const marker = state.markers.get(state.selectedId);
+        if (marker && innerWidth <= 820 && el("evidenceDrawer").classList.contains("open")) {
+          map.panTo(marker.getLatLng(), {animate:false});
+        }
+      }).observe(el("map"));
+      const ResetWorldControl = L.Control.extend({
+        options: { position: "topleft" },
+        onAdd() {
+          const button = L.DomUtil.create("button", "reset-world-control");
+          button.type = "button"; button.title = "Reset world view"; button.setAttribute("aria-label", "Reset world view");
+          button.innerHTML = '<i class="bi bi-crosshair"></i>';
+          L.DomEvent.disableClickPropagation(button); L.DomEvent.on(button, "click", () => fitWorld());
+          return button;
+        },
+      });
+      new ResetWorldControl().addTo(map);
+      if (L.Control.MiniMap) {
+        const miniTiles = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", { noWrap: true, bounds: WORLD_BOUNDS });
+        new L.Control.MiniMap(miniTiles, { position: "bottomright", width: 145, height: 72, zoomLevelOffset: -3, toggleDisplay: true, minimized: true, aimingRectOptions: { color: "#10243f", weight: 1, fillOpacity: .04 }, shadowRectOptions: { opacity: 0, fillOpacity: 0 } }).addTo(map);
+      }
+      state.markerLayer = L.markerClusterGroup({
+        maxClusterRadius: 48, showCoverageOnHover: false, spiderfyOnMaxZoom: true, disableClusteringAtZoom: 5,
+        iconCreateFunction(cluster) { return L.divIcon({ html: `<span>${cluster.getChildCount()}</span>`, className: "atlas-cluster", iconSize: [40, 40] }); },
+      }).addTo(map);
+      state.selectedLayer = L.layerGroup().addTo(map);
+      map.on("drag", () => map.panInsideBounds(WORLD_BOUNDS, { animate: false }));
+      map.on("dragend", () => map.panInsideBounds(WORLD_BOUNDS, { animate: true }));
+
+      function readStorage(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) || fallback; } catch { return fallback; } }
+      function writeStorage(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* Storage can be unavailable. */ } }
+      function escapeHtml(value) { return String(value ?? "").replace(/[&<>'"]/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char])); }
+      function safeUrl(value) { try { const url = new URL(value, location.href); return ["http:", "https:"].includes(url.protocol) ? url.href : "#"; } catch { return "#"; } }
+      function prettyDate(value, options = { day: "2-digit", month: "short", year: "numeric" }) { if (!value) return "Date unavailable"; const date = new Date(value.length === 10 ? value + "T00:00:00Z" : value); return Number.isNaN(date.getTime()) ? "Date unavailable" : new Intl.DateTimeFormat("en-GB", { ...options, timeZone: "UTC" }).format(date); }
+      function countLabel(n, noun) { return n + " " + noun + (n === 1 ? "" : "s"); }
+      function prettyTime(value) { const date = new Date(value); return Number.isNaN(date.getTime()) ? "UTC" : new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "UTC" }).format(date) + " UTC"; }
+      function relativeAge(value) { const date = new Date(value); if (Number.isNaN(date.getTime())) return "age unknown"; const hours = Math.max(0, Math.floor((Date.now() - date.getTime()) / 3600000)); if (hours < 1) return "refreshed within the hour"; if (hours < 24) return `refreshed ${hours}h ago`; return `refreshed ${Math.floor(hours / 24)}d ago`; }
+      function severityColor(value) { return SEVERITY_COLORS[value] || SEVERITY_COLORS.Low; }
+      function trendColor(value) { return TREND_COLORS[value] || "#616d79"; }
+      function trendIcon(value) { return value === "Worsening" || value === "Increasing" ? "bi-arrow-up-right" : value === "Improving" ? "bi-arrow-down-left" : value === "Historical" ? "bi-clock-history" : "bi-dash"; }
+      function diseaseIcon(value) { const text = String(value).toLowerCase(); if (/ebola|bundibugyo|marburg|haemorrhagic|hemorrhagic|lassa/.test(text)) return "fa-solid fa-biohazard"; if (/cholera/.test(text)) return "fa-solid fa-droplet"; if (/dengue|yellow fever|oropouche|chikungunya/.test(text)) return "fa-solid fa-mosquito"; if (/avian|influenza|bird/.test(text)) return "fa-solid fa-crow"; if (/hantavirus/.test(text)) return "fa-solid fa-lungs-virus"; if (/nipah/.test(text)) return "fa-solid fa-head-side-virus"; if (/mpox/.test(text)) return "fa-solid fa-viruses"; if (/measles|polio|virus|covid|mers/.test(text)) return "fa-solid fa-virus"; if (/salmon|lister|botul/.test(text)) return "fa-solid fa-bacterium"; return "fa-solid fa-microscope"; }
+      function diseaseColor(value) { const text = String(value).toLowerCase(); if (/ebola|bundibugyo|marburg|haemorrhagic|hemorrhagic|lassa/.test(text)) return "#e3383e"; if (/cholera/.test(text)) return "#0868cf"; if (/mpox/.test(text)) return "#7542b5"; if (/avian|influenza|dengue|yellow fever|oropouche/.test(text)) return "#129665"; return "#1269bb"; }
+      function confidenceDots(score, large = false) { const filled = Math.max(1, Math.min(5, Math.round(Number(score || 0) / 20))); return `<span class="confidence-dots${large ? " large-dots" : ""}">${Array.from({ length: 5 }, (_, i) => `<span class="confidence-dot${i < filled ? " filled" : ""}"></span>`).join("")}</span>`; }
+
+      function legacyIncidents(features) {
+        return (features || []).map((feature, index) => { const p = feature.properties || {}; return {
+          Incident_ID: p.Outbreak_ID || `legacy-${index}`, Disease: p.Disease || p.Threat || "Disease signal", Countries: [p.Country || "Global"], Location_Label: p.Location_Label || p.Country || "Global", Coordinates: feature.geometry?.coordinates || [15,10], Geographic_Precision: p.Geographic_Precision === "Country" ? "Country centroid" : "Regional centroid", Severity: p.Severity || "Low", Status: p.Status || "Monitoring", Trend: "Not assessed", Trend_Rationale: "Legacy signal awaiting directional assessment.", Confidence_Level: p.Confidence_Level || "Moderate", Confidence_Score: p.Confidence_Score || 70, Quality_Score: p.Quality_Score || 70, Source_Count: 1, Update_Count: 1, Sources: [p.Source_Name || "Authority source"], Date_First_Noted: p.Date_First_Noted, Date_Last_Updated: p.Date_Last_Updated, Evidence: [{ Title: p.Title, Date: p.Date_Last_Updated, Source_Name: p.Source_Name, Source_Type: p.Source_Type, Source_URL: p.Source_URL, Snapshot: p.Situation_Snapshot, Country: p.Country }], Severity_Rationale: p.Severity_Rationale || ["Legacy severity classification."], Confidence_Rationale: p.Confidence_Rationale || ["Extracted from a linked authority signal."],
+        }; });
+      }
+
+      async function loadData(force = false) {
+        el("refreshButton").classList.add("is-spinning"); el("refreshButton").disabled = true;
+        try {
+          const response = await fetch(`${DATA_URL}${force ? `?t=${Date.now()}` : ""}`, { cache: force ? "no-store" : "default" });
+          if (!response.ok) throw new Error(`Data request failed (${response.status})`);
+          const payload = await response.json();
+          if (payload.metadata?.schema_version !== "3.0" || !Array.isArray(payload.incidents)) throw new Error("Verified report dates are not available in this dataset");
+          state.payload = payload; state.incidents = payload.incidents?.length ? payload.incidents : legacyIncidents(payload.features); state.usingCachedData = false;
+          writeStorage(CACHE_KEY, { metadata: payload.metadata, incidents: state.incidents });
+        } catch (error) {
+          const cached = readStorage(CACHE_KEY, null);
+          if (!cached?.incidents?.length) { showFatal(error.message); return; }
+          state.payload = { metadata: cached.metadata || {}, incidents: cached.incidents }; state.incidents = cached.incidents; state.usingCachedData = true;
+          showToast("Live refresh unavailable. Showing the last known good incident set.");
+        } finally {
+          el("refreshButton").classList.remove("is-spinning"); el("refreshButton").disabled = false; el("loadingOverlay").hidden = true;
+        }
+        // A saved dataset can outlive the trend window even when the network is down.
+        const today = Date.parse(new Date().toISOString().slice(0, 10));
+        const views = Object.values(state.payload.metadata?.saved_reports || {}).map(entry => entry.report);
+        for (const row of [...state.incidents, ...views]) {
+          if (row.Trend_As_Of && today - Date.parse(row.Trend_As_Of) > state.payload.metadata.trend_window_days * 86400000) {
+            row.Trend = "Historical";
+            row.Trend_Rationale = "The latest dated evidence is outside the trend window. Current direction is unknown.";
+          }
+        }
+        applyUrlState(); renderAll(true);
+      }
+      function showFatal(message) { el("loadingOverlay").innerHTML = `<div class="loading-box"><i class="bi bi-exclamation-triangle"></i><span>${escapeHtml(message)}. No saved incident set is available.</span></div>`; }
+      function applyUrlState() { const params = new URLSearchParams(location.search); const mapIds = { severity: "severityFilter", trend: "trendFilter", confidence: "confidenceFilter", sort: "sortFilter" }; Object.entries(mapIds).forEach(([key,id]) => { const value = params.get(key); if (value && [...el(id).options].some(option => option.value === value)) el(id).value = value; }); if (params.get("q")) el("searchInput").value = params.get("q"); if (params.get("watch") === "1") state.watchOnly = true; const requested = params.get("incident");
+        const saved = state.payload.metadata?.saved_reports?.[requested];
+        state.bookmark = saved ? requested : null;
+        state.selectedId = saved?.parent || (state.incidents.some(item => item.Incident_ID === requested) ? requested : null);
+        state.missing = requested && !state.selectedId ? requested : null;
+        if (requested && state.selectedId && innerWidth <= 820) el("evidenceDrawer").classList.add("open");
+      }
+      function savedReport() { const saved = state.payload?.metadata?.saved_reports?.[state.bookmark]; return saved && saved.parent === state.selectedId ? saved.report : null; }
+
+      function filteredIncidents() {
+        const query = el("searchInput").value.trim().toLowerCase(), severity = el("severityFilter").value, trend = el("trendFilter").value, confidence = el("confidenceFilter").value, sort = el("sortFilter").value;
+        const rows = state.incidents.filter(item => { const haystack = [item.Disease, item.Location_Label, ...(item.Countries || []), ...(item.Sources || []), ...(item.Evidence || []).map(row => row.Title)].join(" ").toLowerCase(); return (!query || haystack.includes(query)) && (severity === "all" || item.Severity === severity) && (trend === "all" || item.Trend === trend) && (confidence === "all" || item.Confidence_Level === confidence) && (!state.watchOnly || state.watchlist.has(item.Incident_ID)); });
+        rows.sort((a,b) => { if (sort === "recent") return String(b.Date_Last_Updated).localeCompare(String(a.Date_Last_Updated)); if (sort === "confidence") return b.Confidence_Score - a.Confidence_Score; if (sort === "sources") return b.Source_Count - a.Source_Count; return (SEVERITY_RANK[b.Severity] - SEVERITY_RANK[a.Severity]) || String(b.Date_Last_Updated).localeCompare(String(a.Date_Last_Updated)); });
+        return rows;
+      }
+      function renderAll(fit = false) {
+        state.filtered = filteredIncidents(); const mobile = innerWidth <= 820; const visible = state.filtered.some(item => item.Incident_ID === state.selectedId); if (!visible) state.selectedId = state.filtered.length && !mobile && !state.missing ? state.filtered[0].Incident_ID : null;
+        const pages = Math.max(1, Math.ceil(state.filtered.length / PAGE_SIZE)); state.page = Math.min(state.page, pages);
+        renderHeader(); renderLedger(); renderMap(fit); renderTable(); renderDrawer(); renderFooter(); renderView(); updateUrl();
+      }
+      function renderHeader() {
+        const meta = state.payload?.metadata || {}, quality = meta.quality || {}, generated = meta.generated_at;
+        const total = meta.source_count || meta.source_status?.length || 0, healthy = quality.sources_ok ?? (meta.source_status || []).filter(row => row.status === "ok").length;
+        el("sourceSummaryTitle").textContent = `${healthy}/${total} feeds online`; el("sourceSummaryDetail").textContent = `${state.usingCachedData ? "Cached" : "Refreshed"} ${prettyTime(generated)}`; el("healthButton").title = prettyDate(generated) + " · " + el("sourceSummaryDetail").textContent;
+        const warning = healthy < total || state.usingCachedData; el("healthButton").classList.toggle("warning", warning); el("healthButton").querySelector("i").className = warning ? "bi bi-exclamation-triangle-fill" : "bi bi-check-circle-fill";
+      }
+      function renderLedger() {
+        const meta = state.payload?.metadata || {}, totalPages = Math.max(1, Math.ceil(state.filtered.length / PAGE_SIZE)), start = (state.page - 1) * PAGE_SIZE, pageRows = state.filtered.slice(start, start + PAGE_SIZE);
+        el("shownCount").textContent = state.filtered.length; el("signalCount").textContent = meta.feature_count ?? state.incidents.length; el("windowDays").textContent = meta.signal_window_days ?? 210;
+        const rowTrack = "minmax(min-content, 1fr)";
+        el("incidentList").style.gridTemplateRows = `repeat(${Math.max(pageRows.length, 1)}, ${rowTrack})`; el("incidentList").style.display = "grid";
+        if (!pageRows.length) el("incidentList").innerHTML = `<div class="empty-state"><div><i class="bi bi-funnel"></i>No incidents match these filters.</div></div>`;
+        else el("incidentList").innerHTML = pageRows.map(item => {
+          const watched = state.watchlist.has(item.Incident_ID), selected = item.Incident_ID === state.selectedId, sev = severityColor(item.Severity), dColor = diseaseColor(item.Disease), tColor = trendColor(item.Trend);
+          return `<div class="incident-row${selected ? " selected" : ""}" role="button" tabindex="0" data-incident="${escapeHtml(item.Incident_ID)}" aria-pressed="${selected}">
+            <div class="incident-cell"><span class="disease-orb"><i class="${diseaseIcon(item.Disease)}"></i></span><span class="incident-copy"><span class="incident-name">${escapeHtml(item.Disease)}</span><span class="incident-location">${escapeHtml(item.Location_Label)}</span><span class="incident-stats"><i class="bi bi-calendar3"></i> ${escapeHtml(prettyDate(item.Date_Last_Updated))}${watched ? ' <i class="bi bi-star-fill" title="Followed"></i>' : ""}</span></span></div>
+            <span class="severity-badge ${String(item.Severity).toLowerCase()}" style="--severity-color:${sev}">${escapeHtml(item.Severity)}</span>
+            <span class="trend-cell" style="--trend-color:${tColor}"><span class="trend-icon"><i class="bi ${trendIcon(item.Trend)}"></i></span><span class="trend-label">${escapeHtml(item.Trend)}</span></span>
+          </div>`;
+        }).join("");
+        const end = Math.min(start + PAGE_SIZE, state.filtered.length); el("pagerLabel").textContent = state.filtered.length ? `Showing ${start + 1}-${end} of ${state.filtered.length} incidents` : "Showing 0 incidents";
+        el("pagerControls").innerHTML = pageControls(totalPages).map(token => token === "..." ? '<span class="pager-ellipsis">...</span>' : `<button class="pager-button${token === state.page ? " active" : ""}" type="button" data-page="${token}" ${token === state.page ? 'aria-current="page"' : ""}>${token}</button>`).join("");
+        el("pagerControls").insertAdjacentHTML("afterbegin", `<button class="pager-button" type="button" data-page="${Math.max(1,state.page-1)}" ${state.page === 1 ? "disabled" : ""} aria-label="Previous page"><i class="bi bi-chevron-left"></i></button>`);
+        el("pagerControls").insertAdjacentHTML("beforeend", `<button class="pager-button" type="button" data-page="${Math.min(totalPages,state.page+1)}" ${state.page === totalPages ? "disabled" : ""} aria-label="Next page"><i class="bi bi-chevron-right"></i></button>`);
+      }
+      function pageControls(total) { if (total <= 5) return Array.from({length:total},(_,i)=>i+1); const tokens = [1]; if (state.page > 3) tokens.push("..."); for (let page = Math.max(2,state.page-1); page <= Math.min(total-1,state.page+1); page++) tokens.push(page); if (state.page < total-2) tokens.push("..."); tokens.push(total); return tokens; }
+
+      function renderMap(fit = false) {
+        state.markerLayer.clearLayers(); state.selectedLayer.clearLayers(); state.markers.clear(); const bounds = [];
+        state.filtered.forEach(item => { const selectedReport = item.Incident_ID === state.selectedId && savedReport(); const display = selectedReport || item, coords = display.Coordinates || [15,10], latlng = [coords[1],coords[0]], color = severityColor(display.Severity), selected = item.Incident_ID === state.selectedId;
+          const labelled = selected;
+          const label = labelled ? `<span class="marker-copy"><span class="marker-name">${escapeHtml(display.Disease)}</span><span class="marker-place">${escapeHtml((display.Countries || [display.Location_Label]).join(", "))}</span><span class="marker-severity">${escapeHtml(display.Severity)}</span></span>` : "";
+          const html = `<div class="marker-shell" style="--marker-color:${color}"><span class="marker-target"></span></div>`;
+          const icon = L.divIcon({ html, className: `atlas-marker${selected ? " selected" : ""}${labelled ? "" : " compact"}`, iconSize: [28,36], iconAnchor: [11,18] }); const marker = L.marker(latlng, { icon, keyboard: true, title: `${item.Disease}, ${item.Location_Label}, ${item.Severity}, ${item.Trend}`, zIndexOffset: selected ? 1000 : 0 }); if (selected) marker.bindTooltip(label, {permanent:true, direction:"auto", offset:[14,0], className:"selected-callout", opacity:1}); marker.on("click", () => selectIncident(item.Incident_ID)); if (selected) state.selectedLayer.addLayer(marker); else state.markerLayer.addLayer(marker); state.markers.set(item.Incident_ID, marker); bounds.push(latlng);
+        });
+        if (fit && bounds.length) map.fitBounds(bounds, { padding: [35,45], maxZoom: 3 });
+        map.panInsideBounds(WORLD_BOUNDS, { animate: false });
+      }
+      function fitWorld() { map.setView([18,5], innerWidth <= 820 ? 1 : 2, { animate: true }); map.panInsideBounds(WORLD_BOUNDS, { animate: false }); }
+      function renderTable() { const rows = state.filtered.map(item => `<tr data-incident="${escapeHtml(item.Incident_ID)}" class="${item.Incident_ID === state.selectedId ? "selected" : ""}"><td><div class="table-title">${escapeHtml(item.Disease)}</div><div class="table-sub">${escapeHtml(item.Location_Label)}</div></td><td><span class="severity-badge ${String(item.Severity).toLowerCase()}" style="--severity-color:${severityColor(item.Severity)}">${escapeHtml(item.Severity)}</span></td><td>${escapeHtml(item.Trend)}</td><td>${escapeHtml(item.Confidence_Level)} (${item.Confidence_Score})</td><td>${item.Source_Count}</td><td>${item.Update_Count}</td><td>${escapeHtml(prettyDate(item.Date_Last_Updated))}</td></tr>`).join(""); el("tableView").innerHTML = `<table class="incident-table"><thead><tr><th>Incident</th><th>Severity</th><th>Trend</th><th>Confidence</th><th>Sources</th><th>Updates</th><th>Report date</th></tr></thead><tbody>${rows || '<tr><td colspan="7">No matching incidents</td></tr>'}</tbody></table>`; }
+
+      function renderDrawer() {
+        const report = savedReport(), item = report || state.incidents.find(row => row.Incident_ID === state.selectedId);
+        el("drawerPlaceholder").textContent = state.missing ? "This saved incident is no longer in the current dataset." : "Select an incident to inspect its evidence.";
+        el("drawerPlaceholder").hidden = Boolean(item); el("drawerContent").hidden = !item; if (!item) return;
+        const dColor = diseaseColor(item.Disease), sevColor = severityColor(item.Severity), tColor = trendColor(item.Trend), evidence = item.Evidence || [], latest = evidence[0] || {}, watched = state.watchlist.has(state.selectedId);
+        el("drawerOrb").innerHTML = `<i class="${diseaseIcon(item.Disease)}"></i>`; el("drawerTitle").textContent = item.Disease;
+        el("drawerSeverity").textContent = item.Severity; el("drawerSeverity").className = `severity-badge ${String(item.Severity).toLowerCase()}`; el("drawerSeverity").style.setProperty("--severity-color", sevColor);
+        el("drawerTrend").style.setProperty("--trend-color", tColor); el("drawerTrend").innerHTML = `<i class="bi ${trendIcon(item.Trend)}"></i>${escapeHtml(item.Trend)}`;
+        el("drawerMeta").innerHTML = `<span>${escapeHtml(item.Location_Label)}</span><span><i class="bi bi-calendar-event"></i>${report ? "Saved report" : item.Update_Count === 1 ? "Source report" : "Latest report"} ${escapeHtml(prettyDate(item.Date_Last_Updated))}</span>`;
+        el("drawerWatch").classList.toggle("active", watched); el("drawerWatch").innerHTML = `<i class="bi ${watched ? "bi-bell-fill" : "bi-bell"}"></i><span>${watched ? "Following" : "Follow"}</span>`; el("openLatest").href = safeUrl(latest.Source_URL); el("openLatest").querySelector("span").textContent = report ? "Open source report" : "Open latest report";
+        el("finding").textContent = item.Trend === "Historical" ? "This report is historical. It does not establish the current outbreak trend." : item.Trend_Rationale || "The available evidence does not establish a direction.";
+        const reasons = [...new Set([...(item.Severity_Rationale || []), ...(item.Confidence_Rationale || [])])];
+        el("reasonList").innerHTML = reasons.map(reason => `<li>${escapeHtml(reason)}</li>`).join("");
+        el("precisionNote").textContent = "Map precision: " + (item.Geographic_Precision || "Unknown") + ". Not a facility location.";
+        el("drawerConfidenceDots").innerHTML = confidenceDots(item.Confidence_Score, true); el("drawerConfidenceLabel").textContent = `${item.Confidence_Level} confidence (${item.Confidence_Score}/100)`;
+        el("evidenceCounts").textContent = countLabel(item.Update_Count, "report") + " from " + countLabel(item.Source_Count, "source feed") + ".";
+        el("authoritiesHeading").textContent = `Reporting feeds (${item.Source_Count})`; el("authorityList").innerHTML = (item.Sources || []).slice(0,5).map(source => `<div class="authority-row"><span class="authority-icon"><i class="bi bi-shield-check"></i></span><span class="authority-name">${escapeHtml(source)}</span><i class="bi bi-check-circle"></i></div>`).join("");
+        const evidenceLink = row => `<article class="report-entry"><div class="report-byline">${escapeHtml(row.Source_Name || "Source unavailable")} &middot; ${escapeHtml(prettyDate(row.Date))}</div><strong>${escapeHtml(row.Title || "Authority report")}</strong><a href="${safeUrl(row.Source_URL)}" target="_blank" rel="noopener noreferrer">Read source report <i class="bi bi-box-arrow-up-right"></i></a></article>`;
+        el("latestEvidence").innerHTML = evidence.length ? evidenceLink(latest) : "No linked report";
+        el("historyDetails").hidden = evidence.length < 2;
+        el("historyLabel").textContent = "Earlier reports (" + (evidence.length - 1) + ")";
+        el("timeline").innerHTML = evidence.slice(1).map(evidenceLink).join("");
+        el("collapseDrawer").innerHTML = `<i class="bi ${state.drawerCollapsed ? "bi-chevron-down" : "bi-chevron-up"}"></i>`;
+      }
+      function renderFooter() {
+        const meta = state.payload?.metadata || {}, statuses = meta.source_status || [], quality = meta.quality || {}, healthy = quality.sources_ok ?? statuses.filter(row => row.status === "ok").length;
+        el("severitySummary").innerHTML = ["Critical","High","Moderate","Low"].map(severity => `<span class="severity-stat" style="--stat-color:${severityColor(severity)}">${severity} ${state.incidents.filter(item => item.Severity === severity).length}</span>`).join("");
+      }
+      function renderView() { const mobile = innerWidth <= 820, showMap = state.view === "map"; el("mapViewButton").classList.toggle("active", showMap); el("listViewButton").classList.toggle("active", !showMap); el("mapViewButton").setAttribute("aria-pressed", String(showMap)); el("listViewButton").setAttribute("aria-pressed", String(!showMap)); el("tableView").classList.toggle("visible", !showMap && !mobile); if (mobile) { el("ledgerPanel").classList.toggle("mobile-hidden", showMap); el("atlas").classList.toggle("mobile-hidden", !showMap); } else { el("ledgerPanel").classList.remove("mobile-hidden"); el("atlas").classList.remove("mobile-hidden"); } if (showMap) setTimeout(() => { map.invalidateSize(); map.panInsideBounds(WORLD_BOUNDS, { animate: false }); }, 60); }
+
+      function selectIncident(id) { state.bookmark = null; state.missing = null; state.selectedId = id; state.drawerCollapsed = false; document.body.classList.remove("drawer-collapsed"); renderLedger(); renderMap(false); renderTable(); renderDrawer(); updateUrl(); if (innerWidth <= 820) el("evidenceDrawer").classList.add("open"); const marker = state.markers.get(id); if (state.view === "map" && marker) { const latlng = marker.getLatLng(); map.panInsideBounds(WORLD_BOUNDS, { animate: false }); if (map.getBounds().contains(latlng)) map.panTo(latlng, { animate: true }); } }
+      function toggleWatch(id) { if (!id) return; if (state.watchlist.has(id)) state.watchlist.delete(id); else state.watchlist.add(id); writeStorage(WATCH_KEY, [...state.watchlist]); renderAll(false); showToast(state.watchlist.has(id) ? "Incident added to watchlist" : "Incident removed from watchlist"); }
+      function toggleFilterTray() { state.filterOpen = !state.filterOpen; el("filterTray").hidden = !state.filterOpen; el("filterButton").classList.toggle("active", state.filterOpen); el("filterButton").setAttribute("aria-expanded", String(state.filterOpen)); if (state.filterOpen) el("searchInput").focus(); }
+      function resetFilters() { state.bookmark = null; state.missing = null; el("searchInput").value = ""; el("severityFilter").value = "all"; el("trendFilter").value = "all"; el("confidenceFilter").value = "all"; el("sortFilter").value = "priority"; state.watchOnly = false; state.page = 1; state.selectedId = null; renderAll(true); }
+      function updateUrl() { const params = new URLSearchParams(), values = { q: el("searchInput").value.trim(), severity: el("severityFilter").value, trend: el("trendFilter").value, confidence: el("confidenceFilter").value, sort: el("sortFilter").value }; Object.entries(values).forEach(([key,value]) => { if (value && value !== "all" && value !== "priority") params.set(key,value); }); if (state.watchOnly) params.set("watch","1"); if (state.selectedId || state.missing) params.set("incident",savedReport() ? state.bookmark : state.selectedId || state.missing); history.replaceState(null,"",`${location.pathname}${params.size ? `?${params}` : ""}${location.hash}`); }
+      async function shareView() { try { const data = { title: "ObiCRM Atlas", text: `${state.filtered.length} outbreak incidents`, url: location.href }; if (navigator.share) await navigator.share(data); else { await navigator.clipboard.writeText(location.href); showToast("Current view link copied"); } } catch (error) { if (error.name !== "AbortError") showToast("Unable to share this view"); } }
+      function exportCsv() { const fields = ["Incident ID","Disease","Location","Severity","Trend","Confidence","Confidence score","Sources","Updates","Latest update"], rows = state.filtered.map(row => [row.Incident_ID,row.Disease,row.Location_Label,row.Severity,row.Trend,row.Confidence_Level,row.Confidence_Score,row.Source_Count,row.Update_Count,row.Date_Last_Updated]), csv = [fields,...rows].map(row => row.map(value => `"${String(value ?? "").replace(/"/g,'""')}"`).join(",")).join("\r\n"), link = document.createElement("a"); link.href = URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"})); link.download = `analyst-atlas-${new Date().toISOString().slice(0,10)}.csv`; link.click(); URL.revokeObjectURL(link.href); showToast(`Exported ${rows.length} incidents`); }
+      function renderHealthDialog() { const meta = state.payload?.metadata || {}, quality = meta.quality || {}, statuses = meta.source_status || []; el("healthDialogBody").innerHTML = `<div class="health-metrics"><div class="health-metric"><strong>${quality.score ?? "--"}</strong><span>Quality score</span></div><div class="health-metric"><strong>${quality.sources_ok ?? "--"}/${meta.source_count ?? statuses.length}</strong><span>Sources current</span></div><div class="health-metric"><strong>${meta.incident_count ?? state.incidents.length}</strong><span>Incidents</span></div><div class="health-metric"><strong>${meta.signals_merged ?? "--"}</strong><span>Signals merged</span></div></div><div style="overflow:auto"><table class="source-table"><thead><tr><th>Authority source</th><th>State</th><th>Items</th><th>Signals</th><th>Diagnostic</th></tr></thead><tbody>${statuses.map(row => { const cls = row.status === "ok" ? "" : row.status === "using_last_known_good" ? "warning" : "error", label = row.status === "ok" ? "Current" : row.status === "using_last_known_good" ? "Last known good" : "Unavailable"; return `<tr><td><strong>${escapeHtml(row.name)}</strong></td><td><span class="source-state ${cls}"><i class="bi bi-circle-fill"></i>${label}</span></td><td>${row.items_seen ?? 0}</td><td>${(row.features_added ?? 0)+(row.features_carried_forward ?? 0)}</td><td>${escapeHtml(row.error || "No reported issue")}</td></tr>`; }).join("")}</tbody></table></div><p class="method-note">${escapeHtml(meta.methodology || "Daily automated screening of linked public-health sources.")} Directional trends are keyword-based summaries of linked authority language and should be verified against the evidence timeline.</p>`; }
+      function openDialog(dialog) { if (dialog === el("healthDialog")) renderHealthDialog(); if (!dialog.open) dialog.showModal(); }
+      let toastTimer; function showToast(message) { clearTimeout(toastTimer); el("toast").textContent = message; el("toast").classList.add("visible"); toastTimer = setTimeout(() => el("toast").classList.remove("visible"),2200); }
+
+      ["searchInput","severityFilter","trendFilter","confidenceFilter","sortFilter"].forEach(id => el(id).addEventListener(id === "searchInput" ? "input" : "change", () => { state.page = 1; renderAll(false); }));
+      el("filterButton").addEventListener("click", toggleFilterTray); el("resetFilters").addEventListener("click", resetFilters);
+      el("watchFilter").addEventListener("click", () => { state.watchOnly = !state.watchOnly; state.page = 1; el("watchFilter").classList.toggle("active",state.watchOnly); el("watchFilter").setAttribute("aria-pressed",String(state.watchOnly)); renderAll(false); });
+      el("watchlistButton").addEventListener("click", () => { state.watchOnly = !state.watchOnly; state.page = 1; el("watchFilter").classList.toggle("active",state.watchOnly); el("watchFilter").setAttribute("aria-pressed",String(state.watchOnly)); renderAll(false); });
+      el("incidentList").addEventListener("click", event => { const row = event.target.closest("[data-incident]"); if (row) selectIncident(row.dataset.incident); });
+      el("incidentList").addEventListener("keydown", event => { const row = event.target.closest("[data-incident]"); if (row && ["Enter"," "].includes(event.key)) { event.preventDefault(); selectIncident(row.dataset.incident); } });
+      el("pagerControls").addEventListener("click", event => { const button = event.target.closest("[data-page]"); if (!button || button.disabled) return; state.page = Number(button.dataset.page); renderLedger(); el("incidentList").focus(); });
+      el("sidebarToggle").addEventListener("click", () => { state.sidebarCollapsed = !state.sidebarCollapsed; document.body.classList.toggle("sidebar-collapsed",state.sidebarCollapsed); el("sidebarToggle").innerHTML = `<i class="bi ${state.sidebarCollapsed ? "bi-chevron-right" : "bi-chevron-left"}"></i>`; el("sidebarToggle").title = state.sidebarCollapsed ? "Expand incident ledger" : "Collapse incident ledger"; setTimeout(() => map.invalidateSize(),80); });
+      el("mapViewButton").addEventListener("click", () => { state.view = "map"; renderView(); }); el("listViewButton").addEventListener("click", () => { state.view = "list"; renderView(); }); el("mobileMapButton").addEventListener("click", () => { state.view = "map"; renderView(); });
+      el("tableView").addEventListener("click", event => { const row = event.target.closest("[data-incident]"); if (row) selectIncident(row.dataset.incident); });
+      el("collapseDrawer").addEventListener("click", () => { state.drawerCollapsed = !state.drawerCollapsed; document.body.classList.toggle("drawer-collapsed",state.drawerCollapsed); renderDrawer(); setTimeout(() => map.invalidateSize(),80); });
+      el("closeDrawer").addEventListener("click", () => { if (innerWidth <= 820) el("evidenceDrawer").classList.remove("open"); else { state.drawerCollapsed = true; document.body.classList.add("drawer-collapsed"); renderDrawer(); setTimeout(() => map.invalidateSize(),80); } });
+      el("drawerWatch").addEventListener("click", () => toggleWatch(state.selectedId)); el("openLatest").addEventListener("click", event => { if (el("openLatest").href.endsWith("#")) event.preventDefault(); });
+      el("healthButton").addEventListener("click", () => openDialog(el("healthDialog"))); el("refreshButton").addEventListener("click", () => loadData(true)); el("shareButton").addEventListener("click",shareView); el("exportButton").addEventListener("click",exportCsv); el("menuButton").addEventListener("click",() => openDialog(el("menuDialog")));
+      el("menuShare").addEventListener("click",() => { el("menuDialog").close(); shareView(); }); el("menuExport").addEventListener("click",() => { el("menuDialog").close(); exportCsv(); }); el("menuHealth").addEventListener("click",() => { el("menuDialog").close(); openDialog(el("healthDialog")); }); el("menuReset").addEventListener("click",() => { el("menuDialog").close(); resetFilters(); });
+      document.querySelectorAll("[data-close-dialog]").forEach(button => button.addEventListener("click",() => button.closest("dialog").close())); document.querySelectorAll("dialog").forEach(dialog => dialog.addEventListener("click",event => { if (event.target === dialog) dialog.close(); }));
+      window.addEventListener("resize",() => { renderView(); map.setMinZoom(innerWidth <= 820 ? 1 : 2); map.panInsideBounds(WORLD_BOUNDS,{animate:false}); setTimeout(() => map.invalidateSize(),80); });
+      document.addEventListener("visibilitychange",() => { if (!document.hidden && state.payload?.metadata?.generated_at && Date.now() - new Date(state.payload.metadata.generated_at).getTime() > 3600000) loadData(true); }); setInterval(() => { if (!document.hidden) loadData(true); },15*60*1000);
+      loadData();
+    })();
+  </script>
+</body>
+</html>
