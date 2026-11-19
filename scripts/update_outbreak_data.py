@@ -21,7 +21,9 @@ WINDOW_DAYS = int(os.environ.get("GOW_SIGNAL_WINDOW_DAYS", "210"))
 MAX_ITEMS = int(os.environ.get("GOW_MAX_ITEMS_PER_SOURCE", "45"))
 UA = "Mozilla/5.0 (compatible; GlobalOutbreakWatch/2.0; +https://github.com/Obi-agent/global-outbreak-watch-map)"
 DETAIL_CACHE = {}
+DETAIL_DATES = {}
 SEVERITY_RANK = {"Critical": 4, "High": 3, "Moderate": 2, "Low": 1}
+TREND_DAYS = 7
 
 SOURCES = [
     {"id":"who-don","name":"WHO Disease Outbreak News","type":"Global authority","adapter":"who","url":"https://cms.who.int/api/hubs/diseaseoutbreaknews?%24top=100&%24orderby=PublicationDateAndTime%20desc"},
@@ -97,6 +99,7 @@ def linked_context(source, title, url):
         DETAIL_CACHE[key] = title
         return title
 
+    DETAIL_DATES[key] = dt(meta_content(page, ["article:published_time", "og:published_time", "DC.date", "cdc:last_updated"]))
     if source["id"] == "paho-alerts":
         summary = meta_content(page, ["description", "og:description", "twitter:description"])
         DETAIL_CACHE[key] = tidy_summary(summary, fallback=title)
@@ -178,6 +181,11 @@ def dt(value):
     if not raw:
         return None
     try:
+        parsed = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+        return parsed if parsed.tzinfo else parsed.replace(tzinfo=timezone.utc)
+    except ValueError:
+        pass
+    try:
         parsed = email.utils.parsedate_to_datetime(raw)
         if parsed:
             return parsed if parsed.tzinfo else parsed.replace(tzinfo=timezone.utc)
@@ -189,7 +197,7 @@ def dt(value):
         except ValueError:
             pass
     m = re.search(r"\b(\d{1,2})\s+(Jan\w*|Feb\w*|Mar\w*|Apr\w*|May|Jun\w*|Jul\w*|Aug\w*|Sep\w*|Oct\w*|Nov\w*|Dec\w*)\s+(\d{4})\b", raw, re.I)
-    return dt(" ".join(m.groups())) if m else None
+    return dt(m.group()) if m and m.group() != raw else None
 
 def iso(value):
     return value.astimezone(timezone.utc).date().isoformat() if value else ""
@@ -208,7 +216,7 @@ def rss_items(source, text):
         if link_node is None:
             link_node = entry.find("a:link", ns)
         link = urllib.parse.urljoin(source["url"], link_node.get("href")) if link_node is not None and link_node.get("href") else source["url"]
-        out.append((title, summary, link, dt(entry.findtext("a:updated", namespaces=ns) or entry.findtext("a:published", namespaces=ns))))
+        out.append((title, summary, link, dt(entry.findtext("a:published", namespaces=ns)) or dt(entry.findtext("a:updated", namespaces=ns))))
     return [x for x in out if x[0]]
 
 def html_items(source, text):
@@ -221,9 +229,11 @@ def html_items(source, text):
             continue
         if source.get("must") and source["must"].lower() not in url.lower():
             continue
-        context_raw = text[m.end():min(len(text), m.end() + 900)]
-        context = tidy_summary(context_raw, fallback=title)
-        out.append((title, context, url, dt(context)))
+        if source["id"] in {"cdc-us-outbreaks", "cdc-int-outbreaks"} and not re.search(r"/(?:outbreak|investigation)[\w-]*/", urllib.parse.urlsplit(url).path, re.I):
+            continue
+        # Adjacent list items and narrative paragraphs can contain unrelated dates.
+        when = dt(title) if source["id"] in {"paho-alerts", "ukhsa-monitoring"} else None
+        out.append((title, title, url, when))
     return out
 
 def who_items(source, text):
@@ -233,17 +243,26 @@ def who_items(source, text):
         title = clean(e.get("Title") or e.get("OverrideTitle")); summary = clean(e.get("Summary") or e.get("Overview") or e.get("Assessment") or e.get("Advice"))
         path = str(e.get("ItemDefaultUrl") or "").lstrip("/")
         url = path if path.startswith("http") else urllib.parse.urljoin("https://www.who.int/emergencies/disease-outbreak-news/item/", path)
-        out.append((title, summary, url, dt(e.get("PublicationDateAndTime") or e.get("PublicationDate"))))
+        when = dt(e.get("PublicationDateAndTime")) or dt(e.get("FormattedDate")) or dt(e.get("PublicationDate"))
+        out.append((title, summary, url, when))
     return sorted([x for x in out if x[0]], key=lambda x: x[3] or datetime.min.replace(tzinfo=timezone.utc), reverse=True)
 
-def disease(text):
+def disease(text, summary=""):
     text = clean(re.sub(r"^Level\s+\d+\s*[-:]\s*", "", text, flags=re.I))
-    for pat, name in DISEASES:
-        if re.search(pat, text, re.I):
-            return name
-    guess = re.split(r"\s[-:|]\s|\bin\b", text, maxsplit=1, flags=re.I)[0]
-    guess = re.sub(r"\b(epidemiological|alert|update|outbreak|disease outbreak news)\b", "", guess, flags=re.I)
-    return clean(guess)[:80] or "Disease signal"
+    if re.search(r"communicable disease threats report", text, re.I):
+        return "Multi-disease surveillance report"
+    for field in (text, summary):
+        if re.search(r"bundibugyo", field, re.I):
+            return "Ebola disease caused by Bundibugyo virus"
+        matches = {name for pat, name in DISEASES if re.search(pat, field, re.I)}
+        if len(matches) == 1:
+            return matches.pop()
+        if matches:
+            return "Multi-disease report"
+    subject = re.split(r"\s[-\u2013\u2014|]\s|\bin\b", text, maxsplit=1, flags=re.I)[0].strip()
+    if len(subject.split()) <= 6 and re.fullmatch(r"[\w ()/-]{3,65}", subject) and re.search(r"(?:virus|fever|pneumonia|influenza|syndrome|infection)$", subject, re.I):
+        return subject
+    return "Unspecified disease"
 
 def places(text, default=None):
     hay = " " + re.sub(r"[-_/]", " ", clean(text)) + " "
@@ -278,7 +297,7 @@ def signal_places(source, title, summary):
     return places(location_context, source.get("default"))
 
 def known_disease(name):
-    return any(canonical == name for _, canonical in DISEASES)
+    return name == "Ebola disease caused by Bundibugyo virus" or any(canonical == name for _, canonical in DISEASES)
 
 def label_is_suspicious(title):
     title = clean(title)
@@ -308,7 +327,7 @@ def confidence_assessment(source, name, place, summary, when):
     if known_disease(name):
         score += 15; reasons.append("The disease name matched the controlled outbreak vocabulary.")
     else:
-        reasons.append("The disease label was inferred from the source headline.")
+        reasons.append("The report does not have a single vocabulary-matched disease label.")
     if place in COORDS:
         score += 12; reasons.append("The signal names a country in the geographic index.")
     elif place in REGIONS and place != "Global":
@@ -334,7 +353,7 @@ def quality_assessment(title, summary, name, place, when):
     if summary == title or len(summary) < 80:
         score -= 15; notes.append("Limited source synopsis.")
     if not when:
-        score -= 12; notes.append("Publication date unavailable; refresh time used.")
+        score -= 12; notes.append("Source report date unavailable.")
     if label_is_suspicious(title):
         score -= 60; notes.append("Headline resembles navigation, markup, or a non-signal label.")
     score = max(0, score)
@@ -353,11 +372,9 @@ def coord(place):
 
 def feature(source, title, summary, url, when, place, offset, now):
     summary = tidy_summary(summary, fallback=title)
-    name_source = summary if summary and summary != title else title
-    text = title if summary == title else f"{summary} {title}"; name = disease(name_source); lon, lat = coord(place)
+    text = title if summary == title else f"{summary} {title}"; name = disease(title, summary); lon, lat = coord(place)
     h = hashlib.sha1(f"{source['id']}|{url}|{place}|{name}".encode()).hexdigest()[:10]
-    published_when = when
-    effective_when = when or now
+    published_when = when if when and iso(when) <= iso(now) else None
     snap = tidy_summary(summary or title, fallback=title)
     if len(snap) > 540: snap = snap[:540].rsplit(" ",1)[0] + "..."
     severity, severity_reasons = severity_assessment(name, text)
@@ -367,11 +384,11 @@ def feature(source, title, summary, url, when, place, offset, now):
     return {
         "type":"Feature",
         "properties":{
-            "Outbreak_ID":f"{iso(effective_when)}-{source['id']}-{h}","Threat":name,"Disease":name,
+            "Outbreak_ID":f"{source['id']}-{h}","Threat":name,"Disease":name,
             "Country":place,"Location_Label":place,"Geographic_Precision":precision,
             "Status":status(title, summary),"Signal_Status":status(title, summary),
             "Severity":severity,"Severity_Rationale":severity_reasons,
-            "Date_First_Noted":iso(effective_when),"Date_Last_Updated":iso(effective_when),
+            "Date_First_Noted":iso(published_when),"Date_Last_Updated":iso(published_when),
             "Source_ID":source["id"],"Source_Name":source["name"],"Source_Type":source["type"],"Source_URL":url,
             "Confidence":f"{confidence_level} ({confidence_score}/100)","Confidence_Level":confidence_level,
             "Confidence_Score":confidence_score,"Confidence_Rationale":confidence_reasons,
@@ -385,7 +402,7 @@ def feature(source, title, summary, url, when, place, offset, now):
 
 def parse_iso_date(value):
     try:
-        return datetime.fromisoformat(str(value).replace("Z", "+00:00")).astimezone(timezone.utc)
+        return dt(value)
     except Exception:
         return None
 
@@ -433,18 +450,22 @@ def carry_forward_features(previous, source, now, seen):
     return carried
 
 def trend_assessment(properties, incident_status, now):
-    latest = sorted(properties, key=lambda item: item.get("Date_Last_Updated", ""), reverse=True)[:8]
+    dated = [p for p in properties if p.get("Date_Last_Updated") and not p.get("Is_Stale")]
+    last = max((p["Date_Last_Updated"] for p in dated), default="")
+    parsed = dt(last)
+    if not parsed or iso(parsed) > iso(now):
+        return "Not assessed", "No verified report date from a currently available source."
+    if (now.date() - parsed.date()).days > TREND_DAYS:
+        return "Historical", f"Latest dated evidence is outside the {TREND_DAYS}-day trend window. Current direction is unknown."
+    latest = [p for p in dated if p["Date_Last_Updated"] == last]
     text = " ".join(f"{item.get('Title', '')} {item.get('Situation_Snapshot', '')}" for item in latest).lower()
-    if incident_status == "Closed" or re.search(r"no new cases|zero new cases|declin|decreas|contained|under control|declared over|end of (?:the )?outbreak|\bresolved\b", text):
+    if re.search(r"no new cases|zero new cases|declin|decreas|contained|under control|declared over|end of (?:the )?outbreak|\bresolved\b", text):
         return "Improving", "The latest linked authority language reports no new cases, decline, containment, or closure."
-    if re.search(r"increase(?:d|s)?\s+(?:of|by|from|in)\b|\bsurge\b|\brising\b|escalat|rapid spread|cross-border|new (?:areas|regions|countries|deaths)|public health emergency|\bpheic\b", text):
+    if re.search(r"increase(?:d|s)?\s+(?:of|by|from|in)\b|\bsurge\b|\brising\b|escalat|rapid spread|new (?:areas|regions|countries|deaths)", text):
         return "Worsening", "Recent authority language indicates rising burden, wider spread, escalation, or emergency status."
-    if re.search(r"\bnew cases\b|additional cases|continued transmission|outbreak (?:was )?declared|confirmed cases|case count", text):
+    if re.search(r"\bnew cases\b|additional cases|outbreak (?:was )?declared", text):
         return "Increasing", "Recent authority language reports new or additional cases, continued transmission, or a newly declared outbreak."
-    last_updated = max((item.get("Date_Last_Updated", "") for item in properties), default="")
-    parsed = parse_iso_date(last_updated)
-    age = (now - parsed).days if parsed else WINDOW_DAYS
-    return "Stable", f"No directional change language was detected in linked authority updates; the latest signal is {age} days old."
+    return "Not assessed", "The latest dated report does not establish a direction."
 
 def build_incidents(features, now):
     if not features:
@@ -468,6 +489,8 @@ def build_incidents(features, now):
             (disease_country, (disease_key, country_key)),
             (disease_url, (disease_key, url_key)),
         ):
+            if collection is disease_country and props["Disease"] in {"Unspecified disease", "Multi-disease report", "Multi-disease surveillance report"}:
+                continue
             if not all(key):
                 continue
             if key in collection:
@@ -483,7 +506,10 @@ def build_incidents(features, now):
         disease_name = props[0].get("Disease", "Disease signal")
         countries = sorted(dict.fromkeys(p.get("Country", "Global") for p in props))
         sources = sorted(dict.fromkeys(p.get("Source_Name", "Unknown source") for p in props))
-        severest = max((p.get("Severity", "Low") for p in props), key=lambda value: SEVERITY_RANK.get(value, 0))
+        dated = [p for p in props if p.get("Date_Last_Updated") and not p.get("Is_Stale")]
+        as_of = max((p["Date_Last_Updated"] for p in dated), default="")
+        severity_reports = [p for p in dated if p["Date_Last_Updated"] == as_of] or props
+        severest = max((p.get("Severity", "Low") for p in severity_reports), key=lambda value: SEVERITY_RANK.get(value, 0))
         status_values = [p.get("Status", "Monitoring") for p in props]
         incident_status = "Open" if "Open" in status_values else "Monitoring" if "Monitoring" in status_values else "Closed"
         first_noted = min((p.get("Date_First_Noted", "") for p in props if p.get("Date_First_Noted")), default="")
@@ -498,10 +524,17 @@ def build_incidents(features, now):
         lon = round(sum(point[0] for point in coordinates) / len(coordinates), 4)
         lat = round(sum(point[1] for point in coordinates) / len(coordinates), 4)
         identity = f"{disease_name.lower()}|{'|'.join(country.lower() for country in countries)}"
+        if disease_name in {"Unspecified disease", "Multi-disease report", "Multi-disease surveillance report"}:
+            identity += "|" + props[0]["Source_URL"]
         incident_id = "INC-" + hashlib.sha1(identity.encode()).hexdigest()[:10].upper()
         evidence = []
+        seen_reports = set()
         for item in sorted(items, key=lambda row: row["properties"].get("Date_Last_Updated", ""), reverse=True):
             p = item["properties"]
+            report_key = (p["Source_Name"], p["Source_URL"])
+            if report_key in seen_reports:
+                continue
+            seen_reports.add(report_key)
             evidence.append({
                 "Signal_ID":p.get("Outbreak_ID"),"Title":p.get("Title"),"Date":p.get("Date_Last_Updated"),
                 "Source_Name":p.get("Source_Name"),"Source_Type":p.get("Source_Type"),"Source_URL":p.get("Source_URL"),
@@ -513,17 +546,37 @@ def build_incidents(features, now):
             "Incident_ID":incident_id,"Title":f"{disease_name} - {location_label}","Disease":disease_name,
             "Countries":countries,"Location_Label":location_label,"Coordinates":[lon,lat],
             "Geographic_Precision":geographic_precision,
-            "Severity":severest,"Status":incident_status,"Trend":trend,"Trend_Rationale":trend_reason,
+            "Severity":severest,"Status":incident_status,"Trend":trend,"Trend_Rationale":trend_reason,"Trend_As_Of":as_of,
             "Confidence_Level":confidence_level,"Confidence_Score":confidence_score,
-            "Quality_Score":quality_score,"Source_Count":len(sources),"Update_Count":len(items),
+            "Quality_Score":quality_score,"Source_Count":len(sources),"Update_Count":len(evidence),
             "Sources":sources,"Date_First_Noted":first_noted,"Date_Last_Updated":last_updated,
             "Has_Stale_Evidence":any(p.get("Is_Stale") for p in props),
-            "Severity_Rationale":list(dict.fromkeys(reason for p in props for reason in p.get("Severity_Rationale", []))),
+            "Severity_Rationale":list(dict.fromkeys(reason for p in severity_reports if p["Severity"] == severest for reason in p.get("Severity_Rationale", []))),
             "Confidence_Rationale":list(dict.fromkeys(reason for p in props for reason in p.get("Confidence_Rationale", []))),
             "Evidence":evidence
         })
     incidents.sort(key=lambda item: (SEVERITY_RANK.get(item["Severity"], 0), item["Date_Last_Updated"]), reverse=True)
     return incidents
+
+def saved_report_views(previous, features, incidents, now):
+    # Bookmarks to a single bulletin retain that scope even after regrouping.
+    candidates = dict(previous.get("metadata", {}).get("saved_reports", {}))
+    current_ids = {row["Incident_ID"] for row in incidents}
+    for old in previous.get("incidents", []):
+        urls = {e.get("Source_URL") for e in old.get("Evidence", [])}
+        if len(urls) == 1 and old["Incident_ID"] not in current_ids:
+            candidates[old["Incident_ID"]] = {"url":urls.pop(), "countries":old["Countries"]}
+    saved = {}
+    for key, entry in candidates.items():
+        matching = [f for f in features if f["properties"]["Source_URL"] == entry["url"] and f["properties"]["Country"] in entry["countries"]]
+        views = build_incidents(matching, now)
+        if len(views) != 1 or key in current_ids:
+            continue
+        view = views[0]
+        parent = next((row["Incident_ID"] for row in incidents if row["Disease"] == view["Disease"] and any(e["Source_URL"] == entry["url"] for e in row["Evidence"])), None)
+        if parent:
+            saved[key] = {"url":entry["url"], "countries":entry["countries"], "parent":parent, "report":view}
+    return saved
 
 def build_quality_summary(features, incidents, statuses):
     source_ok = sum(1 for row in statuses if row["status"] == "ok")
@@ -558,6 +611,7 @@ def main():
                 summary = tidy_summary(summary, fallback=title)
                 if source["adapter"] == "html" and summary == title:
                     summary = linked_context(source, title, url)
+                    when = DETAIL_DATES.get((source["id"], url)) or when
                 alltext = f"{title} {summary}"
                 if label_is_suspicious(title):
                     st["skipped_noisy"] += 1
@@ -593,7 +647,8 @@ def main():
     history = [entry for entry in history if entry.get("date") != iso(now)][-13:]
     history.append({"date":iso(now),"score":quality["score"],"status":quality["status"],"incidents":len(incidents),"signals":len(feats),"sources_ok":quality["sources_ok"]})
     meta = {
-        "generated_at":now.isoformat(),"generated_by":"scripts/update_outbreak_data.py","schema_version":"2.0",
+        "generated_at":now.isoformat(),"generated_by":"scripts/update_outbreak_data.py","schema_version":"3.0",
+        "saved_reports":saved_report_views(previous, feats, incidents, now),"trend_window_days":TREND_DAYS,
         "feature_count":len(feats),"incident_count":len(incidents),"signals_merged":len(feats)-len(incidents),
         "source_count":len(SOURCES),"signal_window_days":WINDOW_DAYS,
         "methodology":"Automated daily scan of official public-health feeds. Signals are quality-screened, geocoded, and grouped into explainable incidents. Linked authority evidence remains the source of truth.",

@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-11-19T14:27:37.646987+00:00",
-  "feature_count": 169,
-  "incident_count": 58,
+  "generated_at": "2026-11-19T15:44:00.170077+00:00",
+  "feature_count": 160,
+  "incident_count": 54,
   "source_count": 8,
   "quality": {
     "status": "Healthy",
-    "score": 96,
-    "feature_quality_score": 90,
+    "score": 97,
+    "feature_quality_score": 94,
     "source_health_score": 100,
     "sources_ok": 8,
     "sources_last_known_good": 0,
     "sources_error": 0,
-    "signals_current": 169,
+    "signals_current": 160,
     "signals_last_known_good": 0,
-    "signals_quarantined": 15,
+    "signals_quarantined": 1,
     "signals_rejected_noisy": 1,
-    "incidents": 58
+    "incidents": 54
   },
   "quality_history": [
     {
@@ -124,10 +124,10 @@
     },
     {
       "date": "2026-11-19",
-      "score": 96,
+      "score": 97,
       "status": "Healthy",
-      "incidents": 58,
-      "signals": 169,
+      "incidents": 54,
+      "signals": 160,
       "sources_ok": 8
     }
   ],
@@ -139,12 +139,12 @@
       "url": "https://cms.who.int/api/hubs/diseaseoutbreaknews?%24top=100&%24orderby=PublicationDateAndTime%20desc",
       "status": "ok",
       "items_seen": 100,
-      "features_added": 60,
+      "features_added": 42,
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 2.95,
-      "last_success_at": "2026-11-19T14:27:37.646987+00:00"
+      "elapsed_seconds": 2.62,
+      "last_success_at": "2026-11-19T15:44:00.170077+00:00"
     },
     {
       "id": "cdc-travel",
@@ -157,8 +157,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.07,
-      "last_success_at": "2026-11-19T14:27:37.646987+00:00"
+      "elapsed_seconds": 0.15,
+      "last_success_at": "2026-11-19T15:44:00.170077+00:00"
     },
     {
       "id": "cdc-us-outbreaks",
@@ -166,13 +166,13 @@
       "type": "National authority",
       "url": "https://www.cdc.gov/outbreaks/rss/us-outbreaks.html",
       "status": "ok",
-      "items_seen": 7,
-      "features_added": 6,
+      "items_seen": 5,
+      "features_added": 4,
       "features_carried_forward": 0,
       "skipped_noisy": 0,
-      "skipped_quarantined": 1,
-      "elapsed_seconds": 0.03,
-      "last_success_at": "2026-11-19T14:27:37.646987+00:00"
+      "skipped_quarantined": 0,
+      "elapsed_seconds": 0.42,
+      "last_success_at": "2026-11-19T15:44:00.170077+00:00"
     },
     {
       "id": "cdc-int-outbreaks",
@@ -180,13 +180,13 @@
       "type": "National authority",
       "url": "https://www.cdc.gov/outbreaks/rss/int-outbreaks.html",
       "status": "ok",
-      "items_seen": 3,
-      "features_added": 1,
+      "items_seen": 1,
+      "features_added": 0,
       "features_carried_forward": 0,
       "skipped_noisy": 0,
-      "skipped_quarantined": 2,
-      "elapsed_seconds": 0.35,
-      "last_success_at": "2026-11-19T14:27:37.646987+00:00"
+      "skipped_quarantined": 1,
+      "elapsed_seconds": 4.69,
+      "last_success_at": "2026-11-19T15:44:00.170077+00:00"
     },
     {
       "id": "ecdc-cdtr",
@@ -199,8 +199,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.64,
-      "last_success_at": "2026-11-19T14:27:37.646987+00:00"
+      "elapsed_seconds": 0.13,
+      "last_success_at": "2026-11-19T15:44:00.170077+00:00"
     },
     {
       "id": "paho-alerts",
@@ -209,12 +209,12 @@
       "url": "https://www.paho.org/en/epidemiological-alerts-and-updates",
       "status": "ok",
       "items_seen": 17,
-      "features_added": 6,
+      "features_added": 13,
       "features_carried_forward": 0,
       "skipped_noisy": 1,
-      "skipped_quarantined": 9,
-      "elapsed_seconds": 4.21,
-      "last_success_at": "2026-11-19T14:27:37.646987+00:00"
+      "skipped_quarantined": 0,
+      "elapsed_seconds": 16.13,
+      "last_success_at": "2026-11-19T15:44:00.170077+00:00"
     },
     {
       "id": "ukhsa-news",
@@ -223,12 +223,12 @@
       "url": "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=uk-health-security-agency",
       "status": "ok",
       "items_seen": 20,
-      "features_added": 4,
+      "features_added": 7,
       "features_carried_forward": 0,
       "skipped_noisy": 0,
-      "skipped_quarantined": 3,
-      "elapsed_seconds": 0.08,
-      "last_success_at": "2026-11-19T14:27:37.646987+00:00"
+      "skipped_quarantined": 0,
+      "elapsed_seconds": 0.06,
+      "last_success_at": "2026-11-19T15:44:00.170077+00:00"
     },
     {
       "id": "ukhsa-monitoring",
@@ -236,13 +236,13 @@
       "type": "National authority",
       "url": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026",
       "status": "ok",
-      "items_seen": 43,
-      "features_added": 54,
+      "items_seen": 44,
+      "features_added": 56,
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 19.1,
-      "last_success_at": "2026-11-19T14:27:37.646987+00:00"
+      "elapsed_seconds": 2.49,
+      "last_success_at": "2026-11-19T15:44:00.170077+00:00"
     }
   ]
 }

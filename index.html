@@ -335,7 +335,7 @@
       .drawer-head { padding: 0 9px; }
       .collapse-drawer { display: none; }
       .drawer-title-line h2 { max-width: 190px; font-size: 12px; }
-      .drawer-title-line .severity-badge, .drawer-trend { display: none; }
+      .drawer-title-line .severity-badge { display: none; }
       .drawer-meta span:nth-child(-n+2) { display: none; }
       .drawer-actions .primary-link, .drawer-actions .outline-button span { display: none; }
       .drawer-actions .outline-button { min-width: 34px; width: 34px; padding: 0; }
@@ -389,14 +389,14 @@
         <label class="filter-search"><span class="sr-only">Search incidents</span><i class="bi bi-search"></i><input id="searchInput" type="search" placeholder="Search disease, place, or source" autocomplete="off"></label>
         <div class="filter-grid">
           <label><span class="sr-only">Severity</span><select id="severityFilter"><option value="all">All severities</option><option>Critical</option><option>High</option><option>Moderate</option><option>Low</option></select></label>
-          <label><span class="sr-only">Trend</span><select id="trendFilter"><option value="all">All trends</option><option>Worsening</option><option>Increasing</option><option>Stable</option><option>Improving</option></select></label>
+          <label><span class="sr-only">Trend</span><select id="trendFilter"><option value="all">All trends</option><option>Worsening</option><option>Increasing</option><option>Not assessed</option><option>Historical</option><option>Improving</option></select></label>
           <label><span class="sr-only">Confidence</span><select id="confidenceFilter"><option value="all">All confidence</option><option>High</option><option>Moderate</option><option>Low</option></select></label>
           <label><span class="sr-only">Sort incidents</span><select id="sortFilter"><option value="priority">Priority order</option><option value="recent">Most recent</option><option value="confidence">Highest confidence</option><option value="sources">Most sources</option></select></label>
         </div>
         <div class="filter-foot"><button class="text-button watch-filter" id="watchFilter" type="button" aria-pressed="false"><i class="bi bi-star"></i> Watchlist only</button><button class="text-button" id="resetFilters" type="button">Reset filters</button></div>
       </div>
 
-      <div class="ledger-head" aria-hidden="true"><span>Incident</span><span>Severity</span><span>Trend</span><span>Confidence</span><span>Updated <i class="bi bi-arrow-down"></i></span></div>
+      <div class="ledger-head" aria-hidden="true"><span>Incident</span><span>Severity</span><span>Trend</span><span>Confidence</span><span>Report date <i class="bi bi-arrow-down"></i></span></div>
       <div class="incident-list" id="incidentList" tabindex="-1" aria-live="polite"></div>
       <div class="pager"><span class="pager-label" id="pagerLabel">Showing 0 incidents</span><div class="pager-controls" id="pagerControls"></div></div>
     </aside>
@@ -432,7 +432,7 @@
       </div>
       <div class="drawer-body">
         <div class="drawer-column"><h3 class="section-heading critical" id="whyHeading">Why this is critical</h3><ul class="reason-list" id="reasonList"></ul><div class="precision-note" id="precisionNote"></div></div>
-        <div class="drawer-column"><h3 class="section-heading purple">Confidence (evidence quality)</h3><div class="confidence-summary"><div class="confidence-dots large-dots" id="drawerConfidenceDots"></div><div class="confidence-copy"><strong id="drawerConfidenceLabel"></strong><span>Multiple linked, independently published authority signals.</span></div></div><h3 class="section-heading purple authorities-heading" id="authoritiesHeading">Corroborating authorities</h3><div class="authority-list" id="authorityList"></div></div>
+        <div class="drawer-column"><h3 class="section-heading purple">Confidence (evidence quality)</h3><div class="confidence-summary"><div class="confidence-dots large-dots" id="drawerConfidenceDots"></div><div class="confidence-copy"><strong id="drawerConfidenceLabel"></strong><span id="evidenceCounts"></span></div></div><h3 class="section-heading purple authorities-heading" id="authoritiesHeading">Reporting feeds</h3><div class="authority-list" id="authorityList"></div></div>
         <div class="drawer-column"><h3 class="section-heading">Update timeline (latest first)</h3><div class="timeline" id="timeline"></div><a class="view-all" id="viewAllUpdates" href="#"><span>View all updates</span><i class="bi bi-chevron-down"></i></a></div>
       </div>
     </div>
@@ -457,7 +457,7 @@
       "use strict";
 
       const DATA_URL = "gow_data.geojson";
-      const CACHE_KEY = "gow:last-known-good:v3";
+      const CACHE_KEY = "gow:last-known-good:v4";
       const WATCH_KEY = "gow:watchlist:v3";
       const PAGE_SIZE = 5;
       const SEVERITY_COLORS = { Critical: "#dc2f3e", High: "#f06a13", Moderate: "#f3b600", Low: "#129665" };
@@ -511,19 +511,20 @@
       function writeStorage(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* Storage can be unavailable. */ } }
       function escapeHtml(value) { return String(value ?? "").replace(/[&<>'"]/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char])); }
       function safeUrl(value) { try { const url = new URL(value, location.href); return ["http:", "https:"].includes(url.protocol) ? url.href : "#"; } catch { return "#"; } }
-      function prettyDate(value, options = { day: "2-digit", month: "short", year: "numeric" }) { if (!value) return "Date unavailable"; const date = new Date(value.length === 10 ? value + "T00:00:00Z" : value); return Number.isNaN(date.getTime()) ? "Date unavailable" : new Intl.DateTimeFormat("en-GB", options).format(date); }
+      function prettyDate(value, options = { day: "2-digit", month: "short", year: "numeric" }) { if (!value) return "Date unavailable"; const date = new Date(value.length === 10 ? value + "T00:00:00Z" : value); return Number.isNaN(date.getTime()) ? "Date unavailable" : new Intl.DateTimeFormat("en-GB", { ...options, timeZone: "UTC" }).format(date); }
+      function countLabel(n, noun) { return n + " " + noun + (n === 1 ? "" : "s"); }
       function prettyTime(value) { const date = new Date(value); return Number.isNaN(date.getTime()) ? "UTC" : new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "UTC" }).format(date) + " UTC"; }
       function relativeAge(value) { const date = new Date(value); if (Number.isNaN(date.getTime())) return "age unknown"; const hours = Math.max(0, Math.floor((Date.now() - date.getTime()) / 3600000)); if (hours < 1) return "refreshed within the hour"; if (hours < 24) return `refreshed ${hours}h ago`; return `refreshed ${Math.floor(hours / 24)}d ago`; }
       function severityColor(value) { return SEVERITY_COLORS[value] || SEVERITY_COLORS.Low; }
-      function trendColor(value) { return TREND_COLORS[value] || TREND_COLORS.Stable; }
-      function trendIcon(value) { return value === "Worsening" || value === "Increasing" ? "bi-arrow-up-right" : value === "Improving" ? "bi-arrow-down-left" : "bi-arrow-right"; }
+      function trendColor(value) { return TREND_COLORS[value] || "#616d79"; }
+      function trendIcon(value) { return value === "Worsening" || value === "Increasing" ? "bi-arrow-up-right" : value === "Improving" ? "bi-arrow-down-left" : value === "Historical" ? "bi-clock-history" : "bi-dash"; }
       function diseaseIcon(value) { const text = String(value).toLowerCase(); if (/ebola|bundibugyo|marburg|haemorrhagic|hemorrhagic|lassa/.test(text)) return "fa-solid fa-biohazard"; if (/cholera/.test(text)) return "fa-solid fa-droplet"; if (/dengue|yellow fever|oropouche|chikungunya/.test(text)) return "fa-solid fa-mosquito"; if (/avian|influenza|bird/.test(text)) return "fa-solid fa-crow"; if (/hantavirus/.test(text)) return "fa-solid fa-lungs-virus"; if (/nipah/.test(text)) return "fa-solid fa-head-side-virus"; if (/mpox/.test(text)) return "fa-solid fa-viruses"; if (/measles|polio|virus|covid|mers/.test(text)) return "fa-solid fa-virus"; if (/salmon|lister|botul/.test(text)) return "fa-solid fa-bacterium"; return "fa-solid fa-microscope"; }
       function diseaseColor(value) { const text = String(value).toLowerCase(); if (/ebola|bundibugyo|marburg|haemorrhagic|hemorrhagic|lassa/.test(text)) return "#e3383e"; if (/cholera/.test(text)) return "#0868cf"; if (/mpox/.test(text)) return "#7542b5"; if (/avian|influenza|dengue|yellow fever|oropouche/.test(text)) return "#129665"; return "#1269bb"; }
       function confidenceDots(score, large = false) { const filled = Math.max(1, Math.min(5, Math.round(Number(score || 0) / 20))); return `<span class="confidence-dots${large ? " large-dots" : ""}">${Array.from({ length: 5 }, (_, i) => `<span class="confidence-dot${i < filled ? " filled" : ""}"></span>`).join("")}</span>`; }
 
       function legacyIncidents(features) {
         return (features || []).map((feature, index) => { const p = feature.properties || {}; return {
-          Incident_ID: p.Outbreak_ID || `legacy-${index}`, Disease: p.Disease || p.Threat || "Disease signal", Countries: [p.Country || "Global"], Location_Label: p.Location_Label || p.Country || "Global", Coordinates: feature.geometry?.coordinates || [15,10], Geographic_Precision: p.Geographic_Precision === "Country" ? "Country centroid" : "Regional centroid", Severity: p.Severity || "Low", Status: p.Status || "Monitoring", Trend: "Stable", Trend_Rationale: "Legacy signal awaiting directional assessment.", Confidence_Level: p.Confidence_Level || "Moderate", Confidence_Score: p.Confidence_Score || 70, Quality_Score: p.Quality_Score || 70, Source_Count: 1, Update_Count: 1, Sources: [p.Source_Name || "Authority source"], Date_First_Noted: p.Date_First_Noted, Date_Last_Updated: p.Date_Last_Updated, Evidence: [{ Title: p.Title, Date: p.Date_Last_Updated, Source_Name: p.Source_Name, Source_Type: p.Source_Type, Source_URL: p.Source_URL, Snapshot: p.Situation_Snapshot, Country: p.Country }], Severity_Rationale: p.Severity_Rationale || ["Legacy severity classification."], Confidence_Rationale: p.Confidence_Rationale || ["Extracted from a linked authority signal."],
+          Incident_ID: p.Outbreak_ID || `legacy-${index}`, Disease: p.Disease || p.Threat || "Disease signal", Countries: [p.Country || "Global"], Location_Label: p.Location_Label || p.Country || "Global", Coordinates: feature.geometry?.coordinates || [15,10], Geographic_Precision: p.Geographic_Precision === "Country" ? "Country centroid" : "Regional centroid", Severity: p.Severity || "Low", Status: p.Status || "Monitoring", Trend: "Not assessed", Trend_Rationale: "Legacy signal awaiting directional assessment.", Confidence_Level: p.Confidence_Level || "Moderate", Confidence_Score: p.Confidence_Score || 70, Quality_Score: p.Quality_Score || 70, Source_Count: 1, Update_Count: 1, Sources: [p.Source_Name || "Authority source"], Date_First_Noted: p.Date_First_Noted, Date_Last_Updated: p.Date_Last_Updated, Evidence: [{ Title: p.Title, Date: p.Date_Last_Updated, Source_Name: p.Source_Name, Source_Type: p.Source_Type, Source_URL: p.Source_URL, Snapshot: p.Situation_Snapshot, Country: p.Country }], Severity_Rationale: p.Severity_Rationale || ["Legacy severity classification."], Confidence_Rationale: p.Confidence_Rationale || ["Extracted from a linked authority signal."],
         }; });
       }
 
@@ -533,7 +534,7 @@
           const response = await fetch(`${DATA_URL}${force ? `?t=${Date.now()}` : ""}`, { cache: force ? "no-store" : "default" });
           if (!response.ok) throw new Error(`Data request failed (${response.status})`);
           const payload = await response.json();
-          if (!Array.isArray(payload.incidents) && !Array.isArray(payload.features)) throw new Error("Data payload is incomplete");
+          if (payload.metadata?.schema_version !== "3.0" || !Array.isArray(payload.incidents)) throw new Error("Verified report dates are not available in this dataset");
           state.payload = payload; state.incidents = payload.incidents?.length ? payload.incidents : legacyIncidents(payload.features); state.usingCachedData = false;
           writeStorage(CACHE_KEY, { metadata: payload.metadata, incidents: state.incidents });
         } catch (error) {
@@ -544,10 +545,26 @@
         } finally {
           el("refreshButton").classList.remove("is-spinning"); el("refreshButton").disabled = false; el("loadingOverlay").hidden = true;
         }
+        // A saved dataset can outlive the trend window even when the network is down.
+        const today = Date.parse(new Date().toISOString().slice(0, 10));
+        const views = Object.values(state.payload.metadata?.saved_reports || {}).map(entry => entry.report);
+        for (const row of [...state.incidents, ...views]) {
+          if (row.Trend_As_Of && today - Date.parse(row.Trend_As_Of) > state.payload.metadata.trend_window_days * 86400000) {
+            row.Trend = "Historical";
+            row.Trend_Rationale = "The latest dated evidence is outside the trend window. Current direction is unknown.";
+          }
+        }
         applyUrlState(); renderAll(true);
       }
       function showFatal(message) { el("loadingOverlay").innerHTML = `<div class="loading-box"><i class="bi bi-exclamation-triangle"></i><span>${escapeHtml(message)}. No saved incident set is available.</span></div>`; }
-      function applyUrlState() { const params = new URLSearchParams(location.search); const mapIds = { severity: "severityFilter", trend: "trendFilter", confidence: "confidenceFilter", sort: "sortFilter" }; Object.entries(mapIds).forEach(([key,id]) => { const value = params.get(key); if (value && [...el(id).options].some(option => option.value === value)) el(id).value = value; }); if (params.get("q")) el("searchInput").value = params.get("q"); if (params.get("watch") === "1") state.watchOnly = true; const requested = params.get("incident"); if (requested && state.incidents.some(item => item.Incident_ID === requested)) state.selectedId = requested; }
+      function applyUrlState() { const params = new URLSearchParams(location.search); const mapIds = { severity: "severityFilter", trend: "trendFilter", confidence: "confidenceFilter", sort: "sortFilter" }; Object.entries(mapIds).forEach(([key,id]) => { const value = params.get(key); if (value && [...el(id).options].some(option => option.value === value)) el(id).value = value; }); if (params.get("q")) el("searchInput").value = params.get("q"); if (params.get("watch") === "1") state.watchOnly = true; const requested = params.get("incident");
+        const saved = state.payload.metadata?.saved_reports?.[requested];
+        state.bookmark = saved ? requested : null;
+        state.selectedId = saved?.parent || (state.incidents.some(item => item.Incident_ID === requested) ? requested : null);
+        state.missing = requested && !state.selectedId ? requested : null;
+        if (requested && state.selectedId && innerWidth <= 820) el("evidenceDrawer").classList.add("open");
+      }
+      function savedReport() { const saved = state.payload?.metadata?.saved_reports?.[state.bookmark]; return saved && saved.parent === state.selectedId ? saved.report : null; }
 
       function filteredIncidents() {
         const query = el("searchInput").value.trim().toLowerCase(), severity = el("severityFilter").value, trend = el("trendFilter").value, confidence = el("confidenceFilter").value, sort = el("sortFilter").value;
@@ -556,7 +573,7 @@
         return rows;
       }
       function renderAll(fit = false) {
-        state.filtered = filteredIncidents(); const mobile = innerWidth <= 820; const visible = state.filtered.some(item => item.Incident_ID === state.selectedId); if (!visible) state.selectedId = state.filtered.length && !mobile ? state.filtered[0].Incident_ID : null;
+        state.filtered = filteredIncidents(); const mobile = innerWidth <= 820; const visible = state.filtered.some(item => item.Incident_ID === state.selectedId); if (!visible) state.selectedId = state.filtered.length && !mobile && !state.missing ? state.filtered[0].Incident_ID : null;
         const pages = Math.max(1, Math.ceil(state.filtered.length / PAGE_SIZE)); state.page = Math.min(state.page, pages);
         renderHeader(); renderLedger(); renderMap(fit); renderTable(); renderDrawer(); renderFooter(); renderView(); updateUrl();
       }
@@ -576,11 +593,11 @@
         else el("incidentList").innerHTML = pageRows.map(item => {
           const watched = state.watchlist.has(item.Incident_ID), selected = item.Incident_ID === state.selectedId, sev = severityColor(item.Severity), dColor = diseaseColor(item.Disease), tColor = trendColor(item.Trend);
           return `<div class="incident-row${selected ? " selected" : ""}" role="button" tabindex="0" data-incident="${escapeHtml(item.Incident_ID)}" aria-pressed="${selected}">
-            <div class="incident-cell"><span class="disease-orb" style="--disease-color:${dColor}"><i class="${diseaseIcon(item.Disease)}"></i></span><span class="incident-copy"><span class="incident-name">${escapeHtml(item.Disease)}</span><span class="incident-location">${escapeHtml(item.Location_Label)}</span><span class="incident-stats"><span><i class="bi bi-file-earmark-text"></i>${item.Update_Count} updates</span><span><i class="bi bi-people"></i>${item.Source_Count} sources</span>${watched ? '<span title="Followed"><i class="bi bi-star-fill"></i></span>' : ""}</span></span></div>
+            <div class="incident-cell"><span class="disease-orb" style="--disease-color:${dColor}"><i class="${diseaseIcon(item.Disease)}"></i></span><span class="incident-copy"><span class="incident-name">${escapeHtml(item.Disease)}</span><span class="incident-location">${escapeHtml(item.Location_Label)}</span><span class="incident-stats"><span><i class="bi bi-file-earmark-text"></i>${countLabel(item.Update_Count, "report")}</span><span><i class="bi bi-people"></i>${countLabel(item.Source_Count, "feed")}</span>${watched ? '<span title="Followed"><i class="bi bi-star-fill"></i></span>' : ""}</span></span></div>
             <span class="severity-badge ${String(item.Severity).toLowerCase()}" style="--severity-color:${sev}">${escapeHtml(item.Severity)}</span>
             <span class="trend-cell" style="--trend-color:${tColor}"><span class="trend-icon"><i class="bi ${trendIcon(item.Trend)}"></i></span><span class="trend-label">${escapeHtml(item.Trend)}</span></span>
             <span class="confidence-cell">${confidenceDots(item.Confidence_Score)}<span class="confidence-label">${escapeHtml(item.Confidence_Level)}</span></span>
-            <span class="updated-cell">${escapeHtml(prettyDate(item.Date_Last_Updated, { day: "2-digit", month: "short", year: "numeric" }))}<span>${escapeHtml(prettyTime(meta.generated_at))}</span></span>
+            <span class="updated-cell">${escapeHtml(prettyDate(item.Date_Last_Updated, { day: "2-digit", month: "short", year: "numeric" }))}</span>
           </div>`;
         }).join("");
         const end = Math.min(start + PAGE_SIZE, state.filtered.length); el("pagerLabel").textContent = state.filtered.length ? `Showing ${start + 1}-${end} of ${state.filtered.length} incidents` : "Showing 0 incidents";
@@ -604,22 +621,25 @@
         map.panInsideBounds(WORLD_BOUNDS, { animate: false });
       }
       function fitWorld() { map.setView([18,5], innerWidth <= 820 ? 1 : 2, { animate: true }); map.panInsideBounds(WORLD_BOUNDS, { animate: false }); }
-      function renderTable() { const rows = state.filtered.map(item => `<tr data-incident="${escapeHtml(item.Incident_ID)}" class="${item.Incident_ID === state.selectedId ? "selected" : ""}"><td><div class="table-title">${escapeHtml(item.Disease)}</div><div class="table-sub">${escapeHtml(item.Location_Label)}</div></td><td><span class="severity-badge ${String(item.Severity).toLowerCase()}" style="--severity-color:${severityColor(item.Severity)}">${escapeHtml(item.Severity)}</span></td><td>${escapeHtml(item.Trend)}</td><td>${escapeHtml(item.Confidence_Level)} (${item.Confidence_Score})</td><td>${item.Source_Count}</td><td>${item.Update_Count}</td><td>${escapeHtml(prettyDate(item.Date_Last_Updated))}</td></tr>`).join(""); el("tableView").innerHTML = `<table class="incident-table"><thead><tr><th>Incident</th><th>Severity</th><th>Trend</th><th>Confidence</th><th>Sources</th><th>Updates</th><th>Updated</th></tr></thead><tbody>${rows || '<tr><td colspan="7">No matching incidents</td></tr>'}</tbody></table>`; }
+      function renderTable() { const rows = state.filtered.map(item => `<tr data-incident="${escapeHtml(item.Incident_ID)}" class="${item.Incident_ID === state.selectedId ? "selected" : ""}"><td><div class="table-title">${escapeHtml(item.Disease)}</div><div class="table-sub">${escapeHtml(item.Location_Label)}</div></td><td><span class="severity-badge ${String(item.Severity).toLowerCase()}" style="--severity-color:${severityColor(item.Severity)}">${escapeHtml(item.Severity)}</span></td><td>${escapeHtml(item.Trend)}</td><td>${escapeHtml(item.Confidence_Level)} (${item.Confidence_Score})</td><td>${item.Source_Count}</td><td>${item.Update_Count}</td><td>${escapeHtml(prettyDate(item.Date_Last_Updated))}</td></tr>`).join(""); el("tableView").innerHTML = `<table class="incident-table"><thead><tr><th>Incident</th><th>Severity</th><th>Trend</th><th>Confidence</th><th>Sources</th><th>Updates</th><th>Report date</th></tr></thead><tbody>${rows || '<tr><td colspan="7">No matching incidents</td></tr>'}</tbody></table>`; }
 
       function renderDrawer() {
-        const item = state.incidents.find(row => row.Incident_ID === state.selectedId); el("drawerPlaceholder").hidden = Boolean(item); el("drawerContent").hidden = !item; if (!item) return;
-        const dColor = diseaseColor(item.Disease), sevColor = severityColor(item.Severity), tColor = trendColor(item.Trend), evidence = item.Evidence || [], latest = evidence[0] || {}, watched = state.watchlist.has(item.Incident_ID);
-        el("drawerOrb").style.setProperty("--disease-color", dColor); el("drawerOrb").innerHTML = `<i class="${diseaseIcon(item.Disease)}"></i>`; el("drawerTitle").textContent = `${item.Disease} in ${item.Location_Label}`;
+        const report = savedReport(), item = report || state.incidents.find(row => row.Incident_ID === state.selectedId);
+        el("drawerPlaceholder").textContent = state.missing ? "This saved incident is no longer in the current dataset." : "Select an incident to inspect its evidence.";
+        el("drawerPlaceholder").hidden = Boolean(item); el("drawerContent").hidden = !item; if (!item) return;
+        const dColor = diseaseColor(item.Disease), sevColor = severityColor(item.Severity), tColor = trendColor(item.Trend), evidence = item.Evidence || [], latest = evidence[0] || {}, watched = state.watchlist.has(state.selectedId);
+        el("drawerOrb").style.setProperty("--disease-color", dColor); el("drawerOrb").innerHTML = `<i class="${diseaseIcon(item.Disease)}"></i>`; el("drawerTitle").textContent = `${report ? "Saved report: " : ""}${item.Disease} in ${item.Location_Label}`;
         el("drawerSeverity").textContent = item.Severity; el("drawerSeverity").className = `severity-badge ${String(item.Severity).toLowerCase()}`; el("drawerSeverity").style.setProperty("--severity-color", sevColor);
         el("drawerTrend").style.setProperty("--trend-color", tColor); el("drawerTrend").innerHTML = `<i class="bi ${trendIcon(item.Trend)}"></i>${escapeHtml(item.Trend)}`;
-        el("drawerMeta").innerHTML = `<span><i class="bi bi-calendar-event"></i>First detected ${escapeHtml(prettyDate(item.Date_First_Noted))}</span><span>Last updated ${escapeHtml(prettyDate(item.Date_Last_Updated))}</span><span><i class="bi bi-file-earmark-text"></i>${item.Update_Count} updates</span><span>${item.Source_Count} sources</span>`;
-        el("drawerWatch").classList.toggle("active", watched); el("drawerWatch").innerHTML = `<i class="bi ${watched ? "bi-bell-fill" : "bi-bell"}"></i><span>${watched ? "Following" : "Follow"}</span>`; el("openLatest").href = safeUrl(latest.Source_URL);
-        el("whyHeading").textContent = `Why this is ${String(item.Severity).toLowerCase()}`; const reasons = [...(item.Severity_Rationale || []), item.Trend_Rationale, ...(item.Confidence_Rationale || []).slice(0,1)].filter(Boolean).slice(0,4); el("reasonList").innerHTML = reasons.map(reason => `<li>${escapeHtml(reason)}</li>`).join("");
+        el("drawerMeta").innerHTML = `<span><i class="bi bi-calendar-event"></i>${item.Update_Count === 1 ? "Source report" : "Latest report"} ${escapeHtml(prettyDate(item.Date_Last_Updated))}</span><span><i class="bi bi-file-earmark-text"></i>${countLabel(item.Update_Count, "report")}</span><span>${countLabel(item.Source_Count, "feed")}</span>`;
+        el("drawerWatch").classList.toggle("active", watched); el("drawerWatch").innerHTML = `<i class="bi ${watched ? "bi-bell-fill" : "bi-bell"}"></i><span>${watched ? "Following" : "Follow"}</span>`; el("openLatest").href = safeUrl(latest.Source_URL); el("openLatest").querySelector("span").textContent = report ? "Open source report" : "Open latest report";
+        el("whyHeading").textContent = `Report severity: ${String(item.Severity).toLowerCase()}`; const reasons = [...(item.Severity_Rationale || []), item.Trend_Rationale, ...(item.Confidence_Rationale || []).slice(0,1)].filter(Boolean).slice(0,4); el("reasonList").innerHTML = reasons.map(reason => `<li>${escapeHtml(reason)}</li>`).join("");
         const precision = item.Geographic_Precision || "Country centroid"; el("precisionNote").innerHTML = `<i class="bi bi-info-circle"></i><strong>Geographic precision:</strong> ${escapeHtml(precision)}. This marker represents activity at an approximate reporting centroid, not a specific facility.`;
         el("drawerConfidenceDots").innerHTML = confidenceDots(item.Confidence_Score, true); el("drawerConfidenceLabel").textContent = `${item.Confidence_Level} confidence (${item.Confidence_Score}/100)`;
-        el("authoritiesHeading").textContent = `Corroborating authorities (${item.Source_Count})`; el("authorityList").innerHTML = (item.Sources || []).slice(0,5).map(source => `<div class="authority-row"><span class="authority-icon"><i class="bi bi-shield-check"></i></span><span class="authority-name">${escapeHtml(source)}</span><i class="bi bi-check-circle"></i></div>`).join("");
+        el("evidenceCounts").textContent = countLabel(item.Update_Count, "report") + " from " + countLabel(item.Source_Count, "source feed") + ".";
+        el("authoritiesHeading").textContent = `Reporting feeds (${item.Source_Count})`; el("authorityList").innerHTML = (item.Sources || []).slice(0,5).map(source => `<div class="authority-row"><span class="authority-icon"><i class="bi bi-shield-check"></i></span><span class="authority-name">${escapeHtml(source)}</span><i class="bi bi-check-circle"></i></div>`).join("");
         el("timeline").innerHTML = evidence.slice(0,4).map(row => `<a class="timeline-item" href="${safeUrl(row.Source_URL)}" target="_blank" rel="noopener noreferrer"><span class="timeline-dot"></span><span><span class="timeline-date">${escapeHtml(prettyDate(row.Date))}</span><span class="timeline-title">${escapeHtml(row.Title || row.Source_Name || "Authority update")}</span><span class="timeline-snapshot">${escapeHtml(row.Snapshot || "Open the authority notice for details.")}</span></span><span class="official-tag">Official</span></a>`).join("");
-        el("viewAllUpdates").querySelector("span").textContent = `View all ${item.Update_Count} updates`; el("collapseDrawer").innerHTML = `<i class="bi ${state.drawerCollapsed ? "bi-chevron-down" : "bi-chevron-up"}"></i>`;
+        el("viewAllUpdates").querySelector("span").textContent = `View all ${countLabel(item.Update_Count, "report")}`; el("collapseDrawer").innerHTML = `<i class="bi ${state.drawerCollapsed ? "bi-chevron-down" : "bi-chevron-up"}"></i>`;
       }
       function renderFooter() {
         const meta = state.payload?.metadata || {}, statuses = meta.source_status || [], quality = meta.quality || {}, healthy = quality.sources_ok ?? statuses.filter(row => row.status === "ok").length;
@@ -628,11 +648,11 @@
       }
       function renderView() { const mobile = innerWidth <= 820, showMap = state.view === "map"; el("mapViewButton").classList.toggle("active", showMap); el("listViewButton").classList.toggle("active", !showMap); el("mapViewButton").setAttribute("aria-pressed", String(showMap)); el("listViewButton").setAttribute("aria-pressed", String(!showMap)); el("tableView").classList.toggle("visible", !showMap && !mobile); if (mobile) { el("ledgerPanel").classList.toggle("mobile-hidden", showMap); el("atlas").classList.toggle("mobile-hidden", !showMap); } else { el("ledgerPanel").classList.remove("mobile-hidden"); el("atlas").classList.remove("mobile-hidden"); } if (showMap) setTimeout(() => { map.invalidateSize(); map.panInsideBounds(WORLD_BOUNDS, { animate: false }); }, 60); }
 
-      function selectIncident(id) { state.selectedId = id; state.drawerCollapsed = false; document.body.classList.remove("drawer-collapsed"); renderLedger(); renderMap(false); renderTable(); renderDrawer(); updateUrl(); if (innerWidth <= 820) el("evidenceDrawer").classList.add("open"); const marker = state.markers.get(id); if (state.view === "map" && marker) { const latlng = marker.getLatLng(); map.panInsideBounds(WORLD_BOUNDS, { animate: false }); if (map.getBounds().contains(latlng)) map.panTo(latlng, { animate: true }); } }
+      function selectIncident(id) { state.bookmark = null; state.missing = null; state.selectedId = id; state.drawerCollapsed = false; document.body.classList.remove("drawer-collapsed"); renderLedger(); renderMap(false); renderTable(); renderDrawer(); updateUrl(); if (innerWidth <= 820) el("evidenceDrawer").classList.add("open"); const marker = state.markers.get(id); if (state.view === "map" && marker) { const latlng = marker.getLatLng(); map.panInsideBounds(WORLD_BOUNDS, { animate: false }); if (map.getBounds().contains(latlng)) map.panTo(latlng, { animate: true }); } }
       function toggleWatch(id) { if (!id) return; if (state.watchlist.has(id)) state.watchlist.delete(id); else state.watchlist.add(id); writeStorage(WATCH_KEY, [...state.watchlist]); renderAll(false); showToast(state.watchlist.has(id) ? "Incident added to watchlist" : "Incident removed from watchlist"); }
       function toggleFilterTray() { state.filterOpen = !state.filterOpen; el("filterTray").hidden = !state.filterOpen; el("filterButton").classList.toggle("active", state.filterOpen); el("filterButton").setAttribute("aria-expanded", String(state.filterOpen)); if (state.filterOpen) el("searchInput").focus(); }
-      function resetFilters() { el("searchInput").value = ""; el("severityFilter").value = "all"; el("trendFilter").value = "all"; el("confidenceFilter").value = "all"; el("sortFilter").value = "priority"; state.watchOnly = false; state.page = 1; state.selectedId = null; renderAll(true); }
-      function updateUrl() { const params = new URLSearchParams(), values = { q: el("searchInput").value.trim(), severity: el("severityFilter").value, trend: el("trendFilter").value, confidence: el("confidenceFilter").value, sort: el("sortFilter").value }; Object.entries(values).forEach(([key,value]) => { if (value && value !== "all" && value !== "priority") params.set(key,value); }); if (state.watchOnly) params.set("watch","1"); if (state.selectedId) params.set("incident",state.selectedId); history.replaceState(null,"",`${location.pathname}${params.size ? `?${params}` : ""}${location.hash}`); }
+      function resetFilters() { state.bookmark = null; state.missing = null; el("searchInput").value = ""; el("severityFilter").value = "all"; el("trendFilter").value = "all"; el("confidenceFilter").value = "all"; el("sortFilter").value = "priority"; state.watchOnly = false; state.page = 1; state.selectedId = null; renderAll(true); }
+      function updateUrl() { const params = new URLSearchParams(), values = { q: el("searchInput").value.trim(), severity: el("severityFilter").value, trend: el("trendFilter").value, confidence: el("confidenceFilter").value, sort: el("sortFilter").value }; Object.entries(values).forEach(([key,value]) => { if (value && value !== "all" && value !== "priority") params.set(key,value); }); if (state.watchOnly) params.set("watch","1"); if (state.selectedId || state.missing) params.set("incident",savedReport() ? state.bookmark : state.selectedId || state.missing); history.replaceState(null,"",`${location.pathname}${params.size ? `?${params}` : ""}${location.hash}`); }
       async function shareView() { try { const data = { title: "ObiCRM Atlas", text: `${state.filtered.length} outbreak incidents`, url: location.href }; if (navigator.share) await navigator.share(data); else { await navigator.clipboard.writeText(location.href); showToast("Current view link copied"); } } catch (error) { if (error.name !== "AbortError") showToast("Unable to share this view"); } }
       function exportCsv() { const fields = ["Incident ID","Disease","Location","Severity","Trend","Confidence","Confidence score","Sources","Updates","Latest update"], rows = state.filtered.map(row => [row.Incident_ID,row.Disease,row.Location_Label,row.Severity,row.Trend,row.Confidence_Level,row.Confidence_Score,row.Source_Count,row.Update_Count,row.Date_Last_Updated]), csv = [fields,...rows].map(row => row.map(value => `"${String(value ?? "").replace(/"/g,'""')}"`).join(",")).join("\r\n"), link = document.createElement("a"); link.href = URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"})); link.download = `analyst-atlas-${new Date().toISOString().slice(0,10)}.csv`; link.click(); URL.revokeObjectURL(link.href); showToast(`Exported ${rows.length} incidents`); }
       function renderHealthDialog() { const meta = state.payload?.metadata || {}, quality = meta.quality || {}, statuses = meta.source_status || []; el("healthDialogBody").innerHTML = `<div class="health-metrics"><div class="health-metric"><strong>${quality.score ?? "--"}</strong><span>Quality score</span></div><div class="health-metric"><strong>${quality.sources_ok ?? "--"}/${meta.source_count ?? statuses.length}</strong><span>Sources current</span></div><div class="health-metric"><strong>${meta.incident_count ?? state.incidents.length}</strong><span>Incidents</span></div><div class="health-metric"><strong>${meta.signals_merged ?? "--"}</strong><span>Signals merged</span></div></div><div style="overflow:auto"><table class="source-table"><thead><tr><th>Authority source</th><th>State</th><th>Items</th><th>Signals</th><th>Diagnostic</th></tr></thead><tbody>${statuses.map(row => { const cls = row.status === "ok" ? "" : row.status === "using_last_known_good" ? "warning" : "error", label = row.status === "ok" ? "Current" : row.status === "using_last_known_good" ? "Last known good" : "Unavailable"; return `<tr><td><strong>${escapeHtml(row.name)}</strong></td><td><span class="source-state ${cls}"><i class="bi bi-circle-fill"></i>${label}</span></td><td>${row.items_seen ?? 0}</td><td>${(row.features_added ?? 0)+(row.features_carried_forward ?? 0)}</td><td>${escapeHtml(row.error || "No reported issue")}</td></tr>`; }).join("")}</tbody></table></div><p class="method-note">${escapeHtml(meta.methodology || "Daily automated screening of linked public-health sources.")} Directional trends are keyword-based summaries of linked authority language and should be verified against the evidence timeline.</p>`; }
