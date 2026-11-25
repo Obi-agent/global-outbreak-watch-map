@@ -1,7 +1,7 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated_at": "2026-11-24T15:54:56.598496+00:00",
+    "generated_at": "2026-11-25T15:38:37.344584+00:00",
     "generated_by": "scripts/update_outbreak_data.py",
     "schema_version": "3.0",
     "saved_reports": {
@@ -1313,8 +1313,8 @@
       }
     },
     "trend_window_days": 7,
-    "feature_count": 159,
-    "incident_count": 52,
+    "feature_count": 161,
+    "incident_count": 54,
     "signals_merged": 107,
     "source_count": 8,
     "signal_window_days": 210,
@@ -1327,21 +1327,13 @@
       "sources_ok": 8,
       "sources_last_known_good": 0,
       "sources_error": 0,
-      "signals_current": 159,
+      "signals_current": 161,
       "signals_last_known_good": 0,
       "signals_quarantined": 1,
       "signals_rejected_noisy": 1,
-      "incidents": 52
+      "incidents": 54
     },
     "quality_history": [
-      {
-        "date": "2026-11-11",
-        "score": 95,
-        "status": "Healthy",
-        "incidents": 62,
-        "signals": 168,
-        "sources_ok": 8
-      },
       {
         "date": "2026-11-12",
         "score": 95,
@@ -1445,6 +1437,14 @@
         "incidents": 52,
         "signals": 159,
         "sources_ok": 8
+      },
+      {
+        "date": "2026-11-25",
+        "score": 97,
+        "status": "Healthy",
+        "incidents": 54,
+        "signals": 161,
+        "sources_ok": 8
       }
     ],
     "source_status": [
@@ -1459,8 +1459,8 @@
         "features_carried_forward": 0,
         "skipped_noisy": 0,
         "skipped_quarantined": 0,
-        "elapsed_seconds": 2.55,
-        "last_success_at": "2026-11-24T15:54:56.598496+00:00"
+        "elapsed_seconds": 2.15,
+        "last_success_at": "2026-11-25T15:38:37.344584+00:00"
       },
       {
         "id": "cdc-travel",
@@ -1473,8 +1473,8 @@
         "features_carried_forward": 0,
         "skipped_noisy": 0,
         "skipped_quarantined": 0,
-        "elapsed_seconds": 0.28,
-        "last_success_at": "2026-11-24T15:54:56.598496+00:00"
+        "elapsed_seconds": 0.08,
+        "last_success_at": "2026-11-25T15:38:37.344584+00:00"
       },
       {
         "id": "cdc-us-outbreaks",
@@ -1487,8 +1487,8 @@
         "features_carried_forward": 0,
         "skipped_noisy": 0,
         "skipped_quarantined": 0,
-        "elapsed_seconds": 3.64,
-        "last_success_at": "2026-11-24T15:54:56.598496+00:00"
+        "elapsed_seconds": 2.55,
+        "last_success_at": "2026-11-25T15:38:37.344584+00:00"
       },
       {
         "id": "cdc-int-outbreaks",
@@ -1501,8 +1501,8 @@
         "features_carried_forward": 0,
         "skipped_noisy": 0,
         "skipped_quarantined": 1,
-        "elapsed_seconds": 5.18,
-        "last_success_at": "2026-11-24T15:54:56.598496+00:00"
+        "elapsed_seconds": 4.97,
+        "last_success_at": "2026-11-25T15:38:37.344584+00:00"
       },
       {
         "id": "ecdc-cdtr",
@@ -1515,8 +1515,8 @@
         "features_carried_forward": 0,
         "skipped_noisy": 0,
         "skipped_quarantined": 0,
-        "elapsed_seconds": 0.52,
-        "last_success_at": "2026-11-24T15:54:56.598496+00:00"
+        "elapsed_seconds": 0.35,
+        "last_success_at": "2026-11-25T15:38:37.344584+00:00"
       },
       {
         "id": "paho-alerts",
@@ -1525,12 +1525,12 @@
         "url": "https://www.paho.org/en/epidemiological-alerts-and-updates",
         "status": "ok",
         "items_seen": 17,
-        "features_added": 11,
+        "features_added": 13,
         "features_carried_forward": 0,
         "skipped_noisy": 1,
         "skipped_quarantined": 0,
-        "elapsed_seconds": 16.58,
-        "last_success_at": "2026-11-24T15:54:56.598496+00:00"
+        "elapsed_seconds": 13.42,
+        "last_success_at": "2026-11-25T15:38:37.344584+00:00"
       },
       {
         "id": "ukhsa-news",
@@ -1543,8 +1543,8 @@
         "features_carried_forward": 0,
         "skipped_noisy": 0,
         "skipped_quarantined": 0,
-        "elapsed_seconds": 0.04,
-        "last_success_at": "2026-11-24T15:54:56.598496+00:00"
+        "elapsed_seconds": 0.05,
+        "last_success_at": "2026-11-25T15:38:37.344584+00:00"
       },
       {
         "id": "ukhsa-monitoring",
@@ -1557,8 +1557,8 @@
         "features_carried_forward": 0,
         "skipped_noisy": 0,
         "skipped_quarantined": 0,
-        "elapsed_seconds": 10.84,
-        "last_success_at": "2026-11-24T15:54:56.598496+00:00"
+        "elapsed_seconds": 15.25,
+        "last_success_at": "2026-11-25T15:38:37.344584+00:00"
       }
     ]
   },
@@ -3532,6 +3532,61 @@
       ]
     },
     {
+      "Incident_ID": "INC-796E89BD88",
+      "Title": "Mpox - Americas Region",
+      "Disease": "Mpox",
+      "Countries": [
+        "Americas Region"
+      ],
+      "Location_Label": "Americas Region",
+      "Coordinates": [
+        -74.0,
+        5.0
+      ],
+      "Geographic_Precision": "Regional centroid",
+      "Severity": "Moderate",
+      "Status": "Monitoring",
+      "Trend": "Not assessed",
+      "Trend_Rationale": "The latest dated report does not establish a direction.",
+      "Trend_As_Of": "2026-11-24",
+      "Confidence_Level": "High",
+      "Confidence_Score": 94,
+      "Quality_Score": 92,
+      "Source_Count": 1,
+      "Update_Count": 1,
+      "Sources": [
+        "PAHO Epidemiological Alerts"
+      ],
+      "Date_First_Noted": "2026-11-24",
+      "Date_Last_Updated": "2026-11-24",
+      "Has_Stale_Evidence": false,
+      "Severity_Rationale": [
+        "Mpox is on the monitored outbreak-priority list."
+      ],
+      "Confidence_Rationale": [
+        "Published by PAHO Epidemiological Alerts, a regional authority source.",
+        "The disease name matched the controlled outbreak vocabulary.",
+        "The signal is located at regional precision.",
+        "The source supplied enough context for a meaningful synopsis.",
+        "A publication date was parsed from the source."
+      ],
+      "Evidence": [
+        {
+          "Signal_ID": "paho-alerts-4ff0108a03",
+          "Title": "Epidemiological Alert - Mpox in the Americas Region - 24 November 2026",
+          "Date": "2026-11-24",
+          "Source_Name": "PAHO Epidemiological Alerts",
+          "Source_Type": "Regional authority",
+          "Source_URL": "https://www.paho.org/en/documents/epidemiological-alert-mpox-americas-region-24-november-2026",
+          "Snapshot": "Given the increasing detection and geographic spread of mpox in several countries, the Pan American Health Organization (PAHO) / World Health Organization (WHO) urges Member States to strengthen epidemiological and genomic surveillance to ensure timely detection and investigation of cases, monitor changes in transmission patterns, and reinforce targeted prevention and control measures, particularly among populations at increased risk, including travelers heading to areas with active transmission.",
+          "Country": "Americas Region",
+          "Is_Stale": false,
+          "Confidence_Score": 94,
+          "Quality_Score": 92
+        }
+      ]
+    },
+    {
       "Incident_ID": "INC-5A5048F62C",
       "Title": "Poliovirus - Global",
       "Disease": "Poliovirus",
@@ -3601,8 +3656,8 @@
       "Geographic_Precision": "Global",
       "Severity": "Moderate",
       "Status": "Open",
-      "Trend": "Not assessed",
-      "Trend_Rationale": "The latest dated report does not establish a direction.",
+      "Trend": "Historical",
+      "Trend_Rationale": "Latest dated evidence is outside the 7-day trend window. Current direction is unknown.",
       "Trend_As_Of": "2026-11-17",
       "Confidence_Level": "Moderate",
       "Confidence_Score": 81,
@@ -4034,6 +4089,61 @@
       ]
     },
     {
+      "Incident_ID": "INC-82C0EA3079",
+      "Title": "Multi-disease report - Americas Region",
+      "Disease": "Multi-disease report",
+      "Countries": [
+        "Americas Region"
+      ],
+      "Location_Label": "Americas Region",
+      "Coordinates": [
+        -74.0,
+        5.0
+      ],
+      "Geographic_Precision": "Regional centroid",
+      "Severity": "Low",
+      "Status": "Open",
+      "Trend": "Not assessed",
+      "Trend_Rationale": "The latest dated report does not establish a direction.",
+      "Trend_As_Of": "2026-11-24",
+      "Confidence_Level": "Moderate",
+      "Confidence_Score": 79,
+      "Quality_Score": 74,
+      "Source_Count": 1,
+      "Update_Count": 1,
+      "Sources": [
+        "PAHO Epidemiological Alerts"
+      ],
+      "Date_First_Noted": "2026-11-24",
+      "Date_Last_Updated": "2026-11-24",
+      "Has_Stale_Evidence": false,
+      "Severity_Rationale": [
+        "No critical or high-severity trigger was detected in the published text."
+      ],
+      "Confidence_Rationale": [
+        "Published by PAHO Epidemiological Alerts, a regional authority source.",
+        "The report does not have a single vocabulary-matched disease label.",
+        "The signal is located at regional precision.",
+        "The source supplied enough context for a meaningful synopsis.",
+        "A publication date was parsed from the source."
+      ],
+      "Evidence": [
+        {
+          "Signal_ID": "paho-alerts-1a24a3f870",
+          "Title": "Epiemiological Alert - Epidemiological Alert Avian Influenza A(H5N1) in the Americas Region - 24 November 2026",
+          "Date": "2026-11-24",
+          "Source_Name": "PAHO Epidemiological Alerts",
+          "Source_Type": "Regional authority",
+          "Source_URL": "https://www.paho.org/en/documents/epiemiological-alert-epidemiological-alert-avian-influenza-ah5n1-americas-region-24",
+          "Snapshot": "Although fewer avian influenza A(H5N1) outbreaks has been detected in birds and mammals during 2026 in the Americas, the number of confirmed cases of human infection with avian influenza A(H5) among workers at dairy facilities exceeds the number recorded in 2025.",
+          "Country": "Americas Region",
+          "Is_Stale": false,
+          "Confidence_Score": 79,
+          "Quality_Score": 74
+        }
+      ]
+    },
+    {
       "Incident_ID": "INC-9F6E1FF083",
       "Title": "Unspecified disease - United Kingdom",
       "Disease": "Unspecified disease",
@@ -4210,8 +4320,8 @@
       "Geographic_Precision": "Regional centroid",
       "Severity": "Low",
       "Status": "Monitoring",
-      "Trend": "Worsening",
-      "Trend_Rationale": "Recent authority language indicates rising burden, wider spread, escalation, or emergency status.",
+      "Trend": "Historical",
+      "Trend_Rationale": "Latest dated evidence is outside the 7-day trend window. Current direction is unknown.",
       "Trend_As_Of": "2026-11-17",
       "Confidence_Level": "High",
       "Confidence_Score": 94,
@@ -5206,7 +5316,7 @@
         "Situation_Snapshot": "Since the publication of the previous Disease Outbreak News on 6 November 2026, additional confirmed cases and deaths have been reported in the Democratic Republic of the Congo. While some areas have seen a slight decline in cases, sustained, high-level transmission continues overall in the country. As of 17 November 2026, a total of 11 613 confirmed cases, including 5678 deaths (crude case fatality ratio: 48.9%), have been reported across 68 health zones in eight provinces, with active transmission ongoing in 48 health zones. Ituri...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus- Democratic Republic of the Congo, Kenya and Nigeria",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -5257,7 +5367,7 @@
         "Situation_Snapshot": "Since the publication of the previous Disease Outbreak News on 6 November 2026, additional confirmed cases and deaths have been reported in the Democratic Republic of the Congo. While some areas have seen a slight decline in cases, sustained, high-level transmission continues overall in the country. As of 17 November 2026, a total of 11 613 confirmed cases, including 5678 deaths (crude case fatality ratio: 48.9%), have been reported across 68 health zones in eight provinces, with active transmission ongoing in 48 health zones. Ituri...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus- Democratic Republic of the Congo, Kenya and Nigeria",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -5308,7 +5418,7 @@
         "Situation_Snapshot": "On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 14 November 2026 , 11,376 confirmed cases and 5,568 confirmed deaths have been reported in the DRC...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 46 (week ending 15 November 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -5359,7 +5469,7 @@
         "Situation_Snapshot": "On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 14 November 2026 , 11,376 confirmed cases and 5,568 confirmed deaths have been reported in the DRC...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 46 (week ending 15 November 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -5410,7 +5520,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting (Facebook: logi required) , held on 18 August 2026. As of 9 November 2026 (in French) , 11,042...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 45 (week ending 8 November 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -5461,7 +5571,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting (Facebook: logi required) , held on 18 August 2026. As of 9 November 2026 (in French) , 11,042...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 45 (week ending 8 November 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -5512,7 +5622,7 @@
         "Situation_Snapshot": "On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 1 November 2026 , 10,532 confirmed cases and 5,126 confirmed deaths have been reported in the DRC ....",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 44 (week ending 1 November 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -5563,7 +5673,7 @@
         "Situation_Snapshot": "On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 1 November 2026 , 10,532 confirmed cases and 5,126 confirmed deaths have been reported in the DRC ....",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 44 (week ending 1 November 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -5614,7 +5724,7 @@
         "Situation_Snapshot": "On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 25 October 2026 , 10,060 confirmed cases and 4,887 confirmed deaths have been reported in the DRC ....",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 43 (week ending 25 October 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -5665,7 +5775,7 @@
         "Situation_Snapshot": "On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 25 October 2026 , 10,060 confirmed cases and 4,887 confirmed deaths have been reported in the DRC ....",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 43 (week ending 25 October 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -5716,7 +5826,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 18 October 2026 (in French) , 9,552 confirmed cases and 4,602...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 42 (week ending 16 October 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -5767,7 +5877,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 18 October 2026 (in French) , 9,552 confirmed cases and 4,602...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 42 (week ending 16 October 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -5818,7 +5928,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting (Facebook: login required) , held on 18 August 2026. As of 11 October 2026 (in French) , 9,066...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 41 (week ending 11 October 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -5869,7 +5979,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting (Facebook: login required) , held on 18 August 2026. As of 11 October 2026 (in French) , 9,066...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 41 (week ending 11 October 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -5920,7 +6030,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 4 October 2026 , 8,603 confirmed cases and 4,148 confirmed deaths...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 40 (week ending 4 October 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -5971,7 +6081,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 4 October 2026 , 8,603 confirmed cases and 4,148 confirmed deaths...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 40 (week ending 4 October 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6022,7 +6132,7 @@
         "Situation_Snapshot": "On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 27 September 2026 (in French) , 8,116 confirmed cases and 3,924 confirmed deaths have been reported...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 39 (week ending 27 September 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6073,7 +6183,7 @@
         "Situation_Snapshot": "On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 27 September 2026 (in French) , 8,116 confirmed cases and 3,924 confirmed deaths have been reported...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 39 (week ending 27 September 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6124,7 +6234,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 21 September 2026 , 7,773 confirmed cases and 3,759 confirmed...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 38 (week ending 20 September 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6175,7 +6285,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 21 September 2026 , 7,773 confirmed cases and 3,759 confirmed...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 38 (week ending 20 September 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6226,7 +6336,7 @@
         "Situation_Snapshot": "On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 13 September 2026 , 7,258 confirmed cases and 3,510 confirmed deaths have been reported in the DRC...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 37 (week ending 13 September 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6277,7 +6387,7 @@
         "Situation_Snapshot": "On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 13 September 2026 , 7,258 confirmed cases and 3,510 confirmed deaths have been reported in the DRC...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 37 (week ending 13 September 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6328,7 +6438,7 @@
         "Situation_Snapshot": "On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 7 September 2026 , 6,757 confirmed cases and 3,267 confirmed deaths...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 36 (week ending 6 September 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6379,7 +6489,7 @@
         "Situation_Snapshot": "On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 7 September 2026 , 6,757 confirmed cases and 3,267 confirmed deaths...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 36 (week ending 6 September 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6430,7 +6540,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 31 August 2026 , 6,186 confirmed...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 35 (week ending 30 August 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6481,7 +6591,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 31 August 2026 , 6,186 confirmed...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 35 (week ending 30 August 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6532,7 +6642,7 @@
         "Situation_Snapshot": "Since the last Disease Outbreak News was published on 14 August 2026, the outbreak has spread from 54 to 60 health zones. The number of affected provinces stands at six out of 26 provinces of the country: Bas-Uélé, Haut-Uélé, Ituri, North Kivu, South Kivu, and Tshopo. Six additional health zones reported cases since the last update - Ganga and Viadana health zones in Bas-Uélé province, Biena, Manguredjipa, and Mutwanga in North Kivu, and Tshopo health zone in Tshopo province. As of 26 August 2026, a total of 5794 confirmed cases,...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus - Democratic Republic of the Congo",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6583,7 +6693,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 24 August 2026 , 5,656 confirmed...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 34 (week ending 23 August 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6634,7 +6744,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 24 August 2026 , 5,656 confirmed...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 34 (week ending 23 August 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6685,7 +6795,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 16 August 2026 , 5,021 confirmed...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 33 (week ending 16 August 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6736,7 +6846,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. The outbreak in DRC remains a public health emergency of international concern as of the latest WHO Emergency Committee meeting , held on 18 August 2026. As of 16 August 2026 , 5,021 confirmed...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 33 (week ending 16 August 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6787,7 +6897,7 @@
         "Situation_Snapshot": "The Bundibugyo virus disease (BVD) outbreak in the Democratic Republic of the Congo is in a phase of intense transmission. It is the largest Ebola outbreak ever reported in the country and expanding faster than any previous Ebola outbreak. The epidemic is increasingly characterized by sustained transmission within interconnected geographic clusters. Initially confined to the Mongbwalu health zone in Ituri Province, the outbreak has now expanded to 54 health zones across six provinces (Ituri, North Kivu, South Kivu, Haut-Uélé, Tshopo,...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus - Democratic Republic of the Congo",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6838,7 +6948,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 10 August 2026 (in French), 4,449 confirmed cases and 2,061 confirmed deaths have been reported in the DRC . This is an increase of 575 confirmed cases and 310 deaths since the last...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 32 (week ending 9 August 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6889,7 +6999,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 10 August 2026 (in French), 4,449 confirmed cases and 2,061 confirmed deaths have been reported in the DRC . This is an increase of 575 confirmed cases and 310 deaths since the last...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 32 (week ending 9 August 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6940,7 +7050,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 3 August 2026 (in French), 3,874 confirmed cases and 1,751 confirmed deaths have been reported in the DRC . This is an increase of 514 confirmed cases and 264 deaths since the last...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 31 (week ending 2 August 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -6991,7 +7101,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 3 August 2026 (in French), 3,874 confirmed cases and 1,751 confirmed deaths have been reported in the DRC . This is an increase of 514 confirmed cases and 264 deaths since the last...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 31 (week ending 2 August 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -7042,7 +7152,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 27 July 2026 (in French), 3,360 confirmed cases and 1,487 confirmed deaths have been reported in the DRC . This is an increase of 887 confirmed cases and 488 deaths since the last Outbreaks...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 30 (week ending 26 July 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -7093,7 +7203,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 27 July 2026 (in French), 3,360 confirmed cases and 1,487 confirmed deaths have been reported in the DRC . This is an increase of 887 confirmed cases and 488 deaths since the last Outbreaks...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 30 (week ending 26 July 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -7144,7 +7254,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 20 July 2026 (in French), 2,473 confirmed cases and 999 confirmed deaths have been reported in the DRC . This is an increase of 462 confirmed cases and 245 deaths since the last outbreaks...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 29 (week ending 19 July 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -7195,7 +7305,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 20 July 2026 (in French), 2,473 confirmed cases and 999 confirmed deaths have been reported in the DRC . This is an increase of 462 confirmed cases and 245 deaths since the last outbreaks...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 29 (week ending 19 July 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -7246,7 +7356,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 13 July 2026 (in French), 2,011 confirmed cases and 754 confirmed deaths have been reported in the DRC . This is an increase of 303 confirmed cases and 174 deaths since the last outbreaks...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 28 (week ending 12 July 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -7297,7 +7407,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 13 July 2026 (in French), 2,011 confirmed cases and 754 confirmed deaths have been reported in the DRC . This is an increase of 303 confirmed cases and 174 deaths since the last outbreaks...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 28 (week ending 12 July 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -7348,7 +7458,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 6 July 2026 (in French), 1,708 confirmed cases and 580 confirmed deaths have been reported in the DRC . This is an increase of 375 confirmed cases and 181 deaths since the last outbreaks...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 27 (week ending 5 July 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -7399,7 +7509,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 6 July 2026 (in French), 1,708 confirmed cases and 580 confirmed deaths have been reported in the DRC . This is an increase of 375 confirmed cases and 181 deaths since the last outbreaks...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 27 (week ending 5 July 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -7450,7 +7560,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 29 June 2026 (in French), 1,333 confirmed cases and 399 confirmed deaths have been reported in the DRC . This is an increase of 239 confirmed cases and 122 deaths since the last outbreaks...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 26 (week ending 28 June 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -7501,7 +7611,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 29 June 2026 (in French), 1,333 confirmed cases and 399 confirmed deaths have been reported in the DRC . This is an increase of 239 confirmed cases and 122 deaths since the last outbreaks...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 26 (week ending 28 June 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -7552,7 +7662,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 22 June 2026 (in French), 1,094 confirmed cases and 277 confirmed deaths have been reported in the DRC . This is an increase of 257 confirmed cases and 81 deaths since the last outbreaks...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 25 (week ending 21 June 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -7603,7 +7713,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 22 June 2026 (in French), 1,094 confirmed cases and 277 confirmed deaths have been reported in the DRC . This is an increase of 257 confirmed cases and 81 deaths since the last outbreaks...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 25 (week ending 21 June 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -7654,7 +7764,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 15 June 2026 (in French), 837 confirmed cases and 196 confirmed deaths have been reported in the DRC . This is an increase of 239 confirmed cases and 81 deaths since the last outbreaks...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 24 (week ending 14 June 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -7705,7 +7815,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 15 June 2026 (in French), 837 confirmed cases and 196 confirmed deaths have been reported in the DRC . This is an increase of 239 confirmed cases and 81 deaths since the last outbreaks...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 24 (week ending 14 June 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -7756,7 +7866,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 8 June 2026 (in French), 598 confirmed cases and 115 confirmed deaths have been reported in the DRC . This is an increase of 235 confirmed cases and 53 deaths since the last outbreaks under...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 23 (week ending 7 June 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -7807,7 +7917,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 17 May 2026, the World Health Organization ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 8 June 2026 (in French), 598 confirmed cases and 115 confirmed deaths have been reported in the DRC . This is an increase of 235 confirmed cases and 53 deaths since the last outbreaks under...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 23 (week ending 7 June 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -7858,7 +7968,7 @@
         "Situation_Snapshot": "On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 16 May 2026, the World Health Organisation ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 2 June 2026 , 363 confirmed cases and 62 deaths have been reported in the DRC . This is an increase of 242 confirmed cases and 45 deaths since the last outbreaks under monitoring report. Confirmed cases have been reported...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 22 (week ending 31 May 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -7909,7 +8019,7 @@
         "Situation_Snapshot": "On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 16 May 2026, the World Health Organisation ( WHO ) Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 2 June 2026 , 363 confirmed cases and 62 deaths have been reported in the DRC . This is an increase of 242 confirmed cases and 45 deaths since the last outbreaks under monitoring report. Confirmed cases have been reported...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 22 (week ending 31 May 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -7960,7 +8070,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 16 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 26 May 2026 , 1,198 Bundibugyo virus cases (including 1,077 suspected and 121 confirmed) and 263 deaths (246 suspected and 17 confirmed) have been reported in the DRC . Confirmed cases have been reported in Ituri (110...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 21 (week ending 24 May 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8011,7 +8121,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 15 May 2026 , an outbreak of Ebola disease caused by Bundibugyo virus was declared in the Democratic Republic of the Congo ( DRC ) and Uganda. On 16 May 2026, the WHO Director-General determined that the outbreak constitutes a public health emergency of international concern. As of 26 May 2026 , 1,198 Bundibugyo virus cases (including 1,077 suspected and 121 confirmed) and 263 deaths (246 suspected and 17 confirmed) have been reported in the DRC . Confirmed cases have been reported in Ituri (110...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 21 (week ending 24 May 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8062,7 +8172,7 @@
         "Situation_Snapshot": "On 15 May 2026, the Ministry of Public Health, Hygiene and Social Welfare, Democratic Republic of the Congo (DRC), and the Ministry of Health of Uganda declared an outbreak of Ebola Disease following the confirmation of Bundibugyo virus disease (BVD) in both countries. On 17 May 2026, the World Health Organization (WHO) Director-General determined that the Ebola disease caused by Bundibugyo virus in DRC and Uganda constitutes a public health emergency of international concern (PHEIC), as defined in the provisions of IHR. On 19 May...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus – Democratic Republic of the Congo",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8113,7 +8223,7 @@
         "Situation_Snapshot": "Bundibugyo virus disease ( BVD ). On 5 May 2026, the World Health Organization ( WHO ) was notified of a high-mortality outbreak of unknown illness in Mongbwalu Health Zone, Ituri Province, Democratic Republic of the Congo ( DRC ). On 15 May 2026, the National Institute of Biomedical Research Kinshasa confirmed the detection of Bundibugyo virus disease ( BVD ) in 8 out of 13 blood samples in patients from Rwampara Health Zone, Ituri Province. BVD is a form of Ebola disease, caused by the Bundibugyo virus. In response, on 15 May 2026...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 20 (week ending 17 May 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8164,7 +8274,7 @@
         "Situation_Snapshot": "On 5 May 2026, the World Health Organization (WHO) was alerted of a high-mortality outbreak of unknown illness in Mongbwalu Health Zone, Ituri Province, Democratic Republic of the Congo (DRC), including deaths among health workers. On 14 May 2026, the Institut national de recherche biomédicale (INRB) Kinshasa analyzed 13 blood samples from Rwampara Health Zone, Ituri Province. Laboratory analysis confirmed Bundibugyo virus disease (BVD) in eight of these samples on 15 May, a species of Ebola. The case fatality rates in the past two...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo & Uganda",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8215,7 +8325,7 @@
         "Situation_Snapshot": "On 5 May 2026, the World Health Organization (WHO) was alerted of a high-mortality outbreak of unknown illness in Mongbwalu Health Zone, Ituri Province, Democratic Republic of the Congo (DRC), including deaths among health workers. On 14 May 2026, the Institut national de recherche biomédicale (INRB) Kinshasa analyzed 13 blood samples from Rwampara Health Zone, Ituri Province. Laboratory analysis confirmed Bundibugyo virus disease (BVD) in eight of these samples on 15 May, a species of Ebola. The case fatality rates in the past two...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo & Uganda",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8266,7 +8376,7 @@
         "Situation_Snapshot": "Between 16 October and 4 November 2026, the United States of America, through its International Health Regulations (IHR) National Focal Point, notified WHO of three laboratory-confirmed human infections with influenza A(H5) virus in Washington State. These included one fatal case, the first reported death following exposure to infected dairy cattle or a related contaminated environment. All three cases were adults who worked on dairy cattle farms in Yakima County, Washington State, where the highly pathogenic (in animals) avian...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Influenza A(H5N1) - United States of America",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8317,7 +8427,7 @@
         "Situation_Snapshot": "On 29 October 2026, the National International Health Regulations (IHR) Focal Point of the State of Qatar notified the World Health Organization (WHO) of two laboratory-confirmed cases of Middle East respiratory syndrome (MERS). The cases were confirmed on 5 and 25 August 2026 and are the first MERS cases reported from Qatar since 2022. MERS is a viral zoonotic infection, principally transmitted to humans through direct or indirect contact with infected dromedary camels. Both patients were men aged over 50 years with underlying...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Middle East respiratory syndrome (MERS) – Qatar",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8368,7 +8478,7 @@
         "Situation_Snapshot": "Since the publication of the previous Disease Outbreak News on 23 October 2026, the Bundibugyo virus disease (BVD) outbreak has expanded geographically in the Democratic Republic of the Congo. While some areas have seen a slight decline in cases, sustained, high-level transmission continues overall in the Democratic Republic of the Congo. As of 3 November 2026, a total of 10 668 confirmed cases, including 5198 deaths (crude case fatality ratio: 48.7%), have been reported across 67 health zones in eight provinces, with active...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo, Kenya and Nigeria",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8419,7 +8529,7 @@
         "Situation_Snapshot": "Since the publication of the previous Disease Outbreak News on 23 October 2026, the Bundibugyo virus disease (BVD) outbreak has expanded geographically in the Democratic Republic of the Congo. While some areas have seen a slight decline in cases, sustained, high-level transmission continues overall in the Democratic Republic of the Congo. As of 3 November 2026, a total of 10 668 confirmed cases, including 5198 deaths (crude case fatality ratio: 48.7%), have been reported across 67 health zones in eight provinces, with active...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo, Kenya and Nigeria",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8470,7 +8580,7 @@
         "Situation_Snapshot": "Yellow fever transmission continues in the WHO African Region, with recent outbreak activity concentrated in parts of West Africa. Between 1 January and 12 October 2026, 67 confirmed cases, including 18 deaths, were recorded in nine countries in the Region: Burkina Faso, Cameroon, the Central African Republic, Côte d’Ivoire, Ghana, Guinea, Liberia, Nigeria and Togo. The most recent outbreak activity has been concentrated in Burkina Faso, Côte d’Ivoire, Ghana and Liberia, including in areas close to international borders. Occupational...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Yellow fever - WHO African Region",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8521,7 +8631,7 @@
         "Situation_Snapshot": "On 20 October 2026, the National IHR Focal Point (NFP) of France notified WHO regarding the first documented human infection with Shamonda virus (SHAV). The case was an immunocompromised older man from eastern France with no travel history during the preceding year. He developed severe neurological illness on 23 September 2026 and was diagnosed with severe encephalitis (brain inflammation). The patient died on 8 October 2026. SHAV is recognized primarily as an animal-associated virus, like the closely related Schmallenberg virus...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Shamonda virus in human - France",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8572,7 +8682,7 @@
         "Situation_Snapshot": "Since the publication of the previous Disease Outbreak News on 8 October 2026, the Bundibugyo virus disease (BVD) outbreak has expanded geographically in the Democratic Republic of the Congo, as well as in the African Region, with Kenya and Nigeria reporting imported cases. Sustained, high-level transmission continues in the Democratic Republic of the Congo. As of 20 October 2026, a total of 9704 confirmed cases, including 4687 deaths (crude case fatality ratio: 48.3%), have been reported across 66 health zones in eight provinces....",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo, Kenya and Nigeria",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8623,7 +8733,7 @@
         "Situation_Snapshot": "Since the publication of the previous Disease Outbreak News on 8 October 2026, the Bundibugyo virus disease (BVD) outbreak has expanded geographically in the Democratic Republic of the Congo, as well as in the African Region, with Kenya and Nigeria reporting imported cases. Sustained, high-level transmission continues in the Democratic Republic of the Congo. As of 20 October 2026, a total of 9704 confirmed cases, including 4687 deaths (crude case fatality ratio: 48.3%), have been reported across 66 health zones in eight provinces....",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo, Kenya and Nigeria",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8674,7 +8784,7 @@
         "Situation_Snapshot": "The Kenyan Ministry of Health has confirmed an imported case, as well as other linked cases, of Ebola disease caused by Bundibugyo virus in Nairobi, Kenya.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 1 - Ebola Bundibugyo Virus Disease in Kenya",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8725,7 +8835,7 @@
         "Situation_Snapshot": "This issue of the Communicable disease threats report (CDTR) covers the period 10 - 16 October 2026, and includes updates on respiratory virus epidemiology in the EU/EEA, Ebola, expert deployment, pneumonia of unknown aetiology, mpox in the EU/EEA, West Nile Virus, Crimean-Congo haemorrhagic fever, dengue, chikungunya, and diphtheria.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Communicable disease threats report, 10 - 16 October 2026, week 42",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8776,7 +8886,7 @@
         "Situation_Snapshot": "Between 1 January and 5 October 2026, the Kingdom of Saudi Arabia reported eight laboratory-confirmed cases of Middle East Respiratory Syndrome Coronavirus (MERS-CoV) infection, including one death. Cases were detected across six locations: Al Jouf (1), Arar (1), Hafr Al-Batin (1), Riyadh (2), Tabuk (1) and Taif (2). No epidemiological links were identified between any of the cases. All eight cases were symptomatic, most commonly presenting with fever (6/8), dyspnea (5/8), and cough (4/8). None were health and care workers. Infection...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Middle East respiratory syndrome coronavirus - Kingdom of Saudi Arabia",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8827,7 +8937,7 @@
         "Situation_Snapshot": "This issue of the Communicable disease threats report (CDTR) covers the period 3 - 9October 2026, and includes updates on respiratory virus epidemiology in the EU/EEA, pneumonia of unknown aetiology, Ebola, expert deployment, West Nile Virus, Crimean-Congo haemorrhagic fever, dengue, chikungunya, symptomatic Sindbis case in Germany, measles, and Salmonella Strathcona .",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Communicable disease threats report, 3 - 9 October 2026, week 41",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8878,7 +8988,7 @@
         "Situation_Snapshot": "On 5 October 2026, WHO was informed about a laboratory-confirmed imported case of Bundibugyo virus disease (BVD) in Kenya with travel history from the Democratic Republic of the Congo. The patient travelled from the Democratic Republic of the Congo to Kenya through Uganda. The patient was hospitalized and treated in Kenya but subsequently died on 5 October. Public health response measures have been initiated in Kenya and Uganda, including contact tracing. Since the last Disease Outbreak News was published on 25 September 2026, the...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus - Democratic Republic of the Congo",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8929,7 +9039,7 @@
         "Situation_Snapshot": "This issue of the Communicable disease threats report (CDTR) covers the period 26 September - 2 October 2026, and includes updates on Crimean Congo haemorrhagic fever, Chikungunya virus disease, cholera, COVID-19, dengue, Ebola, avian influenza, seasonal influenza, Middle Eastern Respiratory Syndrome (MERS), respiratory syncytial infection, Vibriosis and West Nile virus infection.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Communicable disease threats report, 26 September - 2 October 2026, week 40",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -8980,7 +9090,7 @@
         "Situation_Snapshot": "Since the last Disease Outbreak News was published on 11 September 2026, the Bundibugyo virus outbreak in the Democratic Republic of the Congo has expanded further, with two additional health zones affected. These include Bulu health zone in a new province, Sud Ubangi, located on the north-west part of the country and Dungu health zone in Haut-Uélé province, bordering South Sudan. This brings the total number of affected health zones to 63 across seven provinces out of 26 provinces of the country: Bas-Uélé, Haut-Uélé, Ituri, North...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus - Democratic Republic of the Congo",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -9031,7 +9141,7 @@
         "Situation_Snapshot": "This issue of the ECDC Communicable Disease Threats Report (CDTR) covers the period 19-25 September, and includes updates on respiratory virus epidemiology in the EU/EEA Ebola, ECDC expert deployment, West Nile Virus, Crimean-Congo haemorrhagic fever, dengue, chikungunya, and vibrio risk in coastal waters.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Communicable disease threats report, 19-25 September 2026, week 39",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -9082,7 +9192,7 @@
         "Situation_Snapshot": "This issue of the ECDC Communicable Disease Threats Report (CDTR) covers the period 12-18 September, and includes updates on Ebola, malaria, botulism, avian influenza A(H9N2), influenza A(H5), respiratory virus epidemiology in the EU/.EEA, West Nile virus infections, chikungunya, dengue, Crimean-Congo haemorrhagic fever, Vibrio, measles, and expert deployments.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Communicable disease threats report, 12-18 September 2026, week 38",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -9133,7 +9243,7 @@
         "Situation_Snapshot": "This issue of the ECDC Communicable Disease Threats Report (CDTR) covers the period 5 -12 September, and includes updates on Ebola, an overview of respiratory virus epidemiology in the EU/EEA, West Nile virus, Crimean-Congo haemorrhagic fever, dengue, chikungunya, and vibrio.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Communicable disease threats report, 5 - 11 September 2026, week 37",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -9184,7 +9294,7 @@
         "Situation_Snapshot": "Since the last Disease Outbreak News was published on 28 August 2026, the Bundibugyo virus outbreak in the Democratic Republic of the Congo has expanded to one additional health zone, Kayna, in North Kivu. This increase brings the total number of affected health zones to 61 across six out of 26 provinces of the country: Bas-Uélé, Haut-Uélé, Ituri, North Kivu, South Kivu, and Tshopo. As of 7 September 2026, the Democratic Republic of the Congo has reported 6757 confirmed cases, including 3267 deaths, resulting in a crude case fatality...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus - Democratic Republic of the Congo",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -9235,7 +9345,7 @@
         "Situation_Snapshot": "This issue of the ECDC Communicable Disease Threats Report (CDTR) covers the period 29 August - 4 September, and includes updates on Ebola, SARS-CoV-2 variant classification, West Nile virus, Crimean-Congo haemorrhagic fever, dengue, chikungunya, vibrio, Middle East respiratory syndrome, malaria, influenza A (H9N2), and an overview of respiratory virus epidemiology in the EU/EEA.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Communicable disease threats report, 29 August - 4 September 2026, week 36",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -9286,7 +9396,7 @@
         "Situation_Snapshot": "CDC recommends practicing enhanced precautions for travel to Uganda or to provinces in the Democratic Republic of the Congo (DRC) not affected by the current Bundibugyo virus disease (BVD) outbreak. Country List : Democratic Republic of the Congo, Uganda Country List : Democratic Republic of the Congo, Uganda Country List : Democratic Republic of the Congo, Uganda",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 2 - Ebola Bundibugyo Virus Disease in the Democratic Republic of the Congo and Uganda",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -9337,7 +9447,7 @@
         "Situation_Snapshot": "CDC recommends practicing enhanced precautions for travel to Uganda or to provinces in the Democratic Republic of the Congo (DRC) not affected by the current Bundibugyo virus disease (BVD) outbreak. Country List : Democratic Republic of the Congo, Uganda Country List : Democratic Republic of the Congo, Uganda Country List : Democratic Republic of the Congo, Uganda",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 2 - Ebola Bundibugyo Virus Disease in the Democratic Republic of the Congo and Uganda",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -9388,7 +9498,7 @@
         "Situation_Snapshot": "This issue of the ECDC Communicable Disease Threats Report (CDTR) covers the period 22 - 28 August, and includes updates on diphtheria, Ebola, swine influenza A(H1N2), respiratory virus epidemiology, Crimean-Congo haemorrhagic fever, dengue, chikungunya virus disease, Vibrio growth, West Nile virus, cholera, poliovirus and expert deployments.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Communicable disease threats report, 22 - 28 August 2026, week 35",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -9439,7 +9549,7 @@
         "Situation_Snapshot": "Avian influenza A(H5) is a highly contagious viral disease that primarily affects poultry and wild birds, with the ability to sporadically infect mammalian species, including humans. Since 1996, the A/goose/Guangdong/1/96 lineage has caused recurrent outbreaks in bird populations, as well as hundreds of human cases and deaths resulting from exposure to infected animals or contaminated environments. Currently, the A(H5N1) subtype and other avian influenza A(H5) viruses have been identified in birds and mammals across multiple...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Epidemiological Update Avian Influenza A(H5) in the Americas Region - 26 August 2026",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -9490,7 +9600,7 @@
         "Situation_Snapshot": "This issue of the ECDC Communicable Disease Threats Report (CDTR) covers the period 15-21 August 2026, and includes updates on Ebola, respiratory virus epidemiology in the EU/EEA, swine flu, West Nile virus, Crimean-Congo haemorrhagic fever, dengue, chikungunya, vibrio, influenza, Dermatophilosis congolensis, Salmonella Enteritidis, and measles.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Communicable disease threats report, 15 - 21 August 2026, week 34",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -9541,7 +9651,7 @@
         "Situation_Snapshot": "This issue of the ECDC Communicable Disease Threats Report (CDTR) covers the period 8 - 14 August 2026, and includes updates on Ebola, chikungunya, dengue, West Nile Virus infection, Crimean-Congo haemorrhagic fever, Vibrio, respiratory virus epidemiology in the EU/EEA, World Pride, mpox, and expert deployments.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Communicable disease threats report, 8 - 14 August 2026, week 33",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -9592,7 +9702,7 @@
         "Situation_Snapshot": "CDC recommends avoiding nonessential travel to Haut-Uélé and Tshopo provinces in the Democratic Republic of the Congo (DRC) due to the current Bundibugyo virus disease (BVD) outbreak.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 3 - Ebola Bundibugyo Virus Disease in Haut-Uélé and Tshopo Provinces of the Democratic Republic of the Congo",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -9643,7 +9753,7 @@
         "Situation_Snapshot": "CDC recommends avoiding all travel to Ituri and Nord-Kivu (North-Kivu) provinces in the Democratic Republic of the Congo (DRC) due to the current Bundibugyo virus disease (BVD) outbreak unless traveling for humanitarian aid or emergency response.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 4 - Ebola Bundibugyo Virus Disease in Ituri and Nord-Kivu Provinces of the Democratic Republic of the Congo",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -9694,7 +9804,7 @@
         "Situation_Snapshot": "The Bundibugyo virus disease (BVD) outbreak in the Democratic Republic of the Congo is intensifying, with sustained transmission and continued increases in reported cases and deaths. Initially confined to the Mongbwalu health zone in Ituri Province, over the last two months, the outbreak has expanded to five provinces (Ituri, North Kivu, South Kivu, Haut-Uélé and Tshopo), now affecting 49 health zones. The outbreak is now the largest Ebola outbreak ever reported in the Democratic Republic of the Congo. As of 30 July 2026, a total of...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus - Democratic Republic of the Congo",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -9745,7 +9855,7 @@
         "Situation_Snapshot": "The Bundibugyo virus disease (BVD) outbreak in the Democratic Republic of the Congo remains active, with sustained transmission driving increases in reported cases and deaths. As of 15 July 2026, a cumulative total of 2124 confirmed cases, including 828 deaths, have been reported from the Democratic Republic of the Congo. On 13 July 2026, German authorities informed WHO of a laboratory-confirmed case of Ebola disease caused by Bundibugyo virus in a humanitarian worker from the United States of America who was medically evacuated from...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo & Uganda",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -9796,7 +9906,7 @@
         "Situation_Snapshot": "The Bundibugyo virus disease (BVD) outbreak in the Democratic Republic of the Congo remains active, with sustained transmission driving increases in reported cases and deaths. As of 15 July 2026, a cumulative total of 2124 confirmed cases, including 828 deaths, have been reported from the Democratic Republic of the Congo. On 13 July 2026, German authorities informed WHO of a laboratory-confirmed case of Ebola disease caused by Bundibugyo virus in a humanitarian worker from the United States of America who was medically evacuated from...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo & Uganda",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -9847,7 +9957,7 @@
         "Situation_Snapshot": "The Bundibugyo virus disease (BVD) outbreak in the Democratic Republic of the Congo continues to evolve rapidly, with sustained transmission and increasing numbers of reported cases. As of 1 July, a cumulative of 1460 confirmed cases, including 452 deaths, have been reported from the Democratic Republic of the Congo. As of 2 July, Uganda has reported 20 confirmed cases including two deaths, as well as one probable case who has died. In addition, on 24 June 2026, French authorities notified WHO of a laboratory-confirmed case of Ebola...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo & Uganda",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -9898,7 +10008,7 @@
         "Situation_Snapshot": "The Bundibugyo virus disease (BVD) outbreak in the Democratic Republic of the Congo continues to evolve rapidly, with sustained transmission and increasing numbers of reported cases. As of 1 July, a cumulative of 1460 confirmed cases, including 452 deaths, have been reported from the Democratic Republic of the Congo. As of 2 July, Uganda has reported 20 confirmed cases including two deaths, as well as one probable case who has died. In addition, on 24 June 2026, French authorities notified WHO of a laboratory-confirmed case of Ebola...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo & Uganda",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -9949,7 +10059,7 @@
         "Situation_Snapshot": "This is the fifth Disease Outbreak News posting on the Andes hantavirus (ANDV) outbreak linked to the cruise ship M/V Hondius. The outbreak identification followed the notification to the World Health Organization (WHO) on 2 May 2026 of severe acute respiratory illness cases onboard. Since the previous Disease Outbreak News was published on 28 May 2026, one of the probable cases from Tristan da Cunha, an Overseas Territory of the United Kingdom of Great Britain and Northern Ireland (hereafter referred to as the United Kingdom), was...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Hantavirus outbreak linked to cruise ship travel, Multi-locations",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10000,7 +10110,7 @@
         "Situation_Snapshot": "On 11 June 2026, the Kerala State Health Department confirmed one laboratory confirmed case of Nipah virus (NiV) infection in Kozhikode district, Kerala State, India. The case is an adult male who developed symptoms on 30 May 2026 and was hospitalized on 10 June 2026. He presented with neurological manifestations and at the time of reporting is on ventilatory support in an intensive care unit (ICU). As of 18 June 2026, a total of 104 contacts had been identified and were under monitoring, including health and care workers, with no...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Nipah virus disease - India",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10051,7 +10161,7 @@
         "Situation_Snapshot": "The Bundibugyo virus disease (BVD) outbreak in the Democratic Republic of the Congo continues to evolve rapidly, with sustained transmission and increasing numbers of reported cases. As of 17 June, a cumulative of 896 confirmed cases, including 232 deaths, have been reported from the Democratic Republic of the Congo. As of 18 June, Uganda has reported 19 confirmed cases including two deaths, as well as one probable case who has died. In Uganda, the outbreak remains epidemiologically linked to transmission originating in the...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo & Uganda",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10102,7 +10212,7 @@
         "Situation_Snapshot": "The Bundibugyo virus disease (BVD) outbreak in the Democratic Republic of the Congo continues to evolve rapidly, with sustained transmission and increasing numbers of reported cases. As of 17 June, a cumulative of 896 confirmed cases, including 232 deaths, have been reported from the Democratic Republic of the Congo. As of 18 June, Uganda has reported 19 confirmed cases including two deaths, as well as one probable case who has died. In Uganda, the outbreak remains epidemiologically linked to transmission originating in the...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo & Uganda",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10153,7 +10263,7 @@
         "Situation_Snapshot": "The Bundibugyo virus disease (BVD) outbreak in the Democratic Republic of the Congo continues to evolve rapidly, with increasing case numbers and geographic spread. As of 10 June, a cumulative of 676 confirmed cases, including 136 deaths, have been reported from the Democratic Republic of the Congo. As of 11 June, Uganda has reported 19 confirmed cases including two deaths, as well as one probable case who has died. In Uganda, the outbreak remains epidemiologically linked to transmission originating in the Democratic Republic of the...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo & Uganda",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10204,7 +10314,7 @@
         "Situation_Snapshot": "The Bundibugyo virus disease (BVD) outbreak in the Democratic Republic of the Congo continues to evolve rapidly, with increasing case numbers and geographic spread. As of 10 June, a cumulative of 676 confirmed cases, including 136 deaths, have been reported from the Democratic Republic of the Congo. As of 11 June, Uganda has reported 19 confirmed cases including two deaths, as well as one probable case who has died. In Uganda, the outbreak remains epidemiologically linked to transmission originating in the Democratic Republic of the...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo & Uganda",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10255,7 +10365,7 @@
         "Situation_Snapshot": "The Bundibugyo virus disease (BVD) outbreak in the Democratic Republic of the Congo continues to evolve rapidly, with increasing case numbers, geographic spread, and cross-border transmission to Uganda. As of 6 June, a total of 515 confirmed cases, with 91 deaths among these confirmed cases, have been reported from the Democratic Republic of the Congo; Uganda has reported 19 confirmed cases including two deaths, as well as one probable case who has died. In Uganda, the outbreak remains epidemiologically linked to transmission...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo & Uganda",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10306,7 +10416,7 @@
         "Situation_Snapshot": "The Bundibugyo virus disease (BVD) outbreak in the Democratic Republic of the Congo continues to evolve rapidly, with increasing case numbers, geographic spread, and cross-border transmission to Uganda. As of 6 June, a total of 515 confirmed cases, with 91 deaths among these confirmed cases, have been reported from the Democratic Republic of the Congo; Uganda has reported 19 confirmed cases including two deaths, as well as one probable case who has died. In Uganda, the outbreak remains epidemiologically linked to transmission...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo & Uganda",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10357,7 +10467,7 @@
         "Situation_Snapshot": "The Bundibugyo virus disease (BVD) outbreak in the Democratic Republic of the Congo and Uganda continues to evolve rapidly, with increasing case numbers, geographic spread, and ongoing cross-border transmission. As of 27 May, a total of 906 suspected cases and 223 deaths among suspected cases have been reported in the Democratic Republic of the Congo. As of 29 May, a total of 134 confirmed cases, including nine in Uganda, with 18 deaths among the confirmed cases, have been reported across both countries. This is an additional 49...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo & Uganda",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10408,7 +10518,7 @@
         "Situation_Snapshot": "The Bundibugyo virus disease (BVD) outbreak in the Democratic Republic of the Congo and Uganda continues to evolve rapidly, with increasing case numbers, geographic spread, and ongoing cross-border transmission. As of 27 May, a total of 906 suspected cases and 223 deaths among suspected cases have been reported in the Democratic Republic of the Congo. As of 29 May, a total of 134 confirmed cases, including nine in Uganda, with 18 deaths among the confirmed cases, have been reported across both countries. This is an additional 49...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo & Uganda",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10459,7 +10569,7 @@
         "Situation_Snapshot": "This is the fourth Disease Outbreak News report on the Andes hantavirus outbreak linked to cruise ship travel, following the notification to the World Health Organization (WHO) on 2 May 2026 of severe respiratory illness cases aboard M/V Hondius, a cruise ship. Since the last DON was published on 13 May, three additional confirmed cases were reported, from Canada, the Netherlands, and Spain. The previously reported inconclusive case from the United States of America was subsequently determined to be negative following further...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Hantavirus outbreak linked to cruise ship travel, Multi-locations",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10510,7 +10620,7 @@
         "Situation_Snapshot": "This is the fourth Disease Outbreak News report on the Andes hantavirus outbreak linked to cruise ship travel, following the notification to the World Health Organization (WHO) on 2 May 2026 of severe respiratory illness cases aboard M/V Hondius, a cruise ship. Since the last DON was published on 13 May, three additional confirmed cases were reported, from Canada, the Netherlands, and Spain. The previously reported inconclusive case from the United States of America was subsequently determined to be negative following further...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Hantavirus outbreak linked to cruise ship travel, Multi-locations",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10561,7 +10671,7 @@
         "Situation_Snapshot": "This is the fourth Disease Outbreak News report on the Andes hantavirus outbreak linked to cruise ship travel, following the notification to the World Health Organization (WHO) on 2 May 2026 of severe respiratory illness cases aboard M/V Hondius, a cruise ship. Since the last DON was published on 13 May, three additional confirmed cases were reported, from Canada, the Netherlands, and Spain. The previously reported inconclusive case from the United States of America was subsequently determined to be negative following further...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Hantavirus outbreak linked to cruise ship travel, Multi-locations",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10612,7 +10722,7 @@
         "Situation_Snapshot": "In light of the evolving Ebola situation in the Democratic Republic of the Congo and Uganda, the Pan-American Health Organization / World Health Organization (PAHO/WHO) is sharing updated technical guidance to support Member States in laboratory preparedness and diagnosis, infection prevention and control measures, and clinical management of cases.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Epidemiological Alert - Ebola Disease due to Bundibugyo virus in the Democratic Republic of the Congo and Uganda - 21 May 2026",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10663,7 +10773,7 @@
         "Situation_Snapshot": "In light of the evolving Ebola situation in the Democratic Republic of the Congo and Uganda, the Pan-American Health Organization / World Health Organization (PAHO/WHO) is sharing updated technical guidance to support Member States in laboratory preparedness and diagnosis, infection prevention and control measures, and clinical management of cases.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Epidemiological Alert - Ebola Disease due to Bundibugyo virus in the Democratic Republic of the Congo and Uganda - 21 May 2026",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10714,7 +10824,7 @@
         "Situation_Snapshot": "This is the third Disease Outbreak News report on the hantavirus cluster, following the notification to the World Health Organization (WHO) on 2 May 2026 of severe respiratory illness cases aboard MV Hondius, a cruise ship. Since the last DON was published on 8 May, two additional confirmed cases were reported from France and Spain. In addition, there is one inconclusive result for a case in the United States of America. All were passengers on the ship. As of 13 May, a total of 11 cases, including three deaths, have been reported...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Hantavirus cluster linked to cruise ship travel, Multi-country",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10765,7 +10875,7 @@
         "Situation_Snapshot": "This is the third Disease Outbreak News report on the hantavirus cluster, following the notification to the World Health Organization (WHO) on 2 May 2026 of severe respiratory illness cases aboard MV Hondius, a cruise ship. Since the last DON was published on 8 May, two additional confirmed cases were reported from France and Spain. In addition, there is one inconclusive result for a case in the United States of America. All were passengers on the ship. As of 13 May, a total of 11 cases, including three deaths, have been reported...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Hantavirus cluster linked to cruise ship travel, Multi-country",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10816,7 +10926,7 @@
         "Situation_Snapshot": "This is the third Disease Outbreak News report on the hantavirus cluster, following the notification to the World Health Organization (WHO) on 2 May 2026 of severe respiratory illness cases aboard MV Hondius, a cruise ship. Since the last DON was published on 8 May, two additional confirmed cases were reported from France and Spain. In addition, there is one inconclusive result for a case in the United States of America. All were passengers on the ship. As of 13 May, a total of 11 cases, including three deaths, have been reported...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Hantavirus cluster linked to cruise ship travel, Multi-country",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10867,7 +10977,7 @@
         "Situation_Snapshot": "Andes virus. On 2 May 2026, the World Health Organization ( WHO ) was notified of a cluster of severe respiratory illness aboard a cruise ship carrying 147 passengers and crew from various countries. The cruise ship departed from Ushuaia, Argentina, on 1 April 2026, and travelled across the South Atlantic. On 2 May 2026, laboratory testing of samples taken from a case confirmed hantavirus infection. Further testing of samples from cases confirmed Andes virus infection. As of 8 May 2026 , 8 cases (6 confirmed and 2 probable),...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 19 (week ending 10 May 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10918,7 +11028,7 @@
         "Situation_Snapshot": "On 2 May 2026, a cluster of passengers with severe respiratory illness aboard a cruise ship was reported to the World Health Organization (WHO). At that time, according to the ship operator, 147 passengers and crew were onboard, and 34 passengers and crew had previously disembarked. Since the last Disease Outbreak News published on 4 May, three of the suspected cases were confirmed, and one additional confirmed case was reported. As of 8 May, a total of eight cases, including three deaths (case fatality ratio 38%), have been...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Hantavirus cluster linked to cruise ship travel, Multi-country",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -10969,7 +11079,7 @@
         "Situation_Snapshot": "On 2 May 2026, a cluster of passengers with severe respiratory illness aboard a cruise ship was reported to the World Health Organization. The ship is carrying 147 passengers and crew. As of 4 May 2026, seven cases (two laboratory confirmed cases of hantavirus and five suspected cases) have been identified, including three deaths, one critically ill patient and three individuals reporting mild symptoms. Illness onset occurred between 6 and 28 April 2026 and was characterized by fever, gastrointestinal symptoms, rapid progression to...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Hantavirus cluster linked to cruise ship travel, Multi-country",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11020,7 +11130,7 @@
         "Situation_Snapshot": "Avian influenza A(H5N1). On 29 April 2026, the World Health Organization ( WHO ) shared information regarding a fatal human case of avian influenza A(H5N1) infection in Chattogram Division, Bangladesh. The case was a child with no known comorbidities who experienced symptom onset on 21 January 2026. The case was hospitalised a week later before being admitted to intensive care on 31 January 2026 and succumbing to illness on 1 February 2026. The Bangladesh Institute of Epidemiology, Disease Control and Research confirmed samples from...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Outbreaks under monitoring: week 18 (week ending 3 May 2026)",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11029,6 +11139,57 @@
         "coordinates": [
           90.36,
           23.69
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Outbreak_ID": "paho-alerts-4ff0108a03",
+        "Threat": "Mpox",
+        "Disease": "Mpox",
+        "Country": "Americas Region",
+        "Location_Label": "Americas Region",
+        "Geographic_Precision": "Region",
+        "Status": "Monitoring",
+        "Signal_Status": "Monitoring",
+        "Severity": "Moderate",
+        "Severity_Rationale": [
+          "Mpox is on the monitored outbreak-priority list."
+        ],
+        "Date_First_Noted": "2026-11-24",
+        "Date_Last_Updated": "2026-11-24",
+        "Source_ID": "paho-alerts",
+        "Source_Name": "PAHO Epidemiological Alerts",
+        "Source_Type": "Regional authority",
+        "Source_URL": "https://www.paho.org/en/documents/epidemiological-alert-mpox-americas-region-24-november-2026",
+        "Confidence": "High (94/100)",
+        "Confidence_Level": "High",
+        "Confidence_Score": 94,
+        "Confidence_Rationale": [
+          "Published by PAHO Epidemiological Alerts, a regional authority source.",
+          "The disease name matched the controlled outbreak vocabulary.",
+          "The signal is located at regional precision.",
+          "The source supplied enough context for a meaningful synopsis.",
+          "A publication date was parsed from the source."
+        ],
+        "Quality_Score": 92,
+        "Quality_Status": "Verified",
+        "Quality_Notes": [
+          "Location is regional rather than country-level."
+        ],
+        "Situation_Snapshot": "Given the increasing detection and geographic spread of mpox in several countries, the Pan American Health Organization (PAHO) / World Health Organization (WHO) urges Member States to strengthen epidemiological and genomic surveillance to ensure timely detection and investigation of cases, monitor changes in transmission patterns, and reinforce targeted prevention and control measures, particularly among populations at increased risk, including travelers heading to areas with active transmission.",
+        "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
+        "Title": "Epidemiological Alert - Mpox in the Americas Region - 24 November 2026",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
+        "Is_Stale": false,
+        "Data_State": "Current"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0,
+          5.0
         ]
       }
     },
@@ -11071,7 +11232,7 @@
         "Situation_Snapshot": "In October 2026, a cluster of four cases of acute flaccid paralysis (AFP) was identified in Al-Mayadin District, Deir Ez Zor Governorate, Syrian Arab Republic. As of 13 November 2026, three confirmed cases of circulating vaccine-derived poliovirus type 1 (cVDPV1) have been reported. Vaccine-derived poliovirus type 1 (VDPV1) was also detected in three contacts who did not present with AFP and are therefore not included in the reported paralytic poliomyelitis case count. Between 9 and 20 November 2026, twelve additional AFP cases were...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Circulating vaccine-derived poliovirus type 1 – Syrian Arab Republic",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11122,7 +11283,7 @@
         "Situation_Snapshot": "On 4 November 2026, health authorities in the canton of Ticino, Switzerland, in coordination with federal authorities, reported four locally acquired cases of chikungunya virus disease. These are the first reported locally acquired chikungunya cases in Switzerland. The earliest reported symptom onset was 10 August 2026, although this infection was identified retrospectively and the source of infection could not be identified. All cases were identified in October 2026. None of the affected individuals reported recent travel to areas...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Chikungunya virus disease - Switzerland",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11173,7 +11334,7 @@
         "Situation_Snapshot": "Dengue is a year-round risk in many parts of the world, with outbreaks commonly occurring every 2–5 years. Travelers to risk areas should prevent mosquito bites. Country List : Colombia, Vietnam, Maldives, Bolivia, Cambodia, Kenya, Malaysia, Sri Lanka, Bangladesh, Costa Rica, Marshall Islands, Vanuatu Country List : Colombia, Vietnam, Maldives, Bolivia, Cambodia, Kenya, Malaysia, Sri Lanka, Bangladesh, Costa Rica, Marshall Islands, Vanuatu Country List : Colombia, Vietnam, Maldives, Bolivia, Cambodia, Kenya, Malaysia, Sri Lanka,...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 1 - Global Dengue",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11224,7 +11385,7 @@
         "Situation_Snapshot": "Dengue is a year-round risk in many parts of the world, with outbreaks commonly occurring every 2–5 years. Travelers to risk areas should prevent mosquito bites. Country List : Colombia, Vietnam, Maldives, Bolivia, Cambodia, Kenya, Malaysia, Sri Lanka, Bangladesh, Costa Rica, Marshall Islands, Vanuatu Country List : Colombia, Vietnam, Maldives, Bolivia, Cambodia, Kenya, Malaysia, Sri Lanka, Bangladesh, Costa Rica, Marshall Islands, Vanuatu Country List : Colombia, Vietnam, Maldives, Bolivia, Cambodia, Kenya, Malaysia, Sri Lanka,...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 1 - Global Dengue",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11275,7 +11436,7 @@
         "Situation_Snapshot": "Dengue is a year-round risk in many parts of the world, with outbreaks commonly occurring every 2–5 years. Travelers to risk areas should prevent mosquito bites. Country List : Colombia, Vietnam, Maldives, Bolivia, Cambodia, Kenya, Malaysia, Sri Lanka, Bangladesh, Costa Rica, Marshall Islands, Vanuatu Country List : Colombia, Vietnam, Maldives, Bolivia, Cambodia, Kenya, Malaysia, Sri Lanka, Bangladesh, Costa Rica, Marshall Islands, Vanuatu Country List : Colombia, Vietnam, Maldives, Bolivia, Cambodia, Kenya, Malaysia, Sri Lanka,...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 1 - Global Dengue",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11326,7 +11487,7 @@
         "Situation_Snapshot": "Dengue is a year-round risk in many parts of the world, with outbreaks commonly occurring every 2–5 years. Travelers to risk areas should prevent mosquito bites. Country List : Colombia, Vietnam, Maldives, Bolivia, Cambodia, Kenya, Malaysia, Sri Lanka, Bangladesh, Costa Rica, Marshall Islands, Vanuatu Country List : Colombia, Vietnam, Maldives, Bolivia, Cambodia, Kenya, Malaysia, Sri Lanka, Bangladesh, Costa Rica, Marshall Islands, Vanuatu Country List : Colombia, Vietnam, Maldives, Bolivia, Cambodia, Kenya, Malaysia, Sri Lanka,...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 1 - Global Dengue",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11377,7 +11538,7 @@
         "Situation_Snapshot": "Dengue is a year-round risk in many parts of the world, with outbreaks commonly occurring every 2–5 years. Travelers to risk areas should prevent mosquito bites. Country List : Colombia, Vietnam, Maldives, Bolivia, Cambodia, Kenya, Malaysia, Sri Lanka, Bangladesh, Costa Rica, Marshall Islands, Vanuatu Country List : Colombia, Vietnam, Maldives, Bolivia, Cambodia, Kenya, Malaysia, Sri Lanka, Bangladesh, Costa Rica, Marshall Islands, Vanuatu Country List : Colombia, Vietnam, Maldives, Bolivia, Cambodia, Kenya, Malaysia, Sri Lanka,...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 1 - Global Dengue",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11428,7 +11589,7 @@
         "Situation_Snapshot": "There are outbreaks of yellow fever in the Nando Region of Burkina Faso, Bounkani Region of Côte d’Ivoire, and the Upper West Region of Ghana. Travelers to these regions should take steps to prevent yellow fever by getting vaccinated at least 10 days before travel and taking steps to prevent mosquito bites. Country List : Ghana, Burkina Faso, Côte d'Ivoire (Ivory Coast) Country List : Ghana, Burkina Faso, Côte d'Ivoire (Ivory Coast)",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 2 - Yellow Fever in Burkina Faso, Côte d’Ivoire, and Ghana",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11478,7 +11639,7 @@
         "Situation_Snapshot": "An increased number of cases of yellow fever have been reported in Colombia.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 2 - Yellow Fever in Colombia",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11529,7 +11690,7 @@
         "Situation_Snapshot": "Some international destinations have circulating poliovirus. Before any international travel, make sure you are up to date on your polio vaccines. Country List : Afghanistan, Algeria, Benin, Cameroon, Chad, Côte d'Ivoire (Ivory Coast), Democratic Republic of the Congo, Niger, Nigeria, Pakistan, Somalia, Yemen, Sudan, Angola, Ethiopia, Republic of South Sudan, Djibouti, Germany, United Kingdom, including England, Scotland, Wales, and Northern Ireland, Papua New Guinea, Central African Republic, Tanzania, including Zanzibar, Laos,...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 2 - Global Polio",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11580,7 +11741,7 @@
         "Situation_Snapshot": "Some international destinations have circulating poliovirus. Before any international travel, make sure you are up to date on your polio vaccines. Country List : Afghanistan, Algeria, Benin, Cameroon, Chad, Côte d'Ivoire (Ivory Coast), Democratic Republic of the Congo, Niger, Nigeria, Pakistan, Somalia, Yemen, Sudan, Angola, Ethiopia, Republic of South Sudan, Djibouti, Germany, United Kingdom, including England, Scotland, Wales, and Northern Ireland, Papua New Guinea, Central African Republic, Tanzania, including Zanzibar, Laos,...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 2 - Global Polio",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11631,7 +11792,7 @@
         "Situation_Snapshot": "Some international destinations have circulating poliovirus. Before any international travel, make sure you are up to date on your polio vaccines. Country List : Afghanistan, Algeria, Benin, Cameroon, Chad, Côte d'Ivoire (Ivory Coast), Democratic Republic of the Congo, Niger, Nigeria, Pakistan, Somalia, Yemen, Sudan, Angola, Ethiopia, Republic of South Sudan, Djibouti, Germany, United Kingdom, including England, Scotland, Wales, and Northern Ireland, Papua New Guinea, Central African Republic, Tanzania, including Zanzibar, Laos,...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 2 - Global Polio",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11682,7 +11843,7 @@
         "Situation_Snapshot": "Some international destinations have circulating poliovirus. Before any international travel, make sure you are up to date on your polio vaccines. Country List : Afghanistan, Algeria, Benin, Cameroon, Chad, Côte d'Ivoire (Ivory Coast), Democratic Republic of the Congo, Niger, Nigeria, Pakistan, Somalia, Yemen, Sudan, Angola, Ethiopia, Republic of South Sudan, Djibouti, Germany, United Kingdom, including England, Scotland, Wales, and Northern Ireland, Papua New Guinea, Central African Republic, Tanzania, including Zanzibar, Laos,...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 2 - Global Polio",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11733,7 +11894,7 @@
         "Situation_Snapshot": "Some international destinations have circulating poliovirus. Before any international travel, make sure you are up to date on your polio vaccines. Country List : Afghanistan, Algeria, Benin, Cameroon, Chad, Côte d'Ivoire (Ivory Coast), Democratic Republic of the Congo, Niger, Nigeria, Pakistan, Somalia, Yemen, Sudan, Angola, Ethiopia, Republic of South Sudan, Djibouti, Germany, United Kingdom, including England, Scotland, Wales, and Northern Ireland, Papua New Guinea, Central African Republic, Tanzania, including Zanzibar, Laos,...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 2 - Global Polio",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11784,7 +11945,7 @@
         "Situation_Snapshot": "Some international destinations have circulating poliovirus. Before any international travel, make sure you are up to date on your polio vaccines. Country List : Afghanistan, Algeria, Benin, Cameroon, Chad, Côte d'Ivoire (Ivory Coast), Democratic Republic of the Congo, Niger, Nigeria, Pakistan, Somalia, Yemen, Sudan, Angola, Ethiopia, Republic of South Sudan, Djibouti, Germany, United Kingdom, including England, Scotland, Wales, and Northern Ireland, Papua New Guinea, Central African Republic, Tanzania, including Zanzibar, Laos,...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 2 - Global Polio",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11834,7 +11995,7 @@
         "Situation_Snapshot": "There is an outbreak of chikungunya in Nicaragua. You can protect yourself by preventing mosquito bites.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 2 - Chikungunya in Nicaragua",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11885,7 +12046,7 @@
         "Situation_Snapshot": "Given the increase in reported measles cases during 2026 in the Americas Region and in other regions of the world, as well as the holding of mass gatherings with broad international participation, the Pan American Health Organization / World Health Organization (PAHO/WHO) urges Member States to prioritize strengthening epidemiological surveillance and vaccination activities, and to ensure a rapid and effective response to suspected measles cases.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Epidemiological Alert Measles in the Americas Region - 7 August 2026",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11935,7 +12096,7 @@
         "Situation_Snapshot": "There is an outbreak of chikungunya in northwest Costa Rica. You can protect yourself by preventing mosquito bites.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 2 - Chikungunya in Costa Rica",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -11986,7 +12147,7 @@
         "Situation_Snapshot": "Yellow fever is a viral disease found in areas of Africa and the Americas, spread by infected mosquitoes. Following an increase of cases in the Americas in 2025, transmission activity remained into 2026. From 1 January to 26 May 2026, six countries reported a total of 79 human infections along with multiple epizootics, indicating active sylvatic circulation. In Africa, sustained activity continued across parts of the region, affecting 13 high-risk countries (as per classification in the Eliminate Yellow fever Epidemics (EYE)...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Yellow fever - Global",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -12036,7 +12197,7 @@
         "Situation_Snapshot": "There is an outbreak of chikungunya in French Guiana. You can protect yourself by preventing mosquito bites.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 2 - Chikungunya in French Guiana",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -12087,7 +12248,59 @@
         "Situation_Snapshot": "Given the increase in measles cases in the Americas Region during 2025 and 2026, the occurrence of other public health events in countries within and outside the Region, and in the context of large-scale events with broad international participation, the Pan American Health Organization / World Health Organization (PAHO/WHO) urges Member States to prioritize the strengthening of surveillance and vaccination activities and to ensure a rapid and effective response to suspected measles cases.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Epidemiological Alert: Measles in the Americas Region - 29 May 2026",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
+        "Is_Stale": false,
+        "Data_State": "Current"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0,
+          5.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Outbreak_ID": "paho-alerts-1a24a3f870",
+        "Threat": "Multi-disease report",
+        "Disease": "Multi-disease report",
+        "Country": "Americas Region",
+        "Location_Label": "Americas Region",
+        "Geographic_Precision": "Region",
+        "Status": "Open",
+        "Signal_Status": "Open",
+        "Severity": "Low",
+        "Severity_Rationale": [
+          "No critical or high-severity trigger was detected in the published text."
+        ],
+        "Date_First_Noted": "2026-11-24",
+        "Date_Last_Updated": "2026-11-24",
+        "Source_ID": "paho-alerts",
+        "Source_Name": "PAHO Epidemiological Alerts",
+        "Source_Type": "Regional authority",
+        "Source_URL": "https://www.paho.org/en/documents/epiemiological-alert-epidemiological-alert-avian-influenza-ah5n1-americas-region-24",
+        "Confidence": "Moderate (79/100)",
+        "Confidence_Level": "Moderate",
+        "Confidence_Score": 79,
+        "Confidence_Rationale": [
+          "Published by PAHO Epidemiological Alerts, a regional authority source.",
+          "The report does not have a single vocabulary-matched disease label.",
+          "The signal is located at regional precision.",
+          "The source supplied enough context for a meaningful synopsis.",
+          "A publication date was parsed from the source."
+        ],
+        "Quality_Score": 74,
+        "Quality_Status": "Review",
+        "Quality_Notes": [
+          "Disease label inferred rather than vocabulary-matched.",
+          "Location is regional rather than country-level."
+        ],
+        "Situation_Snapshot": "Although fewer avian influenza A(H5N1) outbreaks has been detected in birds and mammals during 2026 in the Americas, the number of confirmed cases of human infection with avian influenza A(H5) among workers at dairy facilities exceeds the number recorded in 2025.",
+        "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
+        "Title": "Epiemiological Alert - Epidemiological Alert Avian Influenza A(H5N1) in the Americas Region - 24 November 2026",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -12138,7 +12351,7 @@
         "Situation_Snapshot": "Updates on latest cold health alerts.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "UKHSA cold-health alerts winter 2026/27",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -12189,7 +12402,7 @@
         "Situation_Snapshot": "Report monitoring respiratory viruses for the 2026/27 season.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Latest weekly winter virus surveillance data",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -12239,7 +12452,7 @@
         "Situation_Snapshot": "Cases of multidrug-resistant (MDR) typhoid fever are being reported among returning travelers from Senegal.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 1 - Multidrug-Resistant Typhoid Fever in Senegal",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -12290,7 +12503,7 @@
         "Situation_Snapshot": "With the start of the 2026–2027 respiratory virus circulation season in the Northern Hemisphere, and given the increase in influenza activity observed in several countries in the Americas Region, as well as the high circulation of respiratory syncytial virus (RSV) in some countries in the Northern Hemisphere, the Pan American Health Organization/World Health Organization (PAHO/WHO) urges Member States to strengthen integrated epidemiological and virological surveillance of respiratory viruses, including timely genomic...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Epidemiological Alert - Seasonal Influenza and Other Respiratory Viruses: Start of the Season in the Northern Hemisphere - 17 November 2026",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -12341,7 +12554,7 @@
         "Situation_Snapshot": "National surveillance data shows antibiotic resistance continues to worsen.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Over 400 antibiotic-resistant infections each week in 2025",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -12392,7 +12605,7 @@
         "Situation_Snapshot": "UKHSA urges those eligible to get vaccinated as soon as possible – help protect yourself and stop the spread of viruses to family, friends and your community.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Don’t let a winter bug ruin your Diwali celebrations",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -12444,7 +12657,7 @@
         "Situation_Snapshot": "Given the increase in dengue cases observed in some countries of the Andean, Central American, and Caribbean subregions of the Americas Region, as well as the increase in chikungunya cases experienced between late 2025 and 2026, accompanied by the resurgence of chikungunya transmission in countries and territories of the Region where no viral circulation had been recorded for several years, the anticipated intensification of the El Niño phenomenon over the coming months, and the approaching peak season for dengue and chikungunya...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Epidemiological Update: Dengue and Chikungunya in the Americas Region - 20 October 2026",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -12496,7 +12709,7 @@
         "Situation_Snapshot": "In light of the increase and expansion of the area where human cases of myiasis caused by Cochliomyia hominivorax (New World screwworm) are occurring in countries in Central America and Mexico, following the reemergence and geographic spread of this parasite in animals, the Pan American Health Organization/World Health Organization (PAHO/WHO) calls on Member States to strengthen epidemiological surveillance, ensure timely diagnosis of human cases, and provide appropriate clinical management, while reinforcing coordination among the...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Epidemiological Alert: Myiasis caused by Cochliomyia hominivorax in the Americas Region, 16 October 2026",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -12547,7 +12760,7 @@
         "Situation_Snapshot": "£33.2 million will fund 8 vaccine projects targeting deadly diseases, strengthening UK pandemic preparedness and helping protect people worldwide.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "£33.2 million to protect public from future epidemics and pandemics",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -12598,7 +12811,7 @@
         "Situation_Snapshot": "Scientists used genome sequencing to identify genetic changes that may explain the severity of the Kent meningococcal disease outbreak earlier this year.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "UKHSA and University of Oxford scientists uncover genetic changes in the bacteria causing severe Kent meningococcal disease outbreak",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -12649,7 +12862,7 @@
         "Situation_Snapshot": "There is an outbreak of hepatitis A (HAV) in Costa Rica. Most cases have been reported in San José province.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 1 - Hepatitis A in Costa Rica",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -12699,7 +12912,7 @@
         "Situation_Snapshot": "Information about Listeria outbreak linked to prepared pasta meals.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Prepared Pasta Meals – Listeria",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -12751,7 +12964,7 @@
         "Situation_Snapshot": "Cases of paratyphoid fever are being reported in returning travelers from Yemen. You can prevent paratyphoid fever by practicing safe eating and drinking habits.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 1 - Paratyphoid Fever in Yemen",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -12802,7 +13015,7 @@
         "Situation_Snapshot": "There are outbreaks of diphtheria in several countries in Africa. Vaccination against diphtheria is essential to protect against the disease. Country List : Chad, Guinea, Niger, Nigeria, Mali, Mauritania, Somalia Country List : Chad, Guinea, Niger, Nigeria, Mali, Mauritania, Somalia Country List : Chad, Guinea, Niger, Nigeria, Mali, Mauritania, Somalia Country List : Chad, Guinea, Niger, Nigeria, Mali, Mauritania, Somalia, Senegal Country List : Chad, Guinea, Niger, Nigeria, Mali, Mauritania, Somalia, Senegal Country List : Chad,...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 1 - Diphtheria in Sub-Saharan Africa",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -12854,7 +13067,7 @@
         "Situation_Snapshot": "Cases of Zika are being reported in returning travelers from Bali, Indonesia. All travelers to Bali should take steps to prevent mosquito bites and sexual transmission of Zika virus during and after travel.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 2 - Zika in Indonesia",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -12904,7 +13117,7 @@
         "Situation_Snapshot": "Learn about a Salmonella outbreak linked to powdered supplements",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Moringa Leaf Powder – Salmonella",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -12954,7 +13167,7 @@
         "Situation_Snapshot": "Describes an outbreak of Salmonella linked to pet bearded dragons and what pet owners can do.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Bearded Dragons – Salmonella",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -13004,7 +13217,7 @@
         "Situation_Snapshot": "Learn about Salmonella outbreaks linked to geckos.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Geckos - Salmonella",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -13056,7 +13269,7 @@
         "Situation_Snapshot": "Considering the identification of cases of dermatophilosis caused by Dermatophilus congolensis in people with no history of contact with animals, in particular in men who have sex with men, suggesting the possibility of a new route of transmission for this disease (human-to-human transmission through sexual contact), associated with a possible new species of Dermatophilus, the Pan American Health Organization / World Health Organization (PAHO/WHO) shares updated technical guidance to support Member States in laboratory preparation...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Epidemiological Alert: Dermatophilosis by Dermatophilus congolensis - 9 July 2026",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -13107,7 +13320,7 @@
         "Situation_Snapshot": "Considering the increase in influenza B activity observed in some countries of the Americas Region, as evidenced by recent increases in detections reported by national surveillance systems, and given that this increase occurs in the context of the onset of the respiratory virus season—characterized by increased transmission of seasonal influenza and the progressive circulation of respiratory syncytial virus (RSV)— particularly in the Southern Hemisphere, the Pan American Health Organization/World Health Organization (PAHO/WHO) urges...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Epidemiological Alert Seasonal Influenza and other respiratory viruses in the Southern Hemisphere - 1 July 2026",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -13158,7 +13371,7 @@
         "Situation_Snapshot": "There is an outbreak of diphtheria in Haiti. Vaccination against diphtheria is essential to protect against the disease.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 1 - Diphtheria in Haiti",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -13209,7 +13422,7 @@
         "Situation_Snapshot": "Given the current situation, in which diphtheria vaccination coverage has remained below optimal levels in recent years, as well as the emergence of new cases in some countries of the Region, the Pan American Health Organization / World Health Organization (PAHO/WHO) calls on Member States to close vaccination gaps and strengthen epidemiological surveillance of vaccine-preventable diseases, and reiterates the importance of strengthening routine immunization programs, microplanning strategies, catch-up vaccination, and follow-up to...",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Epidemiological Alert: Diphtheria in the Americas Region - 11 June 2026",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
@@ -13260,7 +13473,7 @@
         "Situation_Snapshot": "Manitoba, Canada is currently experiencing a hepatitis A virus (HAV) outbreak. HAV is contagious and spreads through close person-to-person contact and by eating contaminated food or drink.",
         "Travel_Health_Takeaways": "Verify case counts, local restrictions and clinical guidance with the linked authority before operational use.",
         "Title": "Level 1 - Hepatitis A in Canada",
-        "Generated_At": "2026-11-24T15:54:56.598496+00:00",
+        "Generated_At": "2026-11-25T15:38:37.344584+00:00",
         "Is_Stale": false,
         "Data_State": "Current"
       },
