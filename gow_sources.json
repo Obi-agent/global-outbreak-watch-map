@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-26T15:20:36.887297+00:00",
-  "feature_count": 162,
+  "generated_at": "2026-11-27T15:08:29.497400+00:00",
+  "feature_count": 164,
   "incident_count": 53,
   "source_count": 8,
   "quality": {
@@ -11,21 +11,13 @@
     "sources_ok": 8,
     "sources_last_known_good": 0,
     "sources_error": 0,
-    "signals_current": 162,
+    "signals_current": 164,
     "signals_last_known_good": 0,
     "signals_quarantined": 1,
     "signals_rejected_noisy": 1,
     "incidents": 53
   },
   "quality_history": [
-    {
-      "date": "2026-11-13",
-      "score": 96,
-      "status": "Healthy",
-      "incidents": 62,
-      "signals": 170,
-      "sources_ok": 8
-    },
     {
       "date": "2026-11-14",
       "score": 96,
@@ -129,6 +121,14 @@
       "incidents": 53,
       "signals": 162,
       "sources_ok": 8
+    },
+    {
+      "date": "2026-11-27",
+      "score": 97,
+      "status": "Healthy",
+      "incidents": 53,
+      "signals": 164,
+      "sources_ok": 8
     }
   ],
   "source_status": [
@@ -143,8 +143,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 3.27,
-      "last_success_at": "2026-11-26T15:20:36.887297+00:00"
+      "elapsed_seconds": 3.73,
+      "last_success_at": "2026-11-27T15:08:29.497400+00:00"
     },
     {
       "id": "cdc-travel",
@@ -157,8 +157,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.25,
-      "last_success_at": "2026-11-26T15:20:36.887297+00:00"
+      "elapsed_seconds": 0.1,
+      "last_success_at": "2026-11-27T15:08:29.497400+00:00"
     },
     {
       "id": "cdc-us-outbreaks",
@@ -171,8 +171,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 3.69,
-      "last_success_at": "2026-11-26T15:20:36.887297+00:00"
+      "elapsed_seconds": 2.94,
+      "last_success_at": "2026-11-27T15:08:29.497400+00:00"
     },
     {
       "id": "cdc-int-outbreaks",
@@ -185,8 +185,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 1,
-      "elapsed_seconds": 5.22,
-      "last_success_at": "2026-11-26T15:20:36.887297+00:00"
+      "elapsed_seconds": 4.86,
+      "last_success_at": "2026-11-27T15:08:29.497400+00:00"
     },
     {
       "id": "ecdc-cdtr",
@@ -199,8 +199,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.51,
-      "last_success_at": "2026-11-26T15:20:36.887297+00:00"
+      "elapsed_seconds": 0.17,
+      "last_success_at": "2026-11-27T15:08:29.497400+00:00"
     },
     {
       "id": "paho-alerts",
@@ -213,8 +213,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 1,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 12.54,
-      "last_success_at": "2026-11-26T15:20:36.887297+00:00"
+      "elapsed_seconds": 14.56,
+      "last_success_at": "2026-11-27T15:08:29.497400+00:00"
     },
     {
       "id": "ukhsa-news",
@@ -227,8 +227,8 @@
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 0.38,
-      "last_success_at": "2026-11-26T15:20:36.887297+00:00"
+      "elapsed_seconds": 0.32,
+      "last_success_at": "2026-11-27T15:08:29.497400+00:00"
     },
     {
       "id": "ukhsa-monitoring",
@@ -236,13 +236,13 @@
       "type": "National authority",
       "url": "https://www.gov.uk/government/publications/outbreaks-under-monitoring-in-2026",
       "status": "ok",
-      "items_seen": 44,
-      "features_added": 55,
+      "items_seen": 45,
+      "features_added": 57,
       "features_carried_forward": 0,
       "skipped_noisy": 0,
       "skipped_quarantined": 0,
-      "elapsed_seconds": 35.48,
-      "last_success_at": "2026-11-26T15:20:36.887297+00:00"
+      "elapsed_seconds": 20.87,
+      "last_success_at": "2026-11-27T15:08:29.497400+00:00"
     }
   ]
 }
